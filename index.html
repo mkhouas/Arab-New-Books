@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📚 كتب جديدة حول العالم العربي | New Books on the Arab World</title>
+<style>
+:root{
+  --pri:#1a5276;--sec:#2980b9;--acc:#e74c3c;
+  --bg:#f0f2f5;--card:#fff;--txt:#2c3e50;
+  --txtL:#7f8c8d;--brd:#dfe6e9;
+  --sh:0 4px 15px rgba(0,0,0,.08);
+}
+[data-theme=dark]{
+  --pri:#3498db;--sec:#5dade2;
+  --bg:#0f0f1a;--card:#1a1a2e;--txt:#ecf0f1;
+  --txtL:#95a5a6;--brd:#2c3e50;
+  --sh:0 4px 20px rgba(0,0,0,.35);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--txt);line-height:1.7;transition:.3s}
+
+/* ── Header ── */
+.hdr{background:linear-gradient(135deg,var(--pri),var(--sec));color:#fff;padding:48px 20px 38px;text-align:center;position:relative;overflow:hidden}
+.hdr::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0zm20 20h20v20H20z' fill='%23fff' fill-opacity='.04'/%3E%3C/svg%3E")}
+.hdr h1{font-size:2.4em;position:relative;z-index:1}
+.hdr p{opacity:.88;position:relative;z-index:1;margin-top:6px}
+.hdr .sub{font-size:.88em;opacity:.7;margin-top:4px}
+
+/* ── Controls ── */
+.ctrl{background:var(--card);padding:16px 20px;position:sticky;top:0;z-index:100;box-shadow:var(--sh);border-bottom:1px solid var(--brd)}
+.ctrl-in{max-width:1400px;margin:auto;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.sbox{flex:1;min-width:220px}
+.sbox input{width:100%;padding:11px 15px;border:2px solid var(--brd);border-radius:10px;font-size:15px;background:var(--bg);color:var(--txt);transition:.3s}
+.sbox input:focus{outline:0;border-color:var(--sec)}
+.fgrp{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.fbtn{padding:7px 16px;border:2px solid var(--brd);border-radius:25px;background:var(--bg);color:var(--txt);cursor:pointer;font-size:13px;transition:.25s;white-space:nowrap}
+.fbtn:hover,.fbtn.on{background:var(--sec);color:#fff;border-color:var(--sec)}
+select.fsel{padding:9px 13px;border:2px solid var(--brd);border-radius:10px;background:var(--bg);color:var(--txt);font-size:13px;cursor:pointer}
+.thm{width:40px;height:40px;border:0;background:var(--bg);border-radius:50%;cursor:pointer;font-size:19px;display:flex;align-items:center;justify-content:center;transition:.3s}
+.thm:hover{transform:scale(1.12)}
+
+/* ── Stats ── */
+.stats{max-width:1400px;margin:18px auto;padding:0 20px;display:flex;flex-wrap:wrap;gap:14px}
+.st{flex:1;min-width:120px;background:var(--card);padding:18px 10px;border-radius:12px;text-align:center;box-shadow:var(--sh);border-top:3px solid var(--sec)}
+.st .n{font-size:1.9em;font-weight:700;color:var(--sec)}
+.st .l{font-size:.82em;color:var(--txtL);margin-top:4px}
+.upd{text-align:center;padding:8px;color:var(--txtL);font-size:.85em}
+.pulse{display:inline-block;width:8px;height:8px;background:#27ae60;border-radius:50%;margin-left:6px;animation:pls 2s infinite}
+@keyframes pls{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* ── Grid ── */
+.wrap{max-width:1400px;margin:0 auto;padding:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:22px}
+
+/* ── Card ── */
+.card{background:var(--card);border-radius:16px;overflow:hidden;box-shadow:var(--sh);transition:.3s;display:flex;flex-direction:column;position:relative}
+.card:hover{transform:translateY(-5px);box-shadow:0 10px 35px rgba(0,0,0,.14)}
+.lbg{position:absolute;top:14px;left:14px;padding:3px 11px;border-radius:18px;font-size:11px;font-weight:700;color:#fff;z-index:2}
+.lbg.ar{background:#27ae60}.lbg.en{background:#2980b9}.lbg.fr{background:#8e44ad}
+.nbg{position:absolute;top:14px;right:14px;padding:3px 10px;border-radius:18px;font-size:10px;font-weight:700;color:#fff;background:var(--acc);z-index:2;animation:glw 2s infinite}
+@keyframes glw{0%,100%{box-shadow:0 0 6px rgba(231,76,60,.5)}50%{box-shadow:0 0 16px rgba(231,76,60,.85)}}
+.cvr{height:195px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.cvr img{width:100%;height:100%;object-fit:cover}
+.cvr .ph{font-size:56px}
+.cnt{padding:18px;flex:1;display:flex;flex-direction:column}
+.ttl{font-size:1.1em;font-weight:700;margin-bottom:6px;line-height:1.45}
+.ttl a{color:inherit;text-decoration:none}.ttl a:hover{color:var(--sec)}
+.aut{color:var(--sec);font-size:.92em;margin-bottom:8px}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.mt{padding:3px 9px;background:var(--bg);border-radius:14px;font-size:.78em;color:var(--txtL)}
+.desc{font-size:.88em;color:var(--txtL);line-height:1.65;margin-bottom:14px;flex:1;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+.foot{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--brd)}
+.dt{font-size:.78em;color:var(--txtL)}
+.lnk a{display:inline-flex;align-items:center;gap:4px;padding:5px 13px;background:var(--sec);color:#fff;text-decoration:none;border-radius:18px;font-size:.78em;transition:.3s}
+.lnk a:hover{background:var(--pri)}
+
+/* ── Loading / Empty ── */
+.ld{text-align:center;padding:60px}
+.sp{width:46px;height:46px;border:4px solid var(--brd);border-top:4px solid var(--sec);border-radius:50%;animation:rot 1s linear infinite;margin:0 auto 18px}
+@keyframes rot{to{transform:rotate(360deg)}}
+.nr{text-align:center;padding:60px;color:var(--txtL);display:none}
+.nr .em{font-size:56px;margin-bottom:12px}
+
+/* ── Pagination ── */
+.pg{display:flex;justify-content:center;gap:8px;margin-top:28px;flex-wrap:wrap}
+.pg button{padding:9px 16px;border:2px solid var(--brd);border-radius:10px;background:var(--card);color:var(--txt);cursor:pointer;transition:.25s;font-size:13px}
+.pg button:hover,.pg button.on{background:var(--sec);color:#fff;border-color:var(--sec)}
+.pg button:disabled{opacity:.45;cursor:not-allowed}
+
+/* ── Footer ── */
+.ftr{background:var(--pri);color:#fff;text-align:center;padding:28px;margin-top:50px;font-size:.92em}
+.ftr a{color:#f1c40f;text-decoration:none}
+
+/* ── Progress Bar ── */
+.pbar{position:fixed;top:0;left:0;height:3px;background:var(--acc);z-index:9999;transition:width .3s}
+
+/* ── Scroll Top ── */
+.stop{position:fixed;bottom:28px;left:28px;width:46px;height:46px;background:var(--sec);color:#fff;border:0;border-radius:50%;font-size:22px;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.2);z-index:999;transition:.3s}
+.stop:hover{background:var(--pri);transform:scale(1.1)}
+.stop.v{display:flex}
+
+@media(max-width:768px){
+  .hdr h1{font-size:1.6em}
+  .grid{grid-template-columns:1fr}
+  .ctrl-in{flex-direction:column}
+  .fgrp{width:100%;justify-content:center}
+  .st{min-width:80px;padding:12px 6px}
+}
+</style>
+</head>
+<body>
+
+<!-- Progress -->
+<div class="pbar" id="pbar" style="width:0%"></div>
+
+<!-- Header -->
+<header class="hdr">
+  <h1>📚 كتب جديدة حول العالم العربي</h1>
+  <p>New Books on the Arab World · Nouveaux livres sur le monde arabe</p>
+  <p class="sub">تحديث يومي تلقائي — آخر 12 شهراً | Daily auto-update — Last 12 months</p>
+</header>
+
+<!-- Controls -->
+<div class="ctrl">
+  <div class="ctrl-in">
+    <div class="sbox">
+      <input type="text" id="q" placeholder="🔍 ابحث بالعنوان، المؤلف، الموضوع... | Search...">
+    </div>
+    <div class="fgrp">
+      <button class="fbtn on" data-l="all">الكل | All</button>
+      <button class="fbtn" data-l="ar">🟢 عربي</button>
+      <button class="fbtn" data-l="en">🔵 English</button>
+      <button class="fbtn" data-l="fr">🟣 Français</button>
+    </div>
+    <div class="fgrp">
+      <select class="fsel" id="cat">
+        <option value="all">كل التصنيفات | All</option>
+        <option value="history">📜 تاريخ</option>
+        <option value="politics">🏛️ سياسة</option>
+        <option value="society">👥 مجتمع</option>
+        <option value="economy">💰 اقتصاد</option>
+        <option value="culture">🎭 ثقافة</option>
+        <option value="religion">🕌 دين</option>
+        <option value="literature">📖 أدب</option>
+        <option value="geography">🌍 جغرافيا</option>
+        <option value="security">🛡️ أمن</option>
+        <option value="media">📺 إعلام</option>
+        <option value="other">📦 أخرى</option>
+      </select>
+      <select class="fsel" id="srt">
+        <option value="d-d">الأحدث | Newest</option>
+        <option value="d-a">الأقدم | Oldest</option>
+        <option value="t-a">العنوان أ→ي</option>
+        <option value="t-d">العنوان ي→أ</option>
+      </select>
+      <button class="thm" id="thm" title="🌙/☀️">🌙</button>
+    </div>
+  </div>
+</div>
+
+<!-- Stats -->
+<div class="stats">
+  <div class="st"><div class="n" id="s0">-</div><div class="l">إجمالي | Total</div></div>
+  <div class="st"><div class="n" id="s1">-</div><div class="l">🟢 عربي</div></div>
+  <div class="st"><div class="n" id="s2">-</div><div class="l">🔵 English</div></div>
+  <div class="st"><div class="n" id="s3">-</div><div class="l">🟣 Français</div></div>
+  <div class="st"><div class="n" id="s4">-</div><div class="l">🆕 هذا الأسبوع</div></div>
+</div>
+<div class="upd"><span class="pulse"></span> آخر تحديث: <span id="lupd">...</span></div>
+
+<!-- Content -->
+<div class="wrap">
+  <div class="ld" id="ld"><div class="sp"></div><p>جاري جلب الكتب من المصادر... | Fetching books...</p><p id="ldSt" style="margin-top:10px;font-size:.85em;color:var(--txtL)"></p></div>
+  <div class="nr" id="nr"><div class="em">📭</div><h3>لا نتائج | No results</h3></div>
+  <div class="grid" id="gr"></div>
+  <div class="pg" id="pg"></div>
+</div>
+
+<button class="stop" id="stop">⬆</button>
+
+<footer class="ftr">
+  <p>📚 البيانات من Google Books API و Open Library — تحديث يومي تلقائي</p>
+  <p style="margin-top:6px;font-size:.85em;opacity:.75">Data from Google Books & Open Library APIs — Auto-updated daily</p>
+</footer>
+
+<script>
+(()=>{
+'use strict';
+
+/* ═══════════════ CONFIG ═══════════════ */
+const PER_PAGE = 24;
+const NEW_DAYS = 7;
+const CACHE_KEY = 'awb_cache_v3';
+const CACHE_TTL = 12 * 3600 * 1000; // 12 hours
+
+/* ═══════════════ SEARCH TERMS ═══════════════ */
+const TERMS = {
+  en:[
+    'Arab world','Middle East','North Africa','MENA region',
+    'Saudi Arabia','Egypt politics','Palestine','Iraq war',
+    'Syria conflict','Lebanon crisis','Gulf states','UAE Dubai',
+    'Qatar','Morocco','Algeria','Tunisia','Libya','Yemen crisis',
+    'Jordan','Kuwait','Bahrain','Oman','Sudan conflict',
+    'Arab spring','Islam modern','Arabic culture','Arab economy',
+    'Arab history','Arab literature','Maghreb','Islamic finance',
+    'Arab women','Arab diaspora','Arab media','Arab nationalism',
+    'Bedouin','Ottoman Arab','Arab democracy','Arab youth',
+    'Arab education','Sunni Shia','Arab art','Arab poetry',
+    'Arab cinema','refugee Middle East','water crisis Arab',
+    'oil politics Gulf','Mauritania','Djibouti','Comoros',
+    'Arab League','GCC Gulf','Arab Israeli conflict',
+    'Hezbollah','Hamas','Muslim Brotherhood','Salafism',
+    'Arab architecture','Arab food culture','Coptic Egypt',
+    'Berber Amazigh','Kurdish Iraq Syria','Darfur',
+    'Arab social media','startup Arab','tech Gulf',
+    'climate change Middle East','Arab heritage UNESCO',
+    'Silk Road Arab','piracy Gulf Aden','Arab space program'
+  ],
+  ar:[
+    'العالم العربي','الشرق الأوسط','شمال أفريقيا','السعودية',
+    'مصر','فلسطين','العراق','سوريا','لبنان','المغرب',
+    'الجزائر','تونس','ليبيا','اليمن','الأردن','الإمارات',
+    'قطر','البحرين','عمان','الكويت','السودان','موريتانيا',
+    'الخليج العربي','الربيع العربي','التاريخ العربي',
+    'الأدب العربي','الثقافة العربية','السياسة العربية',
+    'الاقتصاد العربي','المجتمع العربي','المرأة العربية',
+    'الإسلام المعاصر','العروبة','الشعر العربي','الرواية العربية',
+    'الإعلام العربي','التعليم العربي','النفط','الهجرة العربية',
+    'الفن العربي','العمارة الإسلامية','الشباب العربي',
+    'الأمن العربي','جامعة الدول العربية','حقوق الإنسان',
+    'الديمقراطية العربية','الأمازيغ','الأكراد',
+    'التصوف','الفقه الإسلامي','القرآن','الحديث',
+    'المقاومة','الاستعمار','الاستقلال','التنمية العربية',
+    'البيئة العربية','المناخ','الصحراء','الماء'
+  ],
+  fr:[
+    'monde arabe','Moyen-Orient','Afrique du Nord','Maghreb',
+    'Machrek','Arabie Saoudite','Egypte','Palestine','Irak',
+    'Syrie','Liban','Maroc','Algérie','Tunisie','Libye',
+    'Yémen','Jordanie','Emirats arabes unis','Qatar',
+    'Bahreïn','Koweït','Oman','Soudan','Mauritanie',
+    'printemps arabe','Islam contemporain','culture arabe',
+    'littérature arabe','société arabe','politique arabe',
+    'histoire arabe','économie arabe','femmes arabes',
+    'diaspora arabe','Golfe arabique','conflit arabe',
+    'démocratie arabe','jeunesse arabe','médias arabes',
+    'art arabe','architecture islamique','poésie arabe',
+    'roman arabe','pétrole','migration arabe',
+    'éducation arabe','droits homme arabe','Ligue arabe',
+    'Amazigh Berbère','colonisation','indépendance',
+    'terrorisme','Sahara','eau Moyen-Orient',
+    'patrimoine arabe','cuisine arabe','cinéma arabe',
+    'soufisme','islam politique','Frères musulmans'
+  ]
+};
+
+/* ═══════════════ STATE ═══════════════ */
+let ALL=[], FILT=[], page=1, lang='all', cat='all', sort='d-d', qry='';
+
+/* ═══════════════ DOM ═══════════════ */
+const $=id=>document.getElementById(id);
+const gr=$('gr'), ld=$('ld'), nr=$('nr'), pg=$('pg');
+const ldSt=$('ldSt'), pbar=$('pbar');
+
+/* ═══════════════ HELPERS ═══════════════ */
+function detectLang(code,title=''){
+  if(/^(ar|ara)$/i.test(code)) return 'ar';
+  if(/^(fr|fre|fra)$/i.test(code)) return 'fr';
+  if(/^(en|eng)$/i.test(code)) return 'en';
+  if(/[\u0600-\u06FF]/.test(title)) return 'ar';
+  if(/[àâçéèêëîïôûùüÿœæ]/i.test(title)) return 'fr';
+  return 'en';
+}
+
+function categorize(t='',d='',cats=[]){
+  const s=(t+' '+d+' '+cats.join(' ')).toLowerCase();
+  const m={
+    history:['history','تاريخ','histoire','ottoman','عثمان','colonial','استعمار','ancient','قديم','civiliz','حضار','medieval'],
+    politics:['politic','سياس','politique','govern','حكوم','democra','ديمقراط','revolution','ثور','conflict','نزاع','war','حرب','guerre','diplom','geopolit','regime','نظام','election','انتخاب','coup','انقلاب'],
+    society:['social','اجتماع','société','women','مرأة','femme','youth','شباب','migrat','هجر','human right','حقوق','tribe','قبيل','family','gender','education','تعليم'],
+    economy:['econom','اقتصاد','économi','oil','نفط','pétrol','financ','مال','trade','تجار','develop','تنمي','invest','market','سوق','bank','startup'],
+    culture:['cultur','ثقاف','art ','فن','music','موسيق','cinema','سينما','heritage','تراث','patrimoin','architect','عمار','food','مطبخ','cuisin','fashion','أزياء'],
+    religion:['religio','دين','islam','إسلام','muslim','مسلم','quran','قرآن','mosque','مسجد','sharia','شريع','theolog','christian','مسيح','sufi','صوف','sect','مذهب','faith','إيمان','فقه','prayer','صلا'],
+    literature:['novel','رواي','roman','poetry','شعر','poési','fiction','story','قص','literary','أدب','littéra','autobio','سير','memoir','narrative','سرد'],
+    geography:['geograph','جغراف','urban','مدن','city','desert','صحرا','water','ماء','environ','بيئ','climat','مناخ','map','خريط'],
+    security:['security','أمن','sécurité','terror','إرهاب','military','عسكر','militair','defense','دفاع','intellig','استخبار','army','جيش','weapon','سلاح'],
+    media:['media','إعلام','médias','press','صحاف','journal','television','تلفز','internet','digital','رقم','communic','اتصال','broadcast','podcast']
+  };
+  for(const[c,kw]of Object.entries(m)) if(kw.some(k=>s.includes(k))) return c;
+  return 'other';
+}
+
+const catLabel=c=>({history:'📜 تاريخ',politics:'🏛️ سياسة',society:'👥 مجتمع',economy:'💰 اقتصاد',culture:'🎭 ثقافة',religion:'🕌 دين',literature:'📖 أدب',geography:'🌍 جغرافيا',security:'🛡️ أمن',media:'📺 إعلام',other:'📦 أخرى'})[c]||c;
+const langLabel=l=>({ar:'عربي',en:'English',fr:'Français'})[l]||l;
+
+function fmtDate(d){try{return new Date(d).toLocaleDateString('ar-EG',{year:'numeric',month:'long',day:'numeric'})}catch{return d}}
+function isNew(d){return(Date.now()-new Date(d).getTime())/(864e5)<=NEW_DAYS}
+
+const GRADS=[
+  'linear-gradient(135deg,#667eea,#764ba2)','linear-gradient(135deg,#f093fb,#f5576c)',
+  'linear-gradient(135deg,#4facfe,#00f2fe)','linear-gradient(135deg,#43e97b,#38f9d7)',
+  'linear-gradient(135deg,#fa709a,#fee140)','linear-gradient(135deg,#a18cd1,#fbc2eb)',
+  'linear-gradient(135deg,#fccb90,#d57eeb)','linear-gradient(135deg,#0c3483,#a2b6df)',
+  'linear-gradient(135deg,#f5576c,#ff7eb3)','linear-gradient(135deg,#e0c3fc,#8ec5fc)',
+  'linear-gradient(135deg,#c471f5,#fa71cd)','linear-gradient(135deg,#48c6ef,#6f86d6)'
+];
+
+function bookId(b){
+  const s=b.title+b.author+(b.isbn||'');
+  let h=0;for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0}
+  return 'b'+Math.abs(h).toString(36);
+}
+
+/* ═══════════════ FETCH: GOOGLE BOOKS ═══════════════ */
+async function fetchGoogle(query,lng){
+  const books=[];
+  const lr={ar:'ar',en:'en',fr:'fr'}[lng]||'en';
+  for(let si=0;si<80;si+=40){
+    const u=`https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&langRestrict=${lr}&maxResults=40&startIndex=${si}&orderBy=newest&printType=books`;
+    try{
+      const r=await fetch(u);
+      if(!r.ok) break;
+      const d=await r.json();
+      if(!d.items||!d.items.length) break;
+
+      const cutoff=new Date();cutoff.setMonth(cutoff.getMonth()-12);
+
+      for(const it of d.items){
+        const v=it.volumeInfo||{};
+        const pd=v.publishedDate;
+        if(!pd) continue;
+        let pdt;
+        try{
+          if(pd.length===4) pdt=new Date(+pd,0,1);
+          else if(pd.length===7) pdt=new Date(pd+'-01');
+          else pdt=new Date(pd);
+          if(pdt<cutoff||isNaN(pdt)) continue;
+        }catch{continue}
+
+        const ids=v.industryIdentifiers||[];
+        const isbn=(ids.find(x=>x.type==='ISBN_13')||ids.find(x=>x.type==='ISBN_10')||{}).identifier||'';
+        let cover=(v.imageLinks||{}).thumbnail||'';
+        if(cover) cover=cover.replace('http:','https:').replace('&edge=curl','');
+
+        books.push({
+          title:v.title||'—',
+          author:(v.authors||['—']).join(', '),
+          publishDate:pd,
+          description:(v.description||'').slice(0,500),
+          language:detectLang(v.language||lng,v.title),
+          isbn,cover,
+          pages:v.pageCount||0,
+          publisher:v.publisher||'',
+          category:categorize(v.title,v.description,v.categories),
+          link:v.infoLink||v.previewLink||'',
+          source:'Google Books',
+          added:new Date().toISOString()
+        });
+      }
+    }catch(e){console.warn('G:',e)}
+  }
+  return books;
+}
+
+/* ═══════════════ FETCH: OPEN LIBRARY ═══════════════ */
+async function fetchOpenLib(query,lng){
+  const books=[];
+  try{
+    const u=`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&limit=50&sort=new`;
+    const r=await fetch(u);
+    if(!r.ok) return books;
+    const d=await r.json();
+    if(!d.docs) return books;
+
+    const minYear=new Date().getFullYear()-1;
+
+    for(const doc of d.docs){
+      const yr=doc.first_publish_year||(doc.publish_year||[])[0];
+      if(!yr||yr<minYear) continue;
+
+      const cid=doc.cover_i;
+      books.push({
+        title:doc.title||'—',
+        author:(doc.author_name||['—']).join(', '),
+        publishDate:`${yr}-01-01`,
+        description:(doc.first_sentence||[]).join(' ').slice(0,500),
+        language:lng,
+        isbn:(doc.isbn||[''])[0],
+        cover:cid?`https://covers.openlibrary.org/b/id/${cid}-M.jpg`:'',
+        pages:doc.number_of_pages_median||0,
+        publisher:(doc.publisher||[''])[0],
+        category:categorize(doc.title,'',(doc.subject||[]).slice(0,8)),
+        link:doc.key?`https://openlibrary.org${doc.key}`:'',
+        source:'Open Library',
+        added:new Date().toISOString()
+      });
+    }
+  }catch(e){console.warn('OL:',e)}
+  return books;
+}
+
+/* ═══════════════ MAIN FETCH ═══════════════ */
+async function fetchAllBooks(){
+  // Check cache first
+  try{
+    const cached=localStorage.getItem(CACHE_KEY);
+    if(cached){
+      const c=JSON.parse(cached);
+      if(Date.now()-c.ts < CACHE_TTL && c.books.length>50){
+        console.log('📦 Using cache:',c.books.length,'books');
+        return c.books;
+      }
+    }
+  }catch{}
+
+  const seen=new Map();
+  let total=0,done=0;
+
+  // Count total terms
+  for(const t of Object.values(TERMS)) total+=t.length;
+  total*=1; // Google only per term, OL subset
+  for(const t of Object.values(TERMS)) total+=Math.min(t.length,15); // OL
+
+  function progress(){
+    done++;
+    const pct=Math.min(99,Math.round(done/total*100));
+    pbar.style.width=pct+'%';
+    ldSt.textContent=`${done}/${total} — ${seen.size} كتاب | books found`;
+  }
+
+  function addBooks(arr){
+    for(const b of arr){
+      const id=bookId(b);
+      if(!seen.has(id)){b._id=id;seen.set(id,b)}
+    }
+  }
+
+  // ── Google Books ──
+  for(const[lng,terms] of Object.entries(TERMS)){
+    for(const term of terms){
+      try{
+        const bks=await fetchGoogle(term,lng);
+        addBooks(bks);
+      }catch{}
+      progress();
+      await new Promise(r=>setTimeout(r,150));
+    }
+  }
+
+  // ── Open Library ──
+  for(const[lng,terms] of Object.entries(TERMS)){
+    const subset=terms.slice(0,15);
+    for(const term of subset){
+      try{
+        const bks=await fetchOpenLib(term,lng);
+        addBooks(bks);
+      }catch{}
+      progress();
+      await new Promise(r=>setTimeout(r,250));
+    }
+  }
+
+  const result=Array.from(seen.values());
+
+  // Save cache
+  try{
+    localStorage.setItem(CACHE_KEY,JSON.stringify({ts:Date.now(),books:result}));
+  }catch{
+    // Storage full — clear old and retry
+    try{localStorage.removeItem(CACHE_KEY);localStorage.setItem(CACHE_KEY,JSON.stringify({ts:Date.now(),books:result.slice(0,2000)}));}catch{}
+  }
+
+  pbar.style.width='100%';
+  setTimeout(()=>pbar.style.display='none',500);
+
+  return result;
+}
+
+/* ═══════════════ STATS ═══════════════ */
+function updateStats(){
+  $('s0').textContent=ALL.length;
+  $('s1').textContent=ALL.filter(b=>b.language==='ar').length;
+  $('s2').textContent=ALL.filter(b=>b.language==='en').length;
+  $('s3').textContent=ALL.filter(b=>b.language==='fr').length;
+  const wk=new Date();wk.setDate(wk.getDate()-7);
+  $('s4').textContent=ALL.filter(b=>new Date(b.added||b.publishDate)>=wk).length;
+  $('lupd').textContent=new Date().toLocaleString('ar-EG');
+}
+
+/* ═══════════════ FILTER + SORT ═══════════════ */
+function apply(){
+  FILT=ALL.filter(b=>{
+    if(lang!=='all'&&b.language!==lang) return false;
+    if(cat!=='all'&&b.category!==cat) return false;
+    if(qry){
+      const s=(b.title+' '+b.author+' '+b.description+' '+b.publisher+' '+b.isbn).toLowerCase();
+      if(!s.includes(qry.toLowerCase())) return false;
+    }
+    return true;
+  });
+
+  FILT.sort((a,b)=>{
+    switch(sort){
+      case'd-d':return new Date(b.publishDate)-new Date(a.publishDate);
+      case'd-a':return new Date(a.publishDate)-new Date(b.publishDate);
+      case't-a':return a.title.localeCompare(b.title);
+      case't-d':return b.title.localeCompare(a.title);
+    }return 0;
+  });
+
+  page=1;
+  render();
+  renderPg();
+  nr.style.display=FILT.length?'none':'block';
+}
+
+/* ═══════════════ RENDER ═══════════════ */
+function render(){
+  const s=(page-1)*PER_PAGE, e=s+PER_PAGE;
+  const slice=FILT.slice(s,e);
+
+  gr.innerHTML=slice.map((b,i)=>{
+    const nw=isNew(b.added||b.publishDate);
+    const hasCover=b.cover&&b.cover.length>5;
+    const grad=GRADS[(s+i)%GRADS.length];
+
+    return`<div class="card">
+      <span class="lbg ${b.language}">${langLabel(b.language)}</span>
+      ${nw?'<span class="nbg">🆕 جديد</span>':''}
+      <div class="cvr" style="${hasCover?'':`background:${grad}`}">
+        ${hasCover?`<img src="${b.cover}" alt="" loading="lazy" onerror="this.parentElement.style.background='${grad}';this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',textContent:'📚'}))">`
+        :'<div class="ph">📚</div>'}
+      </div>
+      <div class="cnt">
+        <h3 class="ttl">${b.link?`<a href="${b.link}" target="_blank" rel="noopener">${b.title}</a>`:b.title}</h3>
+        <div class="aut">✍️ ${b.author}</div>
+        <div class="meta">
+          <span class="mt">${catLabel(b.category)}</span>
+          ${b.pages?`<span class="mt">📄 ${b.pages}</span>`:''}
+          ${b.publisher?`<span class="mt">🏢 ${b.publisher}</span>`:''}
+          <span class="mt">📡 ${b.source}</span>
+        </div>
+        ${b.description?`<div class="desc">${b.description}</div>`:''}
+        <div class="foot">
+          <span class="dt">📅 ${fmtDate(b.publishDate)}</span>
+          <div class="lnk">${b.link?`<a href="${b.link}" target="_blank" rel="noopener">📖 تفاصيل</a>`:''}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ═══════════════ PAGINATION ═══════════════ */
+function renderPg(){
+  const tp=Math.ceil(FILT.length/PER_PAGE);
+  if(tp<=1){pg.innerHTML='';return}
+
+  let h=`<button ${page===1?'disabled':''} onclick="P(${page-1})">◀</button>`;
+
+  let s=Math.max(1,page-3),e=Math.min(tp,s+6);
+  if(e-s<6) s=Math.max(1,e-6);
+
+  if(s>1){h+=`<button onclick="P(1)">1</button>`;if(s>2)h+=`<button disabled>…</button>`}
+  for(let i=s;i<=e;i++) h+=`<button class="${i===page?'on':''}" onclick="P(${i})">${i}</button>`;
+  if(e<tp){if(e<tp-1)h+=`<button disabled>…</button>`;h+=`<button onclick="P(${tp})">${tp}</button>`}
+
+  h+=`<button ${page===tp?'disabled':''} onclick="P(${page+1})">▶</button>`;
+  h+=`<span style="padding:8px;color:var(--txtL);font-size:.82em">${FILT.length} كتاب · ${tp} صفحات</span>`;
+
+  pg.innerHTML=h;
+}
+
+window.P=function(p){page=p;render();renderPg();window.scrollTo({top:gr.offsetTop-80,behavior:'smooth'})};
+
+/* ═══════════════ EVENTS ═══════════════ */
+let st;
+$('q').addEventListener('input',function(){clearTimeout(st);st=setTimeout(()=>{qry=this.value.trim();apply()},300)});
+
+document.querySelectorAll('.fbtn[data-l]').forEach(b=>b.addEventListener('click',function(){
+  document.querySelectorAll('.fbtn[data-l]').forEach(x=>x.classList.remove('on'));
+  this.classList.add('on');lang=this.dataset.l;apply();
+}));
+
+$('cat').addEventListener('change',function(){cat=this.value;apply()});
+$('srt').addEventListener('change',function(){sort=this.value;apply()});
+
+// Theme
+$('thm').addEventListener('click',()=>{
+  const dark=document.body.getAttribute('data-theme')==='dark';
+  document.body.setAttribute('data-theme',dark?'':'dark');
+  $('thm').textContent=dark?'🌙':'☀️';
+  localStorage.setItem('theme',dark?'light':'dark');
+});
+if(localStorage.getItem('theme')==='dark'){document.body.setAttribute('data-theme','dark');$('thm').textContent='☀️'}
+
+// Scroll top
+const stopBtn=$('stop');
+window.addEventListener('scroll',()=>stopBtn.classList.toggle('v',scrollY>500));
+stopBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* ═══════════════ INIT ═══════════════ */
+(async()=>{
+  try{
+    const books=await fetchAllBooks();
+
+    // Filter only last 12 months
+    const cutoff=new Date();cutoff.setMonth(cutoff.getMonth()-12);
+    ALL=books.filter(b=>{
+      try{return new Date(b.publishDate)>=cutoff}catch{return true}
+    });
+
+    // Sort newest first
+    ALL.sort((a,b)=>new Date(b.publishDate)-new Date(a.publishDate));
+
+    updateStats();
+    apply();
+  }catch(e){
+    console.error(e);
+    gr.innerHTML=`<div class="nr" style="display:block;grid-column:1/-1"><div class="em">⚠️</div><h3>حدث خطأ | Error</h3><p>${e.message}</p><p style="margin-top:10px"><button onclick="location.reload()" class="fbtn on">إعادة المحاولة | Retry</button></p></div>`;
+  }finally{
+    ld.style.display='none';
+  }
+})();
+
+})();
+</script>
+</body>
+</html>
