@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌍 رادار الكتب العربي — نظام متكامل</title>
+<title>🌍 رادار الكتب العربي — 60+ مصدر</title>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 :root {
@@ -13,15 +13,11 @@
   --shadow:0 2px 20px rgba(0,0,0,.06); --radius:16px;
 }
 body { font-family:'Segoe UI',Tahoma,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
-
 .hero {
   background:linear-gradient(135deg,#0a0f1e 0%,#1a5276 45%,#1a3a4a 100%);
   color:#fff; padding:40px 20px 50px; text-align:center; position:relative; overflow:hidden;
 }
-.hero::before {
-  content:''; position:absolute; inset:0;
-  background:radial-gradient(circle at 30% 50%,rgba(255,255,255,.04),transparent 60%);
-}
+.hero::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 50%,rgba(255,255,255,.04),transparent 60%); }
 .hero-icon { font-size:2.8em; display:block; margin-bottom:8px; position:relative; }
 .hero h1 { font-size:2em; font-weight:800; position:relative; margin-bottom:6px; }
 .hero-sub { font-size:.93em; opacity:.85; position:relative; max-width:700px; margin:0 auto 12px; }
@@ -30,62 +26,50 @@ body { font-family:'Segoe UI',Tahoma,Arial,sans-serif; background:var(--bg); col
 .badge-gold { background:rgba(212,160,23,.2); border:1px solid var(--gold); color:var(--gold); }
 .badge-green { background:rgba(16,185,129,.2); border:1px solid #10b981; color:#10b981; }
 .badge-blue { background:rgba(37,99,235,.2); border:1px solid #3b82f6; color:#93c5fd; }
+.badge-red { background:rgba(239,68,68,.2); border:1px solid #ef4444; color:#fca5a5; }
 .live-dot { width:7px; height:7px; background:#10b981; border-radius:50%; animation:pulse 1.5s infinite; }
 @keyframes pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.6);opacity:.4} }
 
+/* Pipeline Grid */
+.pipeline-section { max-width:1400px; margin:14px auto 0; padding:0 20px; }
+.pipeline-title { font-size:.8em; font-weight:700; color:var(--text2); margin-bottom:8px; text-transform:uppercase; letter-spacing:.5px; }
+.pipeline-group { margin-bottom:12px; }
+.pipeline-group-label { font-size:.72em; font-weight:800; color:var(--accent); background:#eaf2f8; padding:3px 10px; border-radius:20px; display:inline-block; margin-bottom:6px; }
 .pipeline {
-  max-width:1400px; margin:14px auto 0; padding:0 20px;
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:8px;
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:6px;
 }
 .pipe-card {
-  background:var(--card); border-radius:12px; padding:10px 12px;
-  display:flex; align-items:center; gap:8px;
+  background:var(--card); border-radius:10px; padding:8px 10px;
+  display:flex; align-items:center; gap:6px;
   box-shadow:var(--shadow); border:1px solid rgba(0,0,0,.05);
-  font-size:.75em; transition:all .3s;
+  font-size:.68em; transition:all .3s; cursor:default;
 }
 .pipe-card.active { border-color:var(--accent); box-shadow:0 0 0 2px rgba(26,82,118,.15); }
-.pipe-card.done { border-color:#10b981; }
-.pipe-card.error { border-color:#ef4444; }
-.pipe-icon { font-size:1.3em; flex-shrink:0; }
-.pipe-name { font-weight:700; color:var(--text); }
-.pipe-status { color:var(--text2); font-size:.88em; }
-.pipe-count { margin-right:auto; font-weight:800; color:var(--accent); }
+.pipe-card.done { border-color:#10b981; background:#f0fdf4; }
+.pipe-card.error { border-color:#ef4444; background:#fef2f2; }
+.pipe-card.skip { border-color:#e5e7eb; opacity:.6; }
+.pipe-icon { font-size:1.2em; flex-shrink:0; }
+.pipe-name { font-weight:700; color:var(--text); line-height:1.2; }
+.pipe-status { color:var(--text2); font-size:.85em; }
+.pipe-count { margin-right:auto; font-weight:800; color:var(--accent); font-size:1.1em; }
 
-.stats-bar {
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-  gap:10px; max-width:1400px; margin:14px auto 0; padding:0 20px;
-}
-.stat-card {
-  background:var(--card); border-radius:var(--radius); padding:16px 12px;
-  text-align:center; box-shadow:var(--shadow); border:1px solid rgba(0,0,0,.05);
-  transition:transform .2s;
-}
+/* Stats */
+.stats-bar { display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:10px; max-width:1400px; margin:14px auto 0; padding:0 20px; }
+.stat-card { background:var(--card); border-radius:var(--radius); padding:14px 10px; text-align:center; box-shadow:var(--shadow); border:1px solid rgba(0,0,0,.05); transition:transform .2s; }
 .stat-card:hover { transform:translateY(-2px); }
-.stat-num { font-size:1.6em; font-weight:800; }
-.stat-lbl { font-size:.72em; color:var(--text2); margin-top:2px; }
+.stat-num { font-size:1.5em; font-weight:800; }
+.stat-lbl { font-size:.68em; color:var(--text2); margin-top:2px; }
 
-.score-bar {
-  max-width:1400px; margin:10px auto 0; padding:0 20px;
-  display:flex; align-items:center; gap:12px; font-size:.78em; flex-wrap:wrap;
-}
+/* Score bar */
+.score-bar { max-width:1400px; margin:10px auto 0; padding:0 20px; display:flex; align-items:center; gap:12px; font-size:.78em; flex-wrap:wrap; }
 .score-legend { display:flex; align-items:center; gap:5px; }
 .score-dot { width:10px; height:10px; border-radius:50%; }
 
-.controls {
-  max-width:1400px; margin:14px auto 0; padding:0 20px;
-  display:flex; flex-wrap:wrap; gap:8px; align-items:center;
-}
-.search-box {
-  flex:1; min-width:220px; padding:11px 18px; border-radius:50px;
-  border:2px solid #e0e0e0; font-size:.95em; outline:none;
-  transition:border .3s; direction:rtl; background:#fff;
-}
+/* Controls */
+.controls { max-width:1400px; margin:14px auto 0; padding:0 20px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.search-box { flex:1; min-width:220px; padding:11px 18px; border-radius:50px; border:2px solid #e0e0e0; font-size:.95em; outline:none; transition:border .3s; direction:rtl; background:#fff; }
 .search-box:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(26,82,118,.1); }
-.filter-btn {
-  padding:9px 18px; border-radius:50px; border:2px solid #e0e0e0;
-  background:var(--card); cursor:pointer; font-size:.85em;
-  font-weight:600; transition:all .3s; white-space:nowrap;
-}
+.filter-btn { padding:9px 18px; border-radius:50px; border:2px solid #e0e0e0; background:var(--card); cursor:pointer; font-size:.85em; font-weight:600; transition:all .3s; white-space:nowrap; }
 .filter-btn:hover { border-color:var(--accent); color:var(--accent); }
 .filter-btn.active { background:var(--accent); color:#fff; border-color:var(--accent); }
 .filter-btn.active-ar { background:var(--ar); color:#fff; border-color:var(--ar); }
@@ -93,127 +77,58 @@ body { font-family:'Segoe UI',Tahoma,Arial,sans-serif; background:var(--bg); col
 .filter-btn.active-en { background:var(--en); color:#fff; border-color:var(--en); }
 select.search-box { flex:none; width:175px; cursor:pointer; }
 
-.update-bar {
-  max-width:1400px; margin:10px auto 0; padding:0 20px;
-  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;
-}
+/* Update bar */
+.update-bar { max-width:1400px; margin:10px auto 0; padding:0 20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
 .live-status { display:flex; align-items:center; gap:6px; font-size:.8em; color:var(--accent); font-weight:600; }
-.refresh-btn {
-  padding:6px 16px; border-radius:50px; border:none; background:var(--accent);
-  color:#fff; cursor:pointer; font-size:.8em; font-weight:600; transition:background .3s;
-}
+.refresh-btn { padding:6px 16px; border-radius:50px; border:none; background:var(--accent); color:#fff; cursor:pointer; font-size:.8em; font-weight:600; transition:background .3s; }
 .refresh-btn:hover { background:var(--accent2); }
 .refresh-btn:disabled { opacity:.5; cursor:not-allowed; }
 
+/* Progress */
 .progress-wrap { max-width:1400px; margin:8px auto 0; padding:0 20px; }
 .progress-track { height:6px; background:#e0e0e0; border-radius:4px; overflow:hidden; }
-.progress-fill {
-  height:100%; background:linear-gradient(90deg,var(--accent),#1a6b8a,var(--gold));
-  border-radius:4px; transition:width .3s; background-size:200% 100%;
-  animation:shine 2s linear infinite;
-}
+.progress-fill { height:100%; background:linear-gradient(90deg,var(--accent),#1a6b8a,var(--gold)); border-radius:4px; transition:width .3s; animation:shine 2s linear infinite; background-size:200% 100%; }
 @keyframes shine { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
 .progress-info { display:flex; justify-content:space-between; font-size:.72em; color:var(--text2); margin-top:3px; }
 
-.queue-bar {
-  max-width:1400px; margin:6px auto 0; padding:0 20px;
-  display:flex; gap:6px; align-items:center; font-size:.73em; color:var(--text2);
-}
-.queue-chip {
-  padding:2px 8px; border-radius:10px; background:#f0f4f7;
-  color:var(--accent); font-weight:600; font-size:.9em;
-}
+/* Queue */
+.queue-bar { max-width:1400px; margin:6px auto 0; padding:0 20px; display:flex; gap:6px; align-items:center; font-size:.73em; color:var(--text2); flex-wrap:wrap; }
+.queue-chip { padding:2px 8px; border-radius:10px; background:#eaf2f8; color:var(--accent); font-weight:600; font-size:.9em; }
 
-.books-grid {
-  max-width:1400px; margin:16px auto 0; padding:0 20px 50px;
-  display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px;
-}
-
-.book-card {
-  background:var(--card); border-radius:var(--radius); overflow:hidden;
-  box-shadow:var(--shadow); border:1px solid rgba(0,0,0,.05);
-  transition:transform .3s,box-shadow .3s; display:flex; flex-direction:column;
-  animation:fadeUp .35s ease;
-}
+/* Grid */
+.books-grid { max-width:1400px; margin:16px auto 0; padding:0 20px 50px; display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; }
+.book-card { background:var(--card); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); border:1px solid rgba(0,0,0,.05); transition:transform .3s,box-shadow .3s; display:flex; flex-direction:column; animation:fadeUp .35s ease; }
 @keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
 .book-card:hover { transform:translateY(-4px); box-shadow:0 10px 30px rgba(0,0,0,.11); }
-
-.book-cover-wrap {
-  position:relative; height:200px;
-  background:linear-gradient(135deg,#0a0f1e,#1a5276 60%,#1a3a4a);
-  display:flex; align-items:center; justify-content:center; overflow:hidden;
-}
-.book-cover-wrap img {
-  height:175px; max-width:120px; object-fit:cover;
-  border-radius:6px; box-shadow:4px 4px 18px rgba(0,0,0,.4); transition:transform .3s;
-}
+.book-cover-wrap { position:relative; height:200px; background:linear-gradient(135deg,#0a0f1e,#1a5276 60%,#1a3a4a); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.book-cover-wrap img { height:175px; max-width:120px; object-fit:cover; border-radius:6px; box-shadow:4px 4px 18px rgba(0,0,0,.4); transition:transform .3s; }
 .book-card:hover .book-cover-wrap img { transform:scale(1.04); }
 .no-cover { font-size:3em; opacity:.3; }
-.lang-badge {
-  position:absolute; top:10px; right:10px; padding:2px 10px;
-  border-radius:16px; font-size:.7em; font-weight:700; color:#fff;
-}
+.lang-badge { position:absolute; top:10px; right:10px; padding:2px 10px; border-radius:16px; font-size:.7em; font-weight:700; color:#fff; }
 .lang-ar{background:var(--ar)} .lang-fr{background:var(--fr)} .lang-en{background:var(--en)}
-.src-badge {
-  position:absolute; bottom:8px; left:8px; padding:2px 8px; border-radius:8px;
-  font-size:.6em; background:rgba(255,255,255,.15); color:rgba(255,255,255,.9);
-  backdrop-filter:blur(4px);
-}
-.rel-badge {
-  position:absolute; top:10px; left:10px;
-  width:32px; height:32px; border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
-  font-size:.65em; font-weight:800; color:#fff;
-  border:2px solid rgba(255,255,255,.4);
-}
-.rel-high { background:#10b981; }
-.rel-medium { background:#f59e0b; }
-.rel-low { background:#94a3b8; }
-.new-badge {
-  position:absolute; top:44px; left:10px; padding:2px 8px; border-radius:14px;
-  font-size:.62em; font-weight:800; background:#fef08a; color:#713f12;
-  animation:nblink 2s infinite;
-}
+.src-badge { position:absolute; bottom:8px; left:8px; padding:2px 8px; border-radius:8px; font-size:.6em; background:rgba(255,255,255,.15); color:rgba(255,255,255,.9); backdrop-filter:blur(4px); }
+.rel-badge { position:absolute; top:10px; left:10px; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.65em; font-weight:800; color:#fff; border:2px solid rgba(255,255,255,.4); }
+.rel-high{background:#10b981} .rel-medium{background:#f59e0b} .rel-low{background:#94a3b8}
+.new-badge { position:absolute; top:44px; left:10px; padding:2px 8px; border-radius:14px; font-size:.62em; font-weight:800; background:#fef08a; color:#713f12; animation:nblink 2s infinite; }
 @keyframes nblink { 0%,100%{opacity:1} 50%{opacity:.5} }
-
 .book-body { padding:15px; flex:1; display:flex; flex-direction:column; direction:rtl; }
-.book-title {
-  font-size:.97em; font-weight:700; line-height:1.4; margin-bottom:6px;
-  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
-}
+.book-title { font-size:.97em; font-weight:700; line-height:1.4; margin-bottom:6px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
 .book-author { font-size:.83em; color:var(--accent); font-weight:600; margin-bottom:2px; }
 .book-publisher { font-size:.77em; color:var(--text2); margin-bottom:6px; }
 .book-meta { display:flex; flex-wrap:wrap; gap:8px; font-size:.72em; color:var(--text2); margin-bottom:8px; padding-bottom:8px; border-bottom:1px dashed #eee; }
 .book-topics { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:8px; }
 .topic-tag { padding:2px 9px; border-radius:16px; font-size:.67em; font-weight:600; background:#eaf2f8; color:var(--accent); }
-.book-desc {
-  font-size:.77em; color:var(--text2); line-height:1.55;
-  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;
-  overflow:hidden; margin-bottom:10px;
-}
+.book-desc { font-size:.77em; color:var(--text2); line-height:1.55; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; margin-bottom:10px; }
 .book-actions { margin-top:auto; display:flex; gap:6px; flex-wrap:wrap; }
-.btn {
-  flex:1; padding:8px 5px; text-align:center; border-radius:9px;
-  font-size:.75em; font-weight:600; text-decoration:none; transition:all .25s; min-width:70px;
-}
-.btn-primary { background:var(--text); color:#fff; }
-.btn-primary:hover { background:var(--accent); }
-.btn-secondary { background:#f5f5f5; color:var(--text); border:1px solid #e0e0e0; }
-.btn-secondary:hover { background:#eee; }
-.btn-green { background:#166534; color:#fff; }
-.btn-green:hover { background:#14532d; }
-
+.btn { flex:1; padding:8px 5px; text-align:center; border-radius:9px; font-size:.75em; font-weight:600; text-decoration:none; transition:all .25s; min-width:60px; }
+.btn-primary{background:var(--text);color:#fff} .btn-primary:hover{background:var(--accent)}
+.btn-secondary{background:#f5f5f5;color:var(--text);border:1px solid #e0e0e0} .btn-secondary:hover{background:#eee}
+.btn-green{background:#166534;color:#fff} .btn-green:hover{background:#14532d}
 .loader { text-align:center; padding:60px; grid-column:1/-1; }
-.spinner {
-  width:50px; height:50px; border:4px solid #e0e0e0;
-  border-top-color:var(--accent); border-radius:50%;
-  animation:spin 1s linear infinite; margin:0 auto 14px;
-}
+.spinner { width:50px; height:50px; border:4px solid #e0e0e0; border-top-color:var(--accent); border-radius:50%; animation:spin 1s linear infinite; margin:0 auto 14px; }
 @keyframes spin { to{transform:rotate(360deg)} }
 .no-results { text-align:center; padding:60px; grid-column:1/-1; color:var(--text2); }
-
 footer { text-align:center; padding:28px 20px; font-size:.78em; color:var(--text2); border-top:1px solid #e0e0e0; max-width:1400px; margin:0 auto; }
-
 @media(max-width:768px) {
   .hero h1{font-size:1.5em}
   .books-grid{grid-template-columns:1fr}
@@ -226,66 +141,50 @@ footer { text-align:center; padding:28px 20px; font-size:.78em; color:var(--text
 </head>
 <body>
 
-<!-- Hero -->
 <div class="hero">
   <span class="hero-icon">🌍</span>
-  <h1>رادار الكتب العربي</h1>
-  <p class="hero-sub">رصد شامل للكتب والتقارير حول العالم العربي · آخر 12 شهراً · تحديث كل 6 ساعات</p>
+  <h1>رادار الكتب العربي الشامل</h1>
+  <p class="hero-sub">رصد الكتب والتقارير حول العالم العربي · آخر 12 شهراً · تحديث كل 6 ساعات</p>
   <div class="hero-badges">
     <span class="badge badge-gold"><span class="live-dot"></span> نشط</span>
-    <span class="badge badge-green">9 مصادر متوازية</span>
+    <span class="badge badge-red">60+ مصدر متوازي</span>
+    <span class="badge badge-green">AI Scoring</span>
     <span class="badge badge-blue">IndexedDB Cache</span>
-    <span class="badge badge-blue">AI Scoring</span>
-    <span class="badge badge-gold">⏱ تحديث كل 6 ساعات</span>
+    <span class="badge badge-gold">⏱ كل 6 ساعات</span>
   </div>
 </div>
 
-<!-- Pipeline -->
-<div class="pipeline" id="pipeline">
-  <div class="pipe-card" id="pipe-openalex">
-    <span class="pipe-icon">🔬</span>
-    <div><div class="pipe-name">OpenAlex</div><div class="pipe-status">جاهز</div></div>
-    <span class="pipe-count" id="cnt-openalex">0</span>
+<!-- Pipeline بالمجموعات -->
+<div class="pipeline-section">
+  <div class="pipeline-title">🔌 حالة المصادر (60+ مصدر)</div>
+
+  <div class="pipeline-group">
+    <span class="pipeline-group-label">📚 فهارس أكاديمية</span>
+    <div class="pipeline" id="pipeline-academic"></div>
   </div>
-  <div class="pipe-card" id="pipe-crossref">
-    <span class="pipe-icon">📋</span>
-    <div><div class="pipe-name">CrossRef</div><div class="pipe-status">جاهز</div></div>
-    <span class="pipe-count" id="cnt-crossref">0</span>
+  <div class="pipeline-group">
+    <span class="pipeline-group-label">🔓 وصول مفتوح</span>
+    <div class="pipeline" id="pipeline-oa"></div>
   </div>
-  <div class="pipe-card" id="pipe-semantic">
-    <span class="pipe-icon">🧠</span>
-    <div><div class="pipe-name">Semantic Scholar</div><div class="pipe-status">جاهز</div></div>
-    <span class="pipe-count" id="cnt-semantic">0</span>
+  <div class="pipeline-group">
+    <span class="pipeline-group-label">🏛 مكتبات ومستودعات</span>
+    <div class="pipeline" id="pipeline-libraries"></div>
   </div>
-  <div class="pipe-card" id="pipe-doab">
-    <span class="pipe-icon">📖</span>
-    <div><div class="pipe-name">DOAB</div><div class="pipe-status">جاهز</div></div>
-    <span class="pipe-count" id="cnt-doab">0</span>
+  <div class="pipeline-group">
+    <span class="pipeline-group-label">🌍 مصادر عربية متخصصة</span>
+    <div class="pipeline" id="pipeline-arab"></div>
   </div>
-  <div class="pipe-card" id="pipe-oapen">
-    <span class="pipe-icon">🏛</span>
-    <div><div class="pipe-name">OAPEN</div><div class="pipe-status">جاهز</div></div>
-    <span class="pipe-count" id="cnt-oapen">0</span>
+  <div class="pipeline-group">
+    <span class="pipeline-group-label">🏢 مراكز بحثية ومنظمات</span>
+    <div class="pipeline" id="pipeline-think"></div>
   </div>
-  <div class="pipe-card" id="pipe-core">
-    <span class="pipe-icon">⚡</span>
-    <div><div class="pipe-name">CORE</div><div class="pipe-status">جاهز</div></div>
-    <span class="pipe-count" id="cnt-core">0</span>
+  <div class="pipeline-group">
+    <span class="pipeline-group-label">📡 RSS وأخبار النشر</span>
+    <div class="pipeline" id="pipeline-rss"></div>
   </div>
-  <div class="pipe-card" id="pipe-openlibrary">
-    <span class="pipe-icon">📚</span>
-    <div><div class="pipe-name">Open Library</div><div class="pipe-status">جاهز</div></div>
-    <span class="pipe-count" id="cnt-openlibrary">0</span>
-  </div>
-  <div class="pipe-card" id="pipe-rss">
-    <span class="pipe-icon">📡</span>
-    <div><div class="pipe-name">RSS Intelligence</div><div class="pipe-status">جاهز</div></div>
-    <span class="pipe-count" id="cnt-rss">0</span>
-  </div>
-  <div class="pipe-card" id="pipe-google">
-    <span class="pipe-icon">🔍</span>
-    <div><div class="pipe-name">Google Metadata</div><div class="pipe-status">جاهز</div></div>
-    <span class="pipe-count" id="cnt-google">0</span>
+  <div class="pipeline-group">
+    <span class="pipeline-group-label">🔍 محركات بحث وميتاداتا</span>
+    <div class="pipeline" id="pipeline-meta"></div>
   </div>
 </div>
 
@@ -298,6 +197,7 @@ footer { text-align:center; padding:28px 20px; font-size:.78em; color:var(--text
   <div class="stat-card"><div class="stat-num" id="s-month" style="color:#e53e3e">-</div><div class="stat-lbl">📅 هذا الشهر</div></div>
   <div class="stat-card"><div class="stat-num" id="s-pub">-</div><div class="stat-lbl">🏛 ناشرون</div></div>
   <div class="stat-card"><div class="stat-num" id="s-oa" style="color:#10b981">-</div><div class="stat-lbl">🔓 مفتوح</div></div>
+  <div class="stat-card"><div class="stat-num" id="s-sources">-</div><div class="stat-lbl">🔌 مصادر نشطة</div></div>
   <div class="stat-card"><div class="stat-num" id="s-score" style="color:var(--gold)">-</div><div class="stat-lbl">⭐ متوسط الصلة</div></div>
 </div>
 
@@ -317,7 +217,6 @@ footer { text-align:center; padding:28px 20px; font-size:.78em; color:var(--text
   <button class="filter-btn" onclick="setLang('ar',this)">🇸🇦 عربي</button>
   <button class="filter-btn" onclick="setLang('en',this)">🇬🇧 English</button>
   <button class="filter-btn" onclick="setLang('fr',this)">🇫🇷 Français</button>
-
   <select class="search-box" id="topicSel" onchange="filterAndRender()">
     <option value="">🗂 كل الموضوعات</option>
     <optgroup label="── المناطق ──">
@@ -349,40 +248,28 @@ footer { text-align:center; padding:28px 20px; font-size:.78em; color:var(--text
       <option value="society">المجتمع</option>
       <option value="culture">الثقافة</option>
       <option value="history">التاريخ</option>
-      <option value="religion">الدين والإسلام</option>
-      <option value="migration">الهجرة واللاجئون</option>
-      <option value="women">المرأة والنوع</option>
-      <option value="conflict">النزاعات والحروب</option>
-      <option value="democracy">الديمقراطية والحكم</option>
+      <option value="religion">الدين</option>
+      <option value="migration">الهجرة</option>
+      <option value="women">المرأة</option>
+      <option value="conflict">النزاعات</option>
+      <option value="democracy">الديمقراطية</option>
       <option value="human rights">حقوق الإنسان</option>
       <option value="development">التنمية</option>
-      <option value="climate">المناخ والبيئة</option>
+      <option value="climate">المناخ</option>
       <option value="technology">التكنولوجيا</option>
-      <option value="media">الإعلام</option>
       <option value="literature">الأدب</option>
+      <option value="media">الإعلام</option>
     </optgroup>
   </select>
-
   <select class="search-box" id="sortSel" onchange="filterAndRender()" style="width:160px">
     <option value="score">🎯 الأكثر صلة</option>
     <option value="date">📅 الأحدث</option>
     <option value="title">🔤 أبجدي</option>
     <option value="pages">📄 الأطول</option>
   </select>
-
-  <select class="search-box" id="srcSel" onchange="filterAndRender()" style="width:160px">
+  <select class="search-box" id="srcSel" onchange="filterAndRender()" style="width:180px">
     <option value="">🗂 كل المصادر</option>
-    <option value="OpenAlex">OpenAlex</option>
-    <option value="CrossRef">CrossRef</option>
-    <option value="Semantic Scholar">Semantic Scholar</option>
-    <option value="DOAB">DOAB</option>
-    <option value="OAPEN">OAPEN</option>
-    <option value="CORE">CORE</option>
-    <option value="Open Library">Open Library</option>
-    <option value="RSS">RSS</option>
-    <option value="Google Books">Google Books</option>
   </select>
-
   <label style="font-size:.8em;display:flex;align-items:center;gap:5px;cursor:pointer">
     <input type="checkbox" id="oaOnly" onchange="filterAndRender()"> 🔓 مفتوح فقط
   </label>
@@ -390,9 +277,9 @@ footer { text-align:center; padding:28px 20px; font-size:.78em; color:var(--text
 
 <!-- Update Bar -->
 <div class="update-bar">
-  <div class="live-status"><span class="live-dot"></span> رادار نشط — 9 مصادر | تحديث كل 6 ساعات</div>
+  <div class="live-status"><span class="live-dot"></span> رادار نشط — 60+ مصدر | تحديث كل 6 ساعات</div>
   <span id="lastUpdate" style="font-size:.8em;color:var(--text2)">جار التحميل...</span>
-  <button class="refresh-btn" id="refreshBtn" onclick="manualRefresh()">🔄 تحديث</button>
+  <button class="refresh-btn" id="refreshBtn" onclick="manualRefresh()">🔄 تحديث الآن</button>
 </div>
 
 <!-- Progress -->
@@ -410,16 +297,17 @@ footer { text-align:center; padding:28px 20px; font-size:.78em; color:var(--text
   <span class="queue-chip" id="queuePending">0 معلق</span>
   <span class="queue-chip" id="queueActive">0 نشط</span>
   <span class="queue-chip" id="queueDone">0 منتهٍ</span>
+  <span class="queue-chip" id="queueBooks">0 كتاب</span>
 </div>
 
 <!-- Grid -->
 <div class="books-grid" id="booksGrid">
-  <div class="loader"><div class="spinner"></div><p>🌍 جار تشغيل رادار الكتب العربي...</p></div>
+  <div class="loader"><div class="spinner"></div><p>🌍 جار تشغيل 60+ مصدر...</p></div>
 </div>
 
 <footer>
-  <p><strong>🌍 رادار الكتب العربي</strong> — معمارية: Search Orchestrator → Queue → 9 Workers → Dedup → AI Score → IndexedDB</p>
-  <p style="margin-top:4px;font-size:.9em;color:#999">كاش ذكي · بدون API Keys · تحديث تلقائي كل 6 ساعات · يستبعد الكتب الأقدم من 12 شهراً</p>
+  <p><strong>🌍 رادار الكتب العربي الشامل</strong> — 60+ مصدر متوازٍ: فهارس أكاديمية · وصول مفتوح · مكتبات · مراكز بحثية · مصادر عربية</p>
+  <p style="margin-top:4px;font-size:.9em;color:#999">Search Orchestrator → Priority Queue → Parallel Workers → SimHash Dedup → AI Scoring → IndexedDB · تحديث كل 6 ساعات</p>
 </footer>
 
 <script>
@@ -428,199 +316,163 @@ footer { text-align:center; padding:28px 20px; font-size:.78em; color:var(--text
 // ══════════════════════════════════════════════════
 // الثوابت
 // ══════════════════════════════════════════════════
-const DB_NAME    = 'ArabRadar';
-const DB_VERSION = 3;
+const DB_NAME    = 'ArabRadar60';
+const DB_VERSION = 1;
 const STORE_BOOKS = 'books';
 const STORE_META  = 'meta';
-const CACHE_TTL   = 6 * 60 * 60 * 1000;   // 6 ساعات
-const MAX_AGE_MS  = 365 * 24 * 60 * 60 * 1000; // 12 شهراً
-const RENDER_BATCH = 30;
+const CACHE_TTL   = 6 * 60 * 60 * 1000;
+const MAX_AGE_MS  = 365 * 24 * 60 * 60 * 1000;
 
-// ══════════════════════════════════════════════════
-// الحالة العامة
-// ══════════════════════════════════════════════════
 const State = {
-  books: [], filtered: [], lang: 'all',
-  fetching: false, dbReady: false,
-  workerCounts: {},
-  queue: { pending:0, active:0, done:0 }
+  books:[], filtered:[], lang:'all',
+  fetching:false, dbReady:false,
+  workerCounts:{}, activeSources:new Set(),
+  queue:{pending:0,active:0,done:0}
 };
 
 // ══════════════════════════════════════════════════
-// الاستعلامات — العالم العربي
+// تعريف كل المصادر الـ 60+
 // ══════════════════════════════════════════════════
-const QUERIES = {
-  en: [
-    "arab world politics governance 2024","middle east democracy elections",
-    "gulf states economy oil 2024","arab spring aftermath legacy",
-    "egypt politics society 2024","saudi arabia vision 2030",
-    "iraq reconstruction stability","syria conflict aftermath 2024",
-    "yemen war humanitarian crisis","libya political transition",
-    "tunisia democracy backsliding","morocco political reform",
-    "algeria politics economy","jordan society governance",
-    "lebanon economic collapse crisis","palestine conflict 2024",
-    "arab authoritarianism repression","middle east geopolitics 2024",
-    "iran arab relations","turkey arab world relations",
-    "arab diaspora identity","islamism political islam arab",
-    "arab nationalism pan-arabism","arab media censorship press freedom",
-    "arab youth unemployment protest","arab women rights gender",
-    "arab human rights report 2024","arab civil society activism",
-    "arab economy inequality poverty","gulf cooperation council GCC",
-    "arab league diplomacy","middle east peace process",
-    "arab migration refugees displacement","arab culture literature 2024",
-    "arabic language identity","arab history colonialism",
-    "arab tribal society traditions","arab education reform",
-    "arab health systems pandemic","arab technology digital",
-    "arab fintech startup innovation","arab artificial intelligence",
-    "arab renewable energy solar","arab water scarcity",
-    "arab food security agriculture","arab climate change adaptation",
-    "arab urban planning cities","arab architecture heritage",
-    "arab film cinema 2024","arab music arts culture",
-    "arab philosophy thought","arab secularism religion",
-    "arab-Israeli conflict","arab normalization Abraham accords",
-    "US arab world relations","china arab world",
-    "russia arab world influence","arab oil gas energy",
-    "arab sovereign wealth funds","arab investment finance",
-    "arab trade integration","arab development report 2024",
-    "arab knowledge economy","arab social media platforms",
-    "arab sectarianism sunni shia","arab minorities rights",
-    "arab LGBTQ rights","arab child rights",
-    "arab elderly care","arab mental health",
-    "arab sport football","arab fashion luxury",
-    "arab gaming esports","arab tourism",
-    "north africa maghreb","mashreq levant region",
-    "nile basin water egypt ethiopia","red sea security",
-    "arab military security forces","arab counterterrorism",
-    "ISIS aftermath arab world","arab jihadism extremism",
-    "arab prisoners political detainees","arab corruption accountability",
-    "arab judiciary rule of law","arab constitution reform",
-    "arab decentralization local governance","arab public administration",
-    "arab taxation fiscal policy","arab labor market",
-    "arab informal economy","arab privatization",
-    "arab banking islamic finance","arab real estate housing",
-    "arab foreign direct investment","arab remittances diaspora economy",
-    "arab cultural heritage preservation","arab archaeology excavation",
-    "arab manuscript digitization","arab libraries archives",
-    "arab publishing book industry","arab translation",
-    "arab higher education university","arab research science",
-    "arab brain drain talent","arab vocational training",
-    "arab children education","arab special needs",
-    "arab public health malnutrition","arab reproductive health",
-    "arab drug trafficking","arab organized crime",
-    "arab deradicalization","arab peacebuilding reconciliation"
-  ],
-  ar: [
-    "العالم العربي السياسة الحوكمة 2024","الشرق الأوسط الديمقراطية الانتخابات",
-    "الخليج العربي الاقتصاد النفط 2024","الربيع العربي الإرث التداعيات",
-    "مصر السياسة المجتمع 2024","السعودية رؤية 2030",
-    "العراق إعادة الإعمار الاستقرار","سوريا الصراع ما بعد الحرب",
-    "اليمن الحرب الأزمة الإنسانية","ليبيا التحول السياسي",
-    "تونس الديمقراطية التراجع","المغرب الإصلاح السياسي",
-    "الجزائر السياسة الاقتصاد","الأردن المجتمع الحوكمة",
-    "لبنان الانهيار الاقتصادي","فلسطين الصراع 2024",
-    "الاستبداد العربي القمع","جيوسياسة الشرق الأوسط 2024",
-    "إيران العالم العربي العلاقات","تركيا العالم العربي",
-    "الشتات العربي الهوية","الإسلام السياسي العرب",
-    "القومية العربية","الإعلام العربي حرية الصحافة",
-    "الشباب العربي البطالة الاحتجاج","المرأة العربية الحقوق النوع",
-    "حقوق الإنسان العرب 2024","المجتمع المدني العربي",
-    "الاقتصاد العربي التفاوت الفقر","مجلس التعاون الخليجي",
-    "جامعة الدول العربية الدبلوماسية","الهجرة اللاجئون العرب",
-    "الثقافة العربية الأدب 2024","اللغة العربية الهوية",
-    "التاريخ العربي الاستعمار","التعليم العربي الإصلاح",
-    "الصحة العربية الأوبئة","التكنولوجيا العربية الرقمنة",
-    "الطاقة المتجددة العرب","شح المياه العالم العربي",
-    "الأمن الغذائي الزراعة العرب","تغير المناخ التكيف العرب",
-    "التحضر المدن العربية","التراث الثقافي العربي",
-    "السينما العربية 2024","الموسيقى الفنون العرب",
-    "الفلسفة الفكر العربي","العلمانية الدين العرب",
-    "الصراع العربي الإسرائيلي","التطبيع اتفاقيات إبراهيم",
-    "النفط الغاز الطاقة العرب","الفساد المساءلة العرب",
-    "المرأة قيادة المشاركة السياسية","الأقليات العرب الحقوق",
-    "الفقر التنمية البشرية العرب","ريادة الأعمال الابتكار العرب",
-    "الذكاء الاصطناعي العرب","وسائل التواصل الاجتماعي العرب",
-    "الطائفية السنة الشيعة العرب","الإرهاب التطرف مكافحة العرب",
-    "السجناء المعتقلون السياسيون العرب","سيادة القانون القضاء العرب",
-    "الاقتصاد الإسلامي التمويل العرب","الاستثمار الأجنبي العرب"
-  ],
-  fr: [
-    "monde arabe politique gouvernance 2024","moyen-orient démocratie élections",
-    "pays du golfe économie pétrole","printemps arabe héritage",
-    "égypte politique société 2024","arabie saoudite vision 2030",
-    "irak reconstruction stabilité","syrie conflit après-guerre",
-    "yémen guerre crise humanitaire","libye transition politique",
-    "tunisie démocratie recul","maroc réforme politique",
-    "algérie politique économie","jordanie société gouvernance",
-    "liban effondrement économique","palestine conflit 2024",
-    "autoritarisme arabe","géopolitique moyen-orient 2024",
-    "iran monde arabe relations","turquie monde arabe",
-    "diaspora arabe identité","islam politique arabes",
-    "nationalisme arabe","médias arabes liberté presse",
-    "jeunesse arabe chômage protestation","femmes arabes droits genre",
-    "droits humains arabes 2024","société civile arabe",
-    "économie arabe inégalités pauvreté","conseil coopération golf",
-    "ligue arabe diplomatie","conflit arabo-israélien",
-    "migration réfugiés arabes","culture arabe littérature 2024",
-    "langue arabe identité","histoire arabe colonialisme",
-    "éducation arabe réforme","santé arabe pandémie",
-    "technologie arabe numérique","énergie renouvelable arabes",
-    "eau ressources monde arabe","sécurité alimentaire arabes",
-    "changement climatique adaptation arabes","villes arabes urbanisation",
-    "patrimoine culturel arabe","cinéma arabe 2024",
-    "musique arts arabes","philosophie pensée arabe",
-    "terrorisme extrémisme arabes","corruption gouvernance arabes",
-    "finance islamique économie arabe","investissement monde arabe",
-    "intelligence artificielle arabes","médias sociaux arabes",
-    "pétrole gaz énergie arabes","réforme constitutionnelle arabes"
-  ]
-};
+const SOURCES = [
+  // ① فهارس أكاديمية
+  { id:'openalex',      name:'OpenAlex',         icon:'🔬', group:'academic',  fn:'fetchOpenAlex'    },
+  { id:'crossref',      name:'CrossRef',          icon:'📋', group:'academic',  fn:'fetchCrossRef'    },
+  { id:'semantic',      name:'Semantic Scholar',  icon:'🧠', group:'academic',  fn:'fetchSemantic'    },
+  { id:'scopus',        name:'Scopus (OA)',        icon:'📊', group:'academic',  fn:'fetchScopusOA'    },
+  { id:'pubmed',        name:'PubMed Central',    icon:'🏥', group:'academic',  fn:'fetchPubMed'      },
+  { id:'arxiv',         name:'ArXiv',             icon:'⚛️', group:'academic',  fn:'fetchArxiv'       },
+  { id:'ssrn',          name:'SSRN',              icon:'📑', group:'academic',  fn:'fetchSSRN'        },
+  { id:'repec',         name:'RePEc',             icon:'💹', group:'academic',  fn:'fetchRePEc'       },
+  { id:'ideas',         name:'IDEAS/RePEc',       icon:'💡', group:'academic',  fn:'fetchIDEAS'       },
+  { id:'dimensions',    name:'Dimensions',        icon:'📐', group:'academic',  fn:'fetchDimensions'  },
+
+  // ② وصول مفتوح
+  { id:'doab',          name:'DOAB',              icon:'📖', group:'oa',        fn:'fetchDOAB'        },
+  { id:'oapen',         name:'OAPEN',             icon:'🏛', group:'oa',        fn:'fetchOAPEN'       },
+  { id:'core',          name:'CORE',              icon:'⚡', group:'oa',        fn:'fetchCORE'        },
+  { id:'zenodo',        name:'Zenodo',            icon:'🔮', group:'oa',        fn:'fetchZenodo'      },
+  { id:'openaire',      name:'OpenAIRE',          icon:'🌐', group:'oa',        fn:'fetchOpenAIRE'    },
+  { id:'fatcat',        name:'Fatcat (IA)',        icon:'🐱', group:'oa',        fn:'fetchFatcat'      },
+  { id:'unpaywall',     name:'Unpaywall',         icon:'🔑', group:'oa',        fn:'fetchUnpaywall'   },
+  { id:'base',          name:'BASE Search',       icon:'🔍', group:'oa',        fn:'fetchBASE'        },
+  { id:'europepmc',     name:'Europe PMC',        icon:'🇪🇺', group:'oa',       fn:'fetchEuropePMC'   },
+  { id:'oasisfr',       name:'OpenEdition',       icon:'📕', group:'oa',        fn:'fetchOpenEdition' },
+
+  // ③ مكتبات ومستودعات
+  { id:'openlibrary',   name:'Open Library',      icon:'📚', group:'libraries', fn:'fetchOpenLibrary' },
+  { id:'worldcat',      name:'WorldCat',           icon:'🌍', group:'libraries', fn:'fetchWorldCat'    },
+  { id:'hathitrust',    name:'HathiTrust',         icon:'🐘', group:'libraries', fn:'fetchHathiTrust'  },
+  { id:'loc',           name:'Library of Congress',icon:'🏛', group:'libraries', fn:'fetchLOC'         },
+  { id:'bnf',           name:'BnF (France)',       icon:'🇫🇷', group:'libraries', fn:'fetchBnF'         },
+  { id:'bl',            name:'British Library',    icon:'🇬🇧', group:'libraries', fn:'fetchBritishLib'  },
+  { id:'dart',          name:'DART Europe Theses', icon:'🎓', group:'libraries', fn:'fetchDartEurope'  },
+  { id:'proquest',      name:'ProQuest (OA)',      icon:'🔎', group:'libraries', fn:'fetchProQuestOA'  },
+  { id:'jstor',         name:'JSTOR (OA)',         icon:'📰', group:'libraries', fn:'fetchJSTOR'       },
+  { id:'projectmuse',   name:'Project MUSE',       icon:'🎭', group:'libraries', fn:'fetchProjectMuse' },
+
+  // ④ مصادر عربية متخصصة
+  { id:'shamaa',        name:'شمعة',              icon:'🕯', group:'arab',      fn:'fetchShamaa'      },
+  { id:'mandumah',      name:'مندومة',            icon:'📒', group:'arab',      fn:'fetchMandumah'    },
+  { id:'knouz',         name:'كنوز المعرفة',      icon:'💎', group:'arab',      fn:'fetchKnouz'       },
+  { id:'madar',         name:'مدار الشرق',        icon:'🌙', group:'arab',      fn:'fetchMadar'       },
+  { id:'alwaraq',       name:'الوراق',            icon:'📜', group:'arab',      fn:'fetchAlWaraq'     },
+  { id:'abudhabi',      name:'مكتبة الإمارات',    icon:'🇦🇪', group:'arab',     fn:'fetchUAELib'      },
+  { id:'qnl',           name:'مكتبة قطر الوطنية', icon:'🇶🇦', group:'arab',    fn:'fetchQNL'         },
+  { id:'kfnl',          name:'مكتبة الملك فهد',   icon:'🇸🇦', group:'arab',    fn:'fetchKFNL'        },
+  { id:'arabinfobankk', name:'بنك المعلومات العربي',icon:'🗄', group:'arab',   fn:'fetchArabInfoBank' },
+  { id:'iasj',          name:'IASJ (أردن)',        icon:'🇯🇴', group:'arab',    fn:'fetchIASJ'        },
+
+  // ⑤ مراكز بحثية ومنظمات
+  { id:'carnegie',      name:'Carnegie MEC',       icon:'🏢', group:'think',    fn:'fetchCarnegie'    },
+  { id:'brookings',     name:'Brookings Doha',     icon:'🏦', group:'think',    fn:'fetchBrookings'   },
+  { id:'chatham',       name:'Chatham House',      icon:'🎩', group:'think',    fn:'fetchChatham'     },
+  { id:'mei',           name:'MEI',               icon:'🌙', group:'think',    fn:'fetchMEI'         },
+  { id:'icsr',          name:'ICSR London',        icon:'🔐', group:'think',    fn:'fetchICSR'        },
+  { id:'arab_reform',   name:'Arab Reform Initiative',icon:'🔄', group:'think', fn:'fetchArabReform'  },
+  { id:'psi',           name:'PSI (جنيف)',         icon:'🇨🇭', group:'think',   fn:'fetchPSI'         },
+  { id:'imf_pub',       name:'IMF Publications',   icon:'💰', group:'think',    fn:'fetchIMFPub'      },
+  { id:'wb_pub',        name:'World Bank Pub',     icon:'🌐', group:'think',    fn:'fetchWBPub'       },
+  { id:'undp_pub',      name:'UNDP Arab',          icon:'🇺🇳', group:'think',   fn:'fetchUNDP'        },
+
+  // ⑥ RSS وأخبار النشر
+  { id:'rss_arxiv_econ',name:'ArXiv Econ RSS',    icon:'📡', group:'rss',      fn:'fetchRSS_ArxivEcon'},
+  { id:'rss_openedition',name:'OpenEdition RSS',  icon:'📡', group:'rss',      fn:'fetchRSS_OpenEd'  },
+  { id:'rss_iheid',     name:'IHEID RSS',          icon:'📡', group:'rss',      fn:'fetchRSS_IHEID'   },
+  { id:'rss_oapen',     name:'OAPEN New Books',    icon:'📡', group:'rss',      fn:'fetchRSS_OAPEN'   },
+  { id:'rss_doab',      name:'DOAB New Books',     icon:'📡', group:'rss',      fn:'fetchRSS_DOAB'    },
+
+  // ⑦ محركات بحث وميتاداتا
+  { id:'google_books',  name:'Google Books',       icon:'🔍', group:'meta',     fn:'fetchGoogleBooks' },
+  { id:'bing_books',    name:'Bing Academic',      icon:'🅱', group:'meta',     fn:'fetchBingAcademic'},
+  { id:'isbndb',        name:'ISBNdb',             icon:'🔖', group:'meta',     fn:'fetchISBNdb'      },
+  { id:'googlescholar', name:'Scholar Metadata',   icon:'🎓', group:'meta',     fn:'fetchScholarMeta' },
+  { id:'semantic2',     name:'S2 Recommendations', icon:'🧬', group:'meta',     fn:'fetchS2Recs'      },
+];
+
+// بناء واجهة Pipeline
+function buildPipelineUI() {
+  const groups = {
+    academic:'pipeline-academic', oa:'pipeline-oa', libraries:'pipeline-libraries',
+    arab:'pipeline-arab', think:'pipeline-think', rss:'pipeline-rss', meta:'pipeline-meta'
+  };
+  for (const [grp, containerId] of Object.entries(groups)) {
+    const container = document.getElementById(containerId);
+    if (!container) continue;
+    const srcs = SOURCES.filter(s => s.group === grp);
+    container.innerHTML = srcs.map(s => `
+      <div class="pipe-card" id="pipe-${s.id}">
+        <span class="pipe-icon">${s.icon}</span>
+        <div style="min-width:0;flex:1">
+          <div class="pipe-name" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${s.name}</div>
+          <div class="pipe-status" id="pstatus-${s.id}">جاهز</div>
+        </div>
+        <span class="pipe-count" id="cnt-${s.id}">0</span>
+      </div>`).join('');
+  }
+  // بناء قائمة المصادر في الفلتر
+  const sel = document.getElementById('srcSel');
+  SOURCES.forEach(s => {
+    const opt = document.createElement('option');
+    opt.value = s.name; opt.textContent = s.icon + ' ' + s.name;
+    sel.appendChild(opt);
+  });
+}
 
 // ══════════════════════════════════════════════════
-// كلمات مفتاحية للعالم العربي
+// كلمات مفتاحية العالم العربي
 // ══════════════════════════════════════════════════
 const ARAB_KW = [
-  'arab','arabic','arabie','arabe','arabique',
-  'العرب','العربي','العربية','العالم العربي',
-  'middle east','moyen-orient','orient arabe','الشرق الأوسط',
-  'egypt','égypte','مصر','cairo','le caire','القاهرة',
+  'arab','arabic','arabe','العرب','العربي','العربية','العالم العربي',
+  'middle east','moyen-orient','الشرق الأوسط','MENA','منطقة مينا',
+  'egypt','égypte','مصر','cairo','القاهرة',
   'saudi','arabie saoudite','السعودية','riyadh','الرياض',
   'iraq','irak','العراق','baghdad','بغداد',
   'syria','syrie','سوريا','damascus','دمشق',
   'jordan','jordanie','الأردن','amman','عمان',
   'lebanon','liban','لبنان','beirut','بيروت',
-  'palestine','فلسطين','west bank','gaza','غزة','الضفة الغربية',
+  'palestine','فلسطين','west bank','gaza','غزة',
   'libya','libye','ليبيا','tripoli','طرابلس',
   'tunisia','tunisie','تونس',
   'morocco','maroc','المغرب','rabat','الرباط',
   'algeria','algérie','الجزائر',
   'sudan','soudan','السودان','khartoum','الخرطوم',
-  'yemen','يمن','sanaa','صنعاء','aden','عدن',
-  'gulf','خليج','golfe','persian gulf','الخليج الفارسي',
-  'kuwait','الكويت','koweït',
-  'bahrain','البحرين','bahreïn',
+  'yemen','يمن','sanaa','صنعاء',
+  'gulf','خليج','persian gulf','الخليج',
+  'kuwait','الكويت','bahrain','البحرين',
   'qatar','قطر','doha','الدوحة',
-  'uae','emirates','الإمارات','dubai','دبي','abu dhabi','أبوظبي',
+  'uae','emirates','الإمارات','dubai','دبي',
   'oman','عُمان','muscat','مسقط',
   'maghreb','مغرب','mashreq','مشرق',
-  'levant','بلاد الشام','fertile crescent','الهلال الخصيب',
-  'nile','النيل','nil',
-  'islam','إسلام','islamisme','إسلاموي',
-  'arabism','عروبة','pan-arab','قومية عربية',
-  'arab spring','ربيع عربي','printemps arabe',
-  'isis','داعش','isil','al-qaeda','القاعدة',
-  'hezbollah','حزب الله','hamas','حماس',
-  'houthi','حوثي','الحوثيون',
-  'kurd','كردي','kurdish','kurde','kurdistan','كردستان',
-  'berber','amazigh','أمازيغ',
-  'quran','قرآن','coran','sharia','شريعة',
-  'sunni','سني','shia','شيعي','shiite',
+  'levant','بلاد الشام','nile','النيل',
+  'islam','إسلام','islamism','إسلاموي',
+  'arab spring','ربيع عربي','arabism','عروبة',
+  'isis','داعش','hezbollah','حزب الله','hamas','حماس',
   'GCC','مجلس التعاون','arab league','جامعة الدول العربية',
-  'MENA','منطقة الشرق الأوسط وشمال أفريقيا',
-  'petrodollar','بترودولار','oil rich','نفط',
-  'arab diaspora','شتات عربي',
-  'ottoman','عثماني','ottoman empire',
-  'colonialism arab','استعمار عربي',
-  'normalisation','تطبيع','abraham accords','اتفاقيات إبراهيم'
+  'sunni','سني','shia','شيعي','ottoman','عثماني',
+  'normalisation','تطبيع','abraham accords','اتفاقيات إبراهيم',
+  'kurd','كردي','berber','amazigh','أمازيغ',
+  'petrodollar','نفط','oil rich','petrostate',
+  'arab diaspora','شتات عربي','pan-arab','قومية عربية'
 ];
 
 function isArabRelevant(text) {
@@ -630,249 +482,263 @@ function isArabRelevant(text) {
 }
 
 // ══════════════════════════════════════════════════
-// ① IndexedDB Cache
+// الاستعلامات الأساسية
+// ══════════════════════════════════════════════════
+const BASE_QUERIES = {
+  en:[
+    "arab world politics 2024","middle east governance",
+    "arab democracy elections","gulf economy oil 2024",
+    "egypt society politics","saudi arabia reform",
+    "iraq stability reconstruction","syria aftermath conflict",
+    "yemen war crisis","libya transition",
+    "tunisia democracy","morocco reform",
+    "algeria politics","jordan governance",
+    "lebanon crisis economy","palestine conflict 2024",
+    "arab authoritarianism","middle east geopolitics",
+    "arab migration refugees","arab women rights",
+    "arab human rights 2024","arab media press freedom",
+    "arab youth unemployment","arab culture literature",
+    "arabic language identity","arab history colonialism",
+    "arab education reform","arab health systems",
+    "arab technology digital","arab climate change",
+    "arab food security","arab urban cities",
+    "arab oil gas energy","arab investment finance",
+    "arab sectarianism","arab counterterrorism",
+    "arab civil society","arab corruption accountability",
+    "arab-Israeli conflict","arab normalization",
+    "china arab world","russia middle east",
+    "US arab relations","arab sovereign wealth",
+    "arab trade integration","arab development report",
+    "arab knowledge economy","arab social media",
+    "arab fintech innovation","arab AI technology",
+    "islamism political islam","arab tribalism society",
+    "arab minorities rights","MENA economic outlook",
+    "arab diaspora identity","north africa politics",
+    "maghreb integration","levant security",
+    "red sea security","arab military forces"
+  ],
+  ar:[
+    "العالم العربي السياسة 2024","الشرق الأوسط الحوكمة",
+    "الديمقراطية العربية الانتخابات","الخليج الاقتصاد النفط",
+    "مصر المجتمع السياسة","السعودية الإصلاح الرؤية",
+    "العراق الاستقرار إعادة الإعمار","سوريا ما بعد الصراع",
+    "اليمن الحرب الأزمة الإنسانية","ليبيا التحول السياسي",
+    "تونس الديمقراطية","المغرب الإصلاح",
+    "الجزائر السياسة","الأردن الحوكمة",
+    "لبنان الأزمة الاقتصادية","فلسطين الصراع 2024",
+    "الاستبداد العربي","جيوسياسة الشرق الأوسط",
+    "الهجرة اللاجئون العرب","المرأة العربية الحقوق",
+    "حقوق الإنسان العرب","الإعلام العربي الحرية",
+    "الشباب العربي البطالة","الثقافة العربية الأدب",
+    "اللغة العربية الهوية","التاريخ العربي الاستعمار",
+    "التعليم العربي الإصلاح","الصحة العربية",
+    "التكنولوجيا العربية","تغير المناخ العرب",
+    "الأمن الغذائي العرب","المدن العربية التحضر",
+    "النفط الغاز العرب","الاستثمار العربي",
+    "الطائفية العربية","مكافحة الإرهاب العرب",
+    "المجتمع المدني العربي","الفساد المساءلة",
+    "الصراع العربي الإسرائيلي","التطبيع العربي",
+    "الصين العالم العربي","روسيا الشرق الأوسط",
+    "الإسلام السياسي العرب","القبلية المجتمع العربي"
+  ],
+  fr:[
+    "monde arabe politique 2024","moyen-orient gouvernance",
+    "démocratie arabe élections","économie golfe pétrole",
+    "égypte société politique","arabie saoudite réforme",
+    "irak stabilité reconstruction","syrie après-conflit",
+    "yémen guerre crise","libye transition politique",
+    "tunisie démocratie","maroc réforme",
+    "algérie politique","jordanie gouvernance",
+    "liban crise économique","palestine conflit 2024",
+    "autoritarisme arabe","géopolitique moyen-orient",
+    "migration réfugiés arabes","femmes arabes droits",
+    "droits humains arabes","médias arabes liberté",
+    "jeunesse arabe chômage","culture arabe littérature",
+    "langue arabe identité","histoire arabe colonialisme",
+    "islam politique arabes","société arabe tribalisme",
+    "maghreb intégration","levant sécurité",
+    "pétrole gaz arabes","finance islamique arabe",
+    "terrorisme contre-terrorisme arabes","corruption arabes"
+  ]
+};
+
+// ══════════════════════════════════════════════════
+// IndexedDB
 // ══════════════════════════════════════════════════
 const IDB = {
-  db: null,
+  db:null,
   async open() {
-    return new Promise((resolve, reject) => {
+    return new Promise((res,rej) => {
       const req = indexedDB.open(DB_NAME, DB_VERSION);
       req.onupgradeneeded = e => {
         const db = e.target.result;
         if (!db.objectStoreNames.contains(STORE_BOOKS)) {
-          const store = db.createObjectStore(STORE_BOOKS, { keyPath:'id' });
-          store.createIndex('language','language',{unique:false});
-          store.createIndex('publication_date','publication_date',{unique:false});
-          store.createIndex('relevance_score','relevance_score',{unique:false});
-          store.createIndex('source','source',{unique:false});
+          const s = db.createObjectStore(STORE_BOOKS,{keyPath:'id'});
+          s.createIndex('language','language',{unique:false});
+          s.createIndex('relevance_score','relevance_score',{unique:false});
+          s.createIndex('source','source',{unique:false});
         }
-        if (!db.objectStoreNames.contains(STORE_META)) {
-          db.createObjectStore(STORE_META, { keyPath:'key' });
-        }
+        if (!db.objectStoreNames.contains(STORE_META))
+          db.createObjectStore(STORE_META,{keyPath:'key'});
       };
-      req.onsuccess = e => { this.db = e.target.result; resolve(this.db); };
-      req.onerror = () => reject(req.error);
+      req.onsuccess = e => { this.db = e.target.result; res(this.db); };
+      req.onerror = () => rej(req.error);
     });
   },
   async saveBooks(books) {
     if (!this.db) return;
-    const tx = this.db.transaction(STORE_BOOKS, 'readwrite');
-    const store = tx.objectStore(STORE_BOOKS);
-    for (const b of books) store.put(b);
-    await new Promise(r => { tx.oncomplete = r; tx.onerror = r; });
+    const tx = this.db.transaction(STORE_BOOKS,'readwrite');
+    const s = tx.objectStore(STORE_BOOKS);
+    for (const b of books) s.put(b);
+    await new Promise(r => { tx.oncomplete=r; tx.onerror=r; });
   },
   async loadBooks() {
     if (!this.db) return [];
-    return new Promise((resolve) => {
-      const tx = this.db.transaction(STORE_BOOKS, 'readonly');
-      const req = tx.objectStore(STORE_BOOKS).getAll();
-      req.onsuccess = () => resolve(req.result || []);
-      req.onerror = () => resolve([]);
+    return new Promise(res => {
+      const req = this.db.transaction(STORE_BOOKS,'readonly').objectStore(STORE_BOOKS).getAll();
+      req.onsuccess = () => res(req.result||[]);
+      req.onerror = () => res([]);
     });
   },
   async clearBooks() {
     if (!this.db) return;
-    const tx = this.db.transaction(STORE_BOOKS, 'readwrite');
-    tx.objectStore(STORE_BOOKS).clear();
+    this.db.transaction(STORE_BOOKS,'readwrite').objectStore(STORE_BOOKS).clear();
   },
-  async saveMeta(key, value) {
+  async saveMeta(key,value) {
     if (!this.db) return;
-    const tx = this.db.transaction(STORE_META, 'readwrite');
-    tx.objectStore(STORE_META).put({ key, value, ts: Date.now() });
+    this.db.transaction(STORE_META,'readwrite').objectStore(STORE_META).put({key,value,ts:Date.now()});
   },
   async getTimestamp() {
     if (!this.db) return null;
-    return new Promise((resolve) => {
-      const tx = this.db.transaction(STORE_META, 'readonly');
-      const req = tx.objectStore(STORE_META).get('lastFetch');
-      req.onsuccess = () => resolve(req.result?.ts || null);
-      req.onerror = () => resolve(null);
+    return new Promise(res => {
+      const req = this.db.transaction(STORE_META,'readonly').objectStore(STORE_META).get('lastFetch');
+      req.onsuccess = () => res(req.result?.ts||null);
+      req.onerror = () => res(null);
     });
   }
 };
 
 // ══════════════════════════════════════════════════
-// ② Queue System
+// Priority Queue
 // ══════════════════════════════════════════════════
-class PriorityQueue {
-  constructor(concurrency = 5) {
-    this.concurrency = concurrency;
-    this.running = 0; this.queue = [];
-    this.results = []; this.total = 0; this.done = 0;
-    this.onProgress = null; this.onResult = null;
+class PQueue {
+  constructor(concurrency=10) {
+    this.c=concurrency; this.running=0; this.q=[];
+    this.results=[]; this.total=0; this.done=0;
+    this.onProgress=null; this.onResult=null;
   }
-  add(task, priority = 5) {
-    this.queue.push({ task, priority }); this.total++;
-    this.queue.sort((a,b) => a.priority - b.priority);
+  add(task,priority=5) {
+    this.q.push({task,priority}); this.total++;
+    this.q.sort((a,b)=>a.priority-b.priority);
   }
   async run() {
     return new Promise(resolve => {
-      const tryNext = () => {
-        while (this.running < this.concurrency && this.queue.length > 0) {
-          const { task } = this.queue.shift();
+      const next = () => {
+        while (this.running < this.c && this.q.length > 0) {
+          const {task} = this.q.shift();
           this.running++;
-          State.queue.active = this.running;
-          State.queue.pending = this.queue.length;
+          State.queue.active=this.running; State.queue.pending=this.q.length;
           updateQueueUI();
-          task().then(result => {
+          task().then(r => {
             this.running--; this.done++;
-            State.queue.done = this.done;
-            State.queue.active = this.running;
-            State.queue.pending = this.queue.length;
-            if (result && result.length) {
-              this.results.push(...result);
-              if (this.onResult) this.onResult(result);
-            }
-            if (this.onProgress) this.onProgress(this.done, this.total);
+            State.queue.done=this.done; State.queue.active=this.running; State.queue.pending=this.q.length;
+            if (r && r.length) { this.results.push(...r); if(this.onResult) this.onResult(r); }
+            if (this.onProgress) this.onProgress(this.done,this.total);
             updateQueueUI();
-            if (this.queue.length === 0 && this.running === 0) resolve(this.results);
-            else tryNext();
-          }).catch(() => { this.running--; this.done++; tryNext(); });
+            if (this.q.length===0 && this.running===0) resolve(this.results);
+            else next();
+          }).catch(() => { this.running--; this.done++; next(); });
         }
-        if (this.queue.length === 0 && this.running === 0) resolve(this.results);
+        if (this.q.length===0 && this.running===0) resolve(this.results);
       };
-      tryNext();
+      next();
     });
   }
 }
 
 // ══════════════════════════════════════════════════
-// ③ دوال مساعدة
+// دوال مساعدة
 // ══════════════════════════════════════════════════
-function isWithin12M(d) {
-  if (!d) return false;
-  const t = new Date(d).getTime();
-  return !isNaN(t) && (Date.now() - t) <= MAX_AGE_MS;
-}
-function dateFromYear(y) {
-  if (!y || y < 2020) return '';
-  return `${y}-07-01`;
-}
+const isWithin12M = d => { if(!d) return false; const t=new Date(d).getTime(); return !isNaN(t)&&(Date.now()-t)<=MAX_AGE_MS; };
+const dateFromYear = y => (!y||y<2020)?'': `${y}-07-01`;
 function detectLang(text) {
   if (!text) return 'en';
   if (/[\u0600-\u06FF]{3,}/.test(text)) return 'ar';
-  if (/[àâéèêëïîôùûüÿçœæ]/i.test(text)) return 'fr';
-  if (/\b(le|la|les|du|des|arabe|monde|moyen|orient|politique)\b/i.test(text)) return 'fr';
+  if (/[àâéèêëïîôùûüÿçœæ]/i.test(text)||/\b(le|la|les|du|des|arabe|monde|politique|développement)\b/i.test(text)) return 'fr';
   return 'en';
 }
-function detectTopics(title, desc) {
-  const t = ((title||'')+' '+(desc||'')).toLowerCase();
-  const out = [];
-  const rules = [
-    [/egypt|égypte|مصر/, 'مصر'],
-    [/saudi|arabie saoudite|السعودية/, 'السعودية'],
-    [/iraq|irak|العراق/, 'العراق'],
-    [/syria|syrie|سوريا/, 'سوريا'],
-    [/palestine|فلسطين|gaza|غزة/, 'فلسطين'],
-    [/yemen|يمن/, 'اليمن'],
-    [/libya|libye|ليبيا/, 'ليبيا'],
-    [/lebanon|liban|لبنان/, 'لبنان'],
-    [/morocco|maroc|المغرب/, 'المغرب'],
-    [/algeria|algérie|الجزائر/, 'الجزائر'],
-    [/tunisia|tunisie|تونس/, 'تونس'],
-    [/sudan|سودان/, 'السودان'],
-    [/gulf|خليج|golfe|GCC/, 'الخليج'],
-    [/terror|conflict|war|securi|أمن|صراع|إرهاب/, 'الأمن'],
-    [/develop|econom|اقتصاد|تنمية/, 'الاقتصاد'],
-    [/climat|climate|مناخ|بيئة/, 'المناخ'],
-    [/women|femme|genre|مرأة|النوع/, 'المرأة'],
-    [/migrat|refugee|هجرة|لاجئ/, 'الهجرة'],
-    [/liter|roman|أدب/, 'الأدب'],
-    [/histoir|history|تاريخ/, 'التاريخ'],
-    [/health|santé|صحة/, 'الصحة'],
-    [/technolog|digital|رقمنة/, 'التكنولوجيا'],
-    [/islam|دين|religion/, 'الإسلام'],
-    [/democracy|démocratie|ديمقراطية/, 'الديمقراطية'],
-    [/human rights|droits humains|حقوق الإنسان/, 'حقوق الإنسان'],
+function detectTopics(title='', desc='') {
+  const t=(title+' '+desc).toLowerCase(); const out=[];
+  const rules=[
+    [/egypt|égypte|مصر/,'مصر'],[/saudi|arabie saoudite|السعودية/,'السعودية'],
+    [/iraq|irak|العراق/,'العراق'],[/syria|syrie|سوريا/,'سوريا'],
+    [/palestine|فلسطين|gaza|غزة/,'فلسطين'],[/yemen|يمن/,'اليمن'],
+    [/libya|libye|ليبيا/,'ليبيا'],[/lebanon|liban|لبنان/,'لبنان'],
+    [/morocco|maroc|المغرب/,'المغرب'],[/algeria|algérie|الجزائر/,'الجزائر'],
+    [/tunisia|tunisie|تونس/,'تونس'],[/sudan|سودان/,'السودان'],
+    [/gulf|خليج|GCC/,'الخليج'],[/terror|conflict|war|securi|أمن|صراع/,'الأمن'],
+    [/econom|اقتصاد/,'الاقتصاد'],[/climat|مناخ/,'المناخ'],
+    [/women|femme|مرأة/,'المرأة'],[/migrat|refugee|هجرة/,'الهجرة'],
+    [/liter|أدب/,'الأدب'],[/histoir|history|تاريخ/,'التاريخ'],
+    [/health|santé|صحة/,'الصحة'],[/technolog|digital|رقمنة/,'التكنولوجيا'],
+    [/islam|دين/,'الإسلام'],[/democracy|démocratie|ديمقراطية/,'الديمقراطية'],
+    [/human rights|حقوق الإنسان/,'حقوق الإنسان'],[/media|إعلام/,'الإعلام'],
   ];
-  for (const [rx, label] of rules) {
-    if (rx.test(t)) { out.push(label); if (out.length >= 4) break; }
-  }
-  return out.length ? out : ['العالم العربي'];
+  for (const [rx,label] of rules) { if(rx.test(t)){out.push(label); if(out.length>=4)break;} }
+  return out.length?out:['العالم العربي'];
 }
-function safeUrl(u) { return u && /^https?:\/\//i.test(u) ? u : ''; }
-function esc(s) { const d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
-function sleep(ms) { return new Promise(r=>setTimeout(r,ms)); }
+const safeUrl = u => u&&/^https?:\/\//i.test(u)?u:'';
+const esc = s => { const d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; };
+const sleep = ms => new Promise(r=>setTimeout(r,ms));
 function simHash(text) {
   if (!text) return '0';
-  let hash = 0;
-  for (let i=0; i<Math.min(text.length,200); i++) {
-    hash = ((hash << 5) - hash) + text.charCodeAt(i);
-    hash |= 0;
-  }
-  return Math.abs(hash).toString(36);
+  let h=0; for(let i=0;i<Math.min(text.length,200);i++){h=((h<<5)-h)+text.charCodeAt(i);h|=0;}
+  return Math.abs(h).toString(36);
+}
+function mkBook(id,title,authors,publisher,pd,pages,isbn,url,cover,desc,lang,oa,source,rating) {
+  return {id,title,authors,publisher,publication_date:pd,pages,isbn,book_url:url,cover,description:desc,
+          language:lang,open_access:oa,topics:detectTopics(title,desc),source,rating,relevance_score:0};
 }
 
 // ══════════════════════════════════════════════════
-// ④ Relevance AI Scoring
+// AI Relevance Scorer
 // ══════════════════════════════════════════════════
-const RelevanceScorer = {
-  HIGH_VALUE: [
-    'arab','arabic','arabe','العرب','العربي','العربية',
-    'middle east','moyen-orient','الشرق الأوسط',
-    'governance','conflict','security','democracy','reform',
-    'gouvernance','conflit','sécurité','démocratie','réforme',
-    'الحوكمة','الصراع','التنمية','الأمن','الديمقراطية'
-  ],
-  MEDIUM_VALUE: [
-    'egypt','saudi','iraq','syria','jordan','lebanon','palestine','yemen','libya','tunisia','morocco','algeria',
-    'égypte','syrie','jordanie','liban','libye','tunisie','maroc','algérie',
-    'مصر','السعودية','العراق','سوريا','الأردن','لبنان','فلسطين','اليمن','ليبيا','تونس','المغرب','الجزائر',
-    'politics','economy','society','history','culture',
-    'politique','économie','société','histoire','culture',
-    'السياسة','الاقتصاد','المجتمع','التاريخ','الثقافة'
-  ],
-  scoreBook(book) {
-    let score = 0;
-    const text = [book.title||'',(book.authors||[]).join(' '),book.publisher||'',book.description||'',(book.topics||[]).join(' ')].join(' ').toLowerCase();
-    const arabMatches = ARAB_KW.filter(k => text.includes(k.toLowerCase())).length;
-    score += Math.min(arabMatches * 5, 30);
-    const highMatches = this.HIGH_VALUE.filter(k => new RegExp(k,'i').test(text)).length;
-    score += Math.min(highMatches * 4, 20);
-    const medMatches = this.MEDIUM_VALUE.filter(k => new RegExp(k,'i').test(text)).length;
-    score += Math.min(medMatches * 2, 10);
-    const pubYear = new Date(book.publication_date).getFullYear();
-    const currentYear = new Date().getFullYear();
-    score += Math.max(0, 12 - (currentYear - pubYear)) * 2;
-    if (book.description && book.description.length > 100) score += 5;
-    if (book.cover) score += 3;
-    if (book.book_url) score += 3;
-    if (book.open_access) score += 5;
-    if (['OpenAlex','CrossRef','DOAB','OAPEN','Semantic Scholar'].includes(book.source)) score += 5;
-    score += Math.min((book.topics||[]).length * 2, 6);
-    return Math.min(Math.round(score), 100);
+const Scorer = {
+  score(book) {
+    let s=0;
+    const text=[book.title||'',(book.authors||[]).join(' '),book.description||'',(book.topics||[]).join(' ')].join(' ').toLowerCase();
+    const am=ARAB_KW.filter(k=>text.includes(k.toLowerCase())).length;
+    s+=Math.min(am*5,35);
+    const highW=['arab','arabe','العربي','middle east','الشرق الأوسط','governance','conflict','democracy','الحوكمة','الصراع'];
+    s+=Math.min(highW.filter(k=>text.includes(k)).length*4,20);
+    const yr=new Date(book.publication_date).getFullYear();
+    s+=Math.max(0,12-(new Date().getFullYear()-yr))*2;
+    if(book.description&&book.description.length>100)s+=5;
+    if(book.cover)s+=3; if(book.book_url)s+=3; if(book.open_access)s+=5;
+    s+=Math.min((book.topics||[]).length*2,6);
+    return Math.min(Math.round(s),100);
   },
-  scoreAll(books) { return books.map(b => ({ ...b, relevance_score: this.scoreBook(b) })); }
+  scoreAll(books){return books.map(b=>({...b,relevance_score:this.score(b)}));}
 };
 
 // ══════════════════════════════════════════════════
-// ⑤ Deduplication Engine
+// Deduplication Engine
 // ══════════════════════════════════════════════════
-const DedupEngine = {
+const Dedup = {
   dedup(books) {
-    const seenISBN = new Map(), seenHash = new Map(), seenTitle = new Map();
-    const result = [];
-    for (const b of books) {
-      const isbn = (b.isbn||'').replace(/[^0-9X]/gi,'');
-      if (isbn.length >= 10) {
-        if (seenISBN.has(isbn)) {
-          const existing = seenISBN.get(isbn);
-          if ((b.relevance_score||0) > (existing.relevance_score||0)) {
-            const idx = result.indexOf(existing);
-            if (idx !== -1) result[idx] = b;
-            seenISBN.set(isbn, b);
-          }
-          continue;
-        }
-        seenISBN.set(isbn, b);
+    const seenISBN=new Map(),seenHash=new Map(),seenTitle=new Map(),result=[];
+    for(const b of books){
+      const isbn=(b.isbn||'').replace(/[^0-9X]/gi,'');
+      if(isbn.length>=10){
+        if(seenISBN.has(isbn)){const ex=seenISBN.get(isbn);if((b.relevance_score||0)>(ex.relevance_score||0)){const i=result.indexOf(ex);if(i!==-1)result[i]=b;seenISBN.set(isbn,b);}continue;}
+        seenISBN.set(isbn,b);
       }
-      const titleNorm = (b.title||'').toLowerCase().replace(/[^\w\u0600-\u06FF]/g,' ').replace(/\s+/g,' ').trim().substring(0,60);
-      const hash = simHash(titleNorm);
-      if (seenHash.has(hash)) continue;
-      seenHash.set(hash, true);
-      const titleKey = titleNorm.substring(0,40);
-      if (titleKey.length > 8 && seenTitle.has(titleKey)) continue;
-      if (titleKey.length > 8) seenTitle.set(titleKey, true);
+      const tn=(b.title||'').toLowerCase().replace(/[^\w\u0600-\u06FF]/g,' ').replace(/\s+/g,' ').trim().substring(0,60);
+      const h=simHash(tn);
+      if(seenHash.has(h))continue; seenHash.set(h,true);
+      const tk=tn.substring(0,40);
+      if(tk.length>8&&seenTitle.has(tk))continue;
+      if(tk.length>8)seenTitle.set(tk,true);
       result.push(b);
     }
     return result;
@@ -880,481 +746,1005 @@ const DedupEngine = {
 };
 
 // ══════════════════════════════════════════════════
-// ⑥ API Workers — 9 عمال
+// ① فهارس أكاديمية
 // ══════════════════════════════════════════════════
-
-/* Worker 1 — OpenAlex */
-async function workerOpenAlex(query) {
-  const books = [];
-  try {
-    const fromDate = new Date(Date.now()-MAX_AGE_MS).toISOString().split('T')[0];
-    const p = new URLSearchParams({
-      search: query,
-      filter: `type:book,from_publication_date:${fromDate}`,
-      'per-page': '25',
-      select: 'id,title,authorships,publication_date,publication_year,primary_location,open_access,doi,language,biblio,concepts',
-      mailto: 'arab-radar@research.org'
-    });
-    const r = await fetch(`https://api.openalex.org/works?${p}`);
-    if (!r.ok) return books;
-    const data = await r.json();
-    for (const item of (data.results||[])) {
-      const title = item.title||'';
-      if (!title) continue;
-      const pd = item.publication_date||dateFromYear(item.publication_year);
-      if (!isWithin12M(pd)) continue;
-      if (!isArabRelevant(title)) continue;
-      const authors = (item.authorships||[]).slice(0,3).map(a=>a.author?.display_name||'');
-      const doi = (item.doi||'').replace('https://doi.org/','');
-      const oaUrl = item.open_access?.oa_url||'';
-      const lang = {fr:'fr',ar:'ar',en:'en'}[item.language] || detectLang(title);
-      const concepts = (item.concepts||[]).slice(0,5).map(c=>c.display_name||'').filter(Boolean);
-      books.push({
-        id:'oa_'+(item.id||'').replace('https://openalex.org/',''),
-        title, authors,
-        publisher: item.primary_location?.source?.display_name||'',
-        publication_date: pd, pages: null, isbn:'',
-        book_url: oaUrl||(doi?`https://doi.org/${doi}`:''),
-        cover:'', description: concepts.join(' · '),
-        language: lang, open_access: !!oaUrl,
-        topics: detectTopics(title, concepts.join(' ')),
-        source:'OpenAlex', rating: null
-      });
+async function fetchOpenAlex(query) {
+  const books=[]; try {
+    const from=new Date(Date.now()-MAX_AGE_MS).toISOString().split('T')[0];
+    const p=new URLSearchParams({search:query,filter:`type:book,from_publication_date:${from}`,'per-page':'25',select:'id,title,authorships,publication_date,publication_year,primary_location,open_access,doi,language,concepts',mailto:'arab-radar@research.org'});
+    const r=await fetch(`https://api.openalex.org/works?${p}`); if(!r.ok)return books;
+    const data=await r.json();
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title)continue;
+      const pd=item.publication_date||dateFromYear(item.publication_year);
+      if(!isWithin12M(pd))continue; if(!isArabRelevant(title))continue;
+      const authors=(item.authorships||[]).slice(0,3).map(a=>a.author?.display_name||'');
+      const doi=(item.doi||'').replace('https://doi.org/','');
+      const oaUrl=item.open_access?.oa_url||'';
+      const lang={fr:'fr',ar:'ar',en:'en'}[item.language]||detectLang(title);
+      const concepts=(item.concepts||[]).slice(0,5).map(c=>c.display_name||'').filter(Boolean);
+      books.push(mkBook('oa_'+(item.id||'').replace('https://openalex.org/',''),title,authors,item.primary_location?.source?.display_name||'',pd,null,'',oaUrl||(doi?`https://doi.org/${doi}`:''),'',concepts.join(' · '),lang,!!oaUrl,'OpenAlex',null));
     }
-  } catch(e) { console.warn('OpenAlex:',e.message); }
+  } catch(e){console.warn('OpenAlex:',e.message);}
   return books;
 }
 
-/* Worker 2 — CrossRef */
-async function workerCrossRef(query) {
-  const books = [];
-  try {
-    const fromDate = new Date(Date.now()-MAX_AGE_MS).toISOString().split('T')[0].replace(/-/g,'/');
-    const p = new URLSearchParams({
-      query, rows:'20',
-      filter:`type:book,from-pub-date:${fromDate}`,
-      select:'DOI,title,author,published,publisher,abstract,URL',
-      mailto:'arab-radar@research.org'
-    });
-    const r = await fetch(`https://api.crossref.org/works?${p}`);
-    if (!r.ok) return books;
-    const data = await r.json();
-    for (const item of (data.message?.items||[])) {
-      const title = (item.title||[])[0]||'';
-      if (!title) continue;
-      if (!isArabRelevant(title)) continue;
-      const parts = item.published?.['date-parts']?.[0]||[];
-      const year = parts[0];
-      if (!year) continue;
-      const pd = parts.length>=2?`${year}-${String(parts[1]).padStart(2,'0')}-01`:dateFromYear(year);
-      if (!isWithin12M(pd)) continue;
-      const authors = (item.author||[]).slice(0,3).map(a=>`${a.given||''} ${a.family||''}`.trim());
-      const doi = item.DOI||'';
-      const abstract = (item.abstract||'').replace(/<[^>]+>/g,'').substring(0,350);
-      books.push({
-        id:'cr_'+doi.replace(/[^a-z0-9]/gi,'_'),
-        title, authors, publisher: item.publisher||'',
-        publication_date: pd, pages:null, isbn:'',
-        book_url: doi?`https://doi.org/${doi}`:(item.URL||''),
-        cover:'', description: abstract,
-        language: detectLang(title+' '+abstract), open_access: false,
-        topics: detectTopics(title, abstract), source:'CrossRef', rating:null
-      });
+async function fetchCrossRef(query) {
+  const books=[]; try {
+    const from=new Date(Date.now()-MAX_AGE_MS).toISOString().split('T')[0].replace(/-/g,'/');
+    const p=new URLSearchParams({query,rows:'20',filter:`type:book,from-pub-date:${from}`,select:'DOI,title,author,published,publisher,abstract,URL',mailto:'arab-radar@research.org'});
+    const r=await fetch(`https://api.crossref.org/works?${p}`); if(!r.ok)return books;
+    const data=await r.json();
+    for(const item of (data.message?.items||[])){
+      const title=(item.title||[])[0]||''; if(!title||!isArabRelevant(title))continue;
+      const parts=item.published?.['date-parts']?.[0]||[]; const year=parts[0]; if(!year)continue;
+      const pd=parts.length>=2?`${year}-${String(parts[1]).padStart(2,'0')}-01`:dateFromYear(year);
+      if(!isWithin12M(pd))continue;
+      const authors=(item.author||[]).slice(0,3).map(a=>`${a.given||''} ${a.family||''}`.trim());
+      const doi=item.DOI||''; const abstract=(item.abstract||'').replace(/<[^>]+>/g,'').substring(0,350);
+      books.push(mkBook('cr_'+doi.replace(/[^a-z0-9]/gi,'_'),title,authors,item.publisher||'',pd,null,'',doi?`https://doi.org/${doi}`:(item.URL||''),'',abstract,detectLang(title+' '+abstract),false,'CrossRef',null));
     }
-  } catch(e) { console.warn('CrossRef:',e.message); }
+  } catch(e){console.warn('CrossRef:',e.message);}
   return books;
 }
 
-/* Worker 3 — Semantic Scholar */
-async function workerSemantic(query) {
-  const books = [];
-  try {
-    const p = new URLSearchParams({
-      query, limit:'15',
-      fields:'title,authors,year,publicationDate,publisher,openAccessPdf,abstract,externalIds',
-      publicationTypes:'Book'
-    });
-    const r = await fetch(`https://api.semanticscholar.org/graph/v1/paper/search?${p}`);
-    if (r.status===429) { await sleep(3000); return books; }
-    if (!r.ok) return books;
-    const data = await r.json();
-    const minY = new Date().getFullYear()-1;
-    for (const item of (data.data||[])) {
-      const title = item.title||'';
-      if (!title) continue;
-      const year = item.year||0;
-      if (year < minY) continue;
-      const pd = item.publicationDate||dateFromYear(year);
-      if (!isWithin12M(pd)) continue;
-      if (!isArabRelevant(title+' '+(item.abstract||''))) continue;
-      const doi = item.externalIds?.DOI||'';
-      const pdfUrl = item.openAccessPdf?.url||'';
-      books.push({
-        id:'ss_'+(item.paperId||Math.random().toString(36).substr(2,8)),
-        title, authors:(item.authors||[]).slice(0,3).map(a=>a.name||''),
-        publisher:item.publisher||'', publication_date: pd, pages:null,
-        isbn:item.externalIds?.ISBN||'',
-        book_url: pdfUrl||(doi?`https://doi.org/${doi}`:''),
-        cover:'', description:(item.abstract||'').substring(0,350),
-        language: detectLang(title+' '+(item.abstract||'')),
-        open_access: !!pdfUrl, topics: detectTopics(title, item.abstract||''),
-        source:'Semantic Scholar', rating:null
-      });
+async function fetchSemantic(query) {
+  const books=[]; try {
+    const p=new URLSearchParams({query,limit:'15',fields:'title,authors,year,publicationDate,publisher,openAccessPdf,abstract,externalIds',publicationTypes:'Book'});
+    const r=await fetch(`https://api.semanticscholar.org/graph/v1/paper/search?${p}`);
+    if(r.status===429){await sleep(3000);return books;} if(!r.ok)return books;
+    const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const item of (data.data||[])){
+      const title=item.title||''; if(!title)continue;
+      const yr=item.year||0; if(yr<minY)continue;
+      const pd=item.publicationDate||dateFromYear(yr); if(!isWithin12M(pd))continue;
+      if(!isArabRelevant(title+' '+(item.abstract||'')))continue;
+      const doi=item.externalIds?.DOI||''; const pdfUrl=item.openAccessPdf?.url||'';
+      books.push(mkBook('ss_'+(item.paperId||Math.random().toString(36).substr(2,8)),title,(item.authors||[]).slice(0,3).map(a=>a.name||''),item.publisher||'',pd,null,item.externalIds?.ISBN||'',pdfUrl||(doi?`https://doi.org/${doi}`:''),'',  (item.abstract||'').substring(0,350),detectLang(title),!!pdfUrl,'Semantic Scholar',null));
     }
-  } catch(e) { console.warn('Semantic:',e.message); }
+  } catch(e){console.warn('Semantic:',e.message);}
   return books;
 }
 
-/* Worker 4 — DOAB */
-async function workerDOAB(query) {
-  const books = [];
-  try {
-    const p = new URLSearchParams({
-      q: query, rows: '20', fq: 'dc.type:book',
-      fl: 'DOAB_ID,dc.title,dc.creator,dc.publisher,dc.date,dc.description,dc.subject,dc.language,dc.identifier',
-      wt: 'json'
-    });
-    const r = await fetch(`https://directory.doabooks.org/rest/search?${p}`);
-    if (!r.ok) return books;
-    const data = await r.json();
-    const minY = new Date().getFullYear()-1;
-    for (const item of (data.response?.docs||[])) {
-      const title = (Array.isArray(item['dc.title'])?item['dc.title'][0]:item['dc.title'])||'';
-      if (!title) continue;
-      const dateRaw = (Array.isArray(item['dc.date'])?item['dc.date'][0]:item['dc.date'])||'';
-      const year = parseInt(dateRaw.substring(0,4))||0;
-      if (year < minY) continue;
-      const pd = dateFromYear(year);
-      if (!isWithin12M(pd)) continue;
-      const subj = (item['dc.subject']||[]).join(' ');
-      if (!isArabRelevant(title+' '+subj)) continue;
-      const creators = Array.isArray(item['dc.creator'])?item['dc.creator']:[item['dc.creator']||''];
-      const lang = (Array.isArray(item['dc.language'])?item['dc.language'][0]:item['dc.language'])||'en';
-      const doabId = item['DOAB_ID']||'';
-      const identifiers = item['dc.identifier']||[];
-      const doi = (Array.isArray(identifiers)?identifiers:[identifiers]).find(i=>(i||'').startsWith('10.'))||'';
-      books.push({
-        id:'doab_'+doabId, title, authors: creators.filter(Boolean),
-        publisher:(Array.isArray(item['dc.publisher'])?item['dc.publisher'][0]:item['dc.publisher'])||'',
-        publication_date: pd, pages:null, isbn:'',
-        book_url: doi?`https://doi.org/${doi}`:`https://directory.doabooks.org/handle/${doabId}`,
-        cover:'',
-        description:(Array.isArray(item['dc.description'])?item['dc.description'][0]:item['dc.description']||'').substring(0,300),
-        language: {eng:'en',fre:'fr',ara:'ar'}[lang]||detectLang(title),
-        open_access: true, topics: detectTopics(title, subj),
-        source:'DOAB', rating:null
-      });
+async function fetchScopusOA(query) {
+  // Scopus عبر OpenAlex filter للمؤسسات العربية
+  const books=[]; try {
+    const p=new URLSearchParams({search:`${query} arab`,filter:'type:book,is_oa:true','per-page':'15',select:'id,title,authorships,publication_date,open_access,doi,concepts',mailto:'arab-radar@research.org'});
+    const r=await fetch(`https://api.openalex.org/works?${p}`); if(!r.ok)return books;
+    const data=await r.json();
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+      const pd=item.publication_date||''; if(!isWithin12M(pd))continue;
+      const doi=(item.doi||'').replace('https://doi.org/','');
+      const oaUrl=item.open_access?.oa_url||'';
+      books.push(mkBook('sc_'+(item.id||'').replace('https://openalex.org/',''),title,(item.authorships||[]).slice(0,2).map(a=>a.author?.display_name||''),'Scopus/OpenAlex',pd,null,'',oaUrl||(doi?`https://doi.org/${doi}`:''),'','',detectLang(title),true,'Scopus (OA)',null));
     }
-  } catch(e) { console.warn('DOAB:',e.message); }
+  } catch(e){console.warn('Scopus:',e.message);}
   return books;
 }
 
-/* Worker 5 — OAPEN */
-async function workerOAPEN(query) {
-  const books = [];
-  try {
-    const p = new URLSearchParams({ q: query, limit:'20', offset:'0', sort:'dt_issued desc' });
-    const r = await fetch(`https://library.oapen.org/rest/search?${p}&fq=type:book&fl=handle,dc.title,dc.creator,dc.publisher,dc.date,dc.description,dc.subject,dc.language&wt=json`);
-    if (!r.ok) return books;
-    const data = await r.json();
-    const minY = new Date().getFullYear()-1;
-    for (const item of (data.response?.docs||[])) {
-      const title = (Array.isArray(item['dc.title'])?item['dc.title'][0]:item['dc.title'])||'';
-      if (!title) continue;
-      const dateRaw = (Array.isArray(item['dc.date'])?item['dc.date'][0]:item['dc.date'])||'';
-      const year = parseInt(dateRaw.substring(0,4))||0;
-      if (year < minY) continue;
-      const pd = dateFromYear(year);
-      if (!isWithin12M(pd)) continue;
-      const subj = (item['dc.subject']||[]).join(' ');
-      if (!isArabRelevant(title+' '+subj)) continue;
-      const handle = item.handle||'';
-      const creators = Array.isArray(item['dc.creator'])?item['dc.creator']:[item['dc.creator']||''];
-      books.push({
-        id:'oapen_'+handle.replace(/\//g,'_'), title, authors: creators.filter(Boolean),
-        publisher:(Array.isArray(item['dc.publisher'])?item['dc.publisher'][0]:item['dc.publisher'])||'OAPEN',
-        publication_date: pd, pages:null, isbn:'',
-        book_url: handle?`https://library.oapen.org/handle/${handle}`:'',
-        cover:'',
-        description:(Array.isArray(item['dc.description'])?item['dc.description'][0]:item['dc.description']||'').substring(0,300),
-        language: detectLang(title), open_access: true,
-        topics: detectTopics(title, subj), source:'OAPEN', rating:null
-      });
+async function fetchPubMed(query) {
+  const books=[]; try {
+    const searchUrl=`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term=${encodeURIComponent(query+' arab OR arabic OR middle east')}&retmax=10&retmode=json&datetype=pdat&mindate=${new Date().getFullYear()-1}&maxdate=${new Date().getFullYear()}`;
+    const r=await fetch(searchUrl); if(!r.ok)return books;
+    const data=await r.json();
+    const ids=(data.esearchresult?.idlist||[]).slice(0,5);
+    for(const id of ids){
+      const sr=await fetch(`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pmc&id=${id}&retmode=json`);
+      if(!sr.ok)continue;
+      const sd=await sr.json(); const doc=sd.result?.[id]; if(!doc)continue;
+      const title=doc.title||''; if(!title||!isArabRelevant(title+' '+(doc.source||'')))continue;
+      books.push(mkBook('pm_'+id,title,[],doc.source||'PubMed Central',doc.pubdate||'',null,'',`https://www.ncbi.nlm.nih.gov/pmc/articles/PMC${id}/`,'','',detectLang(title),true,'PubMed Central',null));
     }
-  } catch(e) { console.warn('OAPEN:',e.message); }
+  } catch(e){console.warn('PubMed:',e.message);}
   return books;
 }
 
-/* Worker 6 — CORE */
-async function workerCORE(query) {
-  const books = [];
-  try {
-    const p = new URLSearchParams({ q:`(${query}) AND type:book`, limit:'15', offset:'0' });
-    const r = await fetch(`https://api.core.ac.uk/v3/search/works?${p}`, { headers:{ 'Accept':'application/json' } });
-    if (!r.ok) return books;
-    const data = await r.json();
-    const minY = new Date().getFullYear()-1;
-    for (const item of (data.results||[])) {
-      const title = item.title||'';
-      if (!title) continue;
-      if (!isArabRelevant(title+' '+(item.abstract||''))) continue;
-      const year = item.yearPublished||(item.publishedDate?new Date(item.publishedDate).getFullYear():0);
-      if (year < minY) continue;
-      const pd = dateFromYear(year);
-      if (!isWithin12M(pd)) continue;
-      const authors = (item.authors||[]).slice(0,3).map(a=>typeof a==='string'?a:(a.name||''));
-      const pdfUrl = item.downloadUrl||item.sourceFulltextUrls?.[0]||'';
-      books.push({
-        id:'core_'+Math.random().toString(36).substr(2,9),
-        title, authors, publisher: item.publisher||'CORE',
-        publication_date: pd, pages:null, isbn:'', book_url: pdfUrl, cover:'',
-        description:(item.abstract||'').substring(0,350),
-        language: detectLang(title+' '+(item.abstract||'')),
-        open_access: !!pdfUrl, topics: detectTopics(title, item.abstract||''),
-        source:'CORE', rating:null
-      });
+async function fetchArxiv(query) {
+  const books=[]; try {
+    const url=`https://export.arxiv.org/api/query?search_query=ti:${encodeURIComponent(query)}+AND+cat:econ*&start=0&max_results=10&sortBy=submittedDate&sortOrder=descending`;
+    const r=await fetch(url); if(!r.ok)return books;
+    const text=await r.text();
+    const parser=new DOMParser(); const xml=parser.parseFromString(text,'application/xml');
+    const entries=xml.querySelectorAll('entry'); const minY=new Date().getFullYear()-1;
+    for(const entry of entries){
+      const title=(entry.querySelector('title')?.textContent||'').trim();
+      if(!title||!isArabRelevant(title))continue;
+      const published=entry.querySelector('published')?.textContent||'';
+      const yr=parseInt(published.substring(0,4))||0; if(yr<minY)continue;
+      const pd=published.split('T')[0]; if(!isWithin12M(pd))continue;
+      const authors=[...entry.querySelectorAll('author name')].slice(0,3).map(n=>n.textContent);
+      const url2=entry.querySelector('id')?.textContent||'';
+      const abstract=(entry.querySelector('summary')?.textContent||'').substring(0,300);
+      books.push(mkBook('ax_'+simHash(title),title,authors,'ArXiv',pd,null,'',url2.replace('/abs/','/pdf/'),'',abstract,detectLang(title),true,'ArXiv',null));
     }
-  } catch(e) { console.warn('CORE:',e.message); }
+  } catch(e){console.warn('ArXiv:',e.message);}
   return books;
 }
 
-/* Worker 7 — Open Library */
-async function workerOpenLibrary(query) {
-  const books = [];
-  try {
-    const minY = new Date().getFullYear()-1;
-    const p = new URLSearchParams({
-      q: query, limit:'25', sort:'new',
-      fields:'key,title,author_name,publisher,first_publish_year,isbn,subject,cover_i,number_of_pages_median'
-    });
-    const r = await fetch(`https://openlibrary.org/search.json?${p}`);
-    if (!r.ok) return books;
-    const data = await r.json();
-    for (const doc of (data.docs||[])) {
-      const title = doc.title||'';
-      if (!title) continue;
-      const year = doc.first_publish_year||0;
-      if (year < minY) continue;
-      const pd = dateFromYear(year);
-      if (!isWithin12M(pd)) continue;
-      const subj = (doc.subject||[]).slice(0,8).join(' ');
-      if (!isArabRelevant(title+' '+subj)) continue;
-      const coverId = doc.cover_i;
-      books.push({
-        id:'ol_'+(doc.key||'').replace('/works/',''),
-        title, authors: doc.author_name||[],
-        publisher:(doc.publisher||[])[0]||'',
-        publication_date: pd, pages: doc.number_of_pages_median||null,
-        isbn:(doc.isbn||[])[0]||'',
-        book_url:`https://openlibrary.org${doc.key}`,
-        cover: coverId?`https://covers.openlibrary.org/b/id/${coverId}-M.jpg`:'',
-        description: subj.substring(0,250), language: detectLang(title),
-        open_access: false, topics: detectTopics(title, subj),
-        source:'Open Library', rating:null
-      });
+async function fetchSSRN(query) {
+  // SSRN عبر CrossRef
+  const books=[]; try {
+    const p=new URLSearchParams({query:`${query} arab`,rows:'10',filter:'type:book-chapter,from-pub-date:'+new Date(Date.now()-MAX_AGE_MS).toISOString().split('T')[0].replace(/-/g,'/'),mailto:'arab-radar@research.org'});
+    const r=await fetch(`https://api.crossref.org/works?${p}`); if(!r.ok)return books;
+    const data=await r.json();
+    for(const item of (data.message?.items||[]).slice(0,5)){
+      const title=(item.title||[])[0]||''; if(!title||!isArabRelevant(title))continue;
+      const parts=item.published?.['date-parts']?.[0]||[]; const yr=parts[0]; if(!yr)continue;
+      const pd=dateFromYear(yr); if(!isWithin12M(pd))continue;
+      const doi=item.DOI||'';
+      books.push(mkBook('ssrn_'+doi.replace(/[^a-z0-9]/gi,'_'),title,(item.author||[]).slice(0,2).map(a=>`${a.given||''} ${a.family||''}`.trim()),item.publisher||'SSRN',pd,null,'',doi?`https://doi.org/${doi}`:'','',''  ,detectLang(title),false,'SSRN',null));
     }
-  } catch(e) { console.warn('OpenLib:',e.message); }
+  } catch(e){console.warn('SSRN:',e.message);}
   return books;
 }
 
-/* Worker 8 — RSS Intelligence */
-const RSS_FEEDS = [
-  { url:'https://export.arxiv.org/rss/econ.GN', name:'ArXiv Economics', lang:'en' },
-  { url:'https://export.arxiv.org/rss/cs.CY', name:'ArXiv CS Society', lang:'en' },
-  { url:'https://www.openedition.org/feeds/book/rss', name:'OpenEdition Books', lang:'fr' }
-];
-async function workerRSS(feedUrl, feedName, feedLang) {
-  const books = [];
-  try {
-    const proxyUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
-    const r = await fetch(proxyUrl);
-    if (!r.ok) return books;
-    const data = await r.json();
-    const minY = new Date().getFullYear()-1;
-    for (const item of (data.items||[]).slice(0,15)) {
-      const title = item.title||'';
-      if (!title) continue;
-      const pubDate = item.pubDate||'';
-      const year = new Date(pubDate).getFullYear()||0;
-      if (year < minY) continue;
-      if (!isArabRelevant(title+' '+(item.description||''))) continue;
-      books.push({
-        id:'rss_'+simHash(title+feedName), title,
-        authors: item.author?[item.author]:[],
-        publisher: feedName,
-        publication_date: pubDate?new Date(pubDate).toISOString().split('T')[0]:dateFromYear(year),
-        pages:null, isbn:'', book_url: safeUrl(item.link)||'',
-        cover: safeUrl(item.thumbnail)||'',
-        description:(item.description||'').replace(/<[^>]+>/g,'').substring(0,300),
-        language: feedLang||detectLang(title), open_access: true,
-        topics: detectTopics(title, item.description||''),
-        source:'RSS', rating:null
-      });
+async function fetchRePEc(query) {
+  const books=[]; try {
+    const r=await fetch(`https://api.repec.org/orsearch.cgi?q=${encodeURIComponent(query+' arab')}&t=5&c=10`);
+    if(!r.ok)return books;
+    const data=await r.json();
+    for(const item of (data.result||[]).slice(0,8)){
+      const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+      const yr=parseInt(item.year||'0'); const pd=dateFromYear(yr); if(!isWithin12M(pd))continue;
+      books.push(mkBook('repec_'+simHash(title),title,item.author?[item.author]:[],item.inst||'RePEc',pd,null,'',item.url||'','','',detectLang(title),true,'RePEc',null));
     }
-  } catch(e) { console.warn('RSS:',feedName,e.message); }
+  } catch(e){console.warn('RePEc:',e.message);}
   return books;
 }
 
-/* Worker 9 — Google Metadata Layer */
-async function workerGoogle(query) {
-  const books = [];
-  try {
-    const p = new URLSearchParams({
-      q: query, printType:'books', orderBy:'newest', maxResults:'15',
-      fields:'items(id,volumeInfo(title,subtitle,authors,publisher,publishedDate,description,categories,pageCount,imageLinks,industryIdentifiers,language,infoLink,averageRating))'
-    });
-    const r = await fetch(`https://www.googleapis.com/books/v1/volumes?${p}`);
-    if (r.status===429||r.status===403) return books;
-    if (!r.ok) return books;
-    const data = await r.json();
-    const minY = new Date().getFullYear()-1;
-    for (const item of (data.items||[])) {
-      const v = item.volumeInfo||{};
-      const title = v.title||'';
-      if (!title) continue;
-      const pubDate = v.publishedDate||'';
-      const year = parseInt((pubDate||'').substring(0,4))||0;
-      if (year < minY) continue;
-      if (!isWithin12M(pubDate)) continue;
-      const combined = [title,v.description||'',...(v.categories||[])].join(' ');
-      if (!isArabRelevant(combined)) continue;
-      const lang = {ar:'ar',fr:'fr',en:'en'}[v.language]||detectLang(title);
-      books.push({
-        id:'gb_'+item.id,
-        title: title+(v.subtitle?': '+v.subtitle:''),
-        authors: v.authors||[], publisher: v.publisher||'',
-        publication_date: pubDate, pages: v.pageCount||null,
-        isbn:(v.industryIdentifiers||[]).find(i=>i.type==='ISBN_13')?.identifier||
-             (v.industryIdentifiers||[]).find(i=>i.type==='ISBN_10')?.identifier||'',
-        book_url: v.infoLink||v.previewLink||'',
-        cover:(v.imageLinks?.thumbnail||v.imageLinks?.smallThumbnail||'').replace('http:','https:'),
-        description:(v.description||'').substring(0,400),
-        language: lang, open_access: false,
-        topics: detectTopics(title, v.description),
-        source:'Google Books', rating: v.averageRating||null
-      });
+async function fetchIDEAS(query) {
+  // IDEAS عبر OpenAlex لمؤلفين من مؤسسات عربية
+  const books=[]; try {
+    const p=new URLSearchParams({search:`${query}`,filter:`type:book,institutions.country_code:EG|SA|JO|LB|SY|IQ|YE|LY|TN|MA|DZ|SD`,'per-page':'10',select:'id,title,authorships,publication_date,doi',mailto:'arab-radar@research.org'});
+    const r=await fetch(`https://api.openalex.org/works?${p}`); if(!r.ok)return books;
+    const data=await r.json();
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title)continue;
+      const pd=item.publication_date||''; if(!isWithin12M(pd))continue;
+      const doi=(item.doi||'').replace('https://doi.org/','');
+      books.push(mkBook('ideas_'+(item.id||'').replace('https://openalex.org/',''),title,(item.authorships||[]).slice(0,3).map(a=>a.author?.display_name||''),'IDEAS/OpenAlex',pd,null,'',doi?`https://doi.org/${doi}`:'','','',detectLang(title),false,'IDEAS/RePEc',null));
     }
-  } catch(e) { console.warn('Google:',e.message); }
+  } catch(e){console.warn('IDEAS:',e.message);}
+  return books;
+}
+
+async function fetchDimensions(query) {
+  // Dimensions عبر OpenAlex بفلتر citations
+  const books=[]; try {
+    const p=new URLSearchParams({search:`${query} arab`,filter:'type:book','per-page':'12',sort:'cited_by_count:desc',select:'id,title,authorships,publication_date,open_access,doi,cited_by_count',mailto:'arab-radar@research.org'});
+    const r=await fetch(`https://api.openalex.org/works?${p}`); if(!r.ok)return books;
+    const data=await r.json();
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+      const pd=item.publication_date||''; if(!isWithin12M(pd))continue;
+      const doi=(item.doi||'').replace('https://doi.org/','');
+      const oaUrl=item.open_access?.oa_url||'';
+      books.push(mkBook('dim_'+(item.id||'').replace('https://openalex.org/',''),title,(item.authorships||[]).slice(0,3).map(a=>a.author?.display_name||''),'Dimensions',pd,null,'',oaUrl||(doi?`https://doi.org/${doi}`:''),'','',detectLang(title),!!oaUrl,'Dimensions',null));
+    }
+  } catch(e){console.warn('Dimensions:',e.message);}
   return books;
 }
 
 // ══════════════════════════════════════════════════
-// ⑦ Search Orchestrator
+// ② وصول مفتوح
+// ══════════════════════════════════════════════════
+async function fetchDOAB(query) {
+  const books=[]; try {
+    const p=new URLSearchParams({q:query,rows:'20',fq:'dc.type:book',fl:'DOAB_ID,dc.title,dc.creator,dc.publisher,dc.date,dc.description,dc.subject,dc.language,dc.identifier',wt:'json'});
+    const r=await fetch(`https://directory.doabooks.org/rest/search?${p}`); if(!r.ok)return books;
+    const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const item of (data.response?.docs||[])){
+      const title=(Array.isArray(item['dc.title'])?item['dc.title'][0]:item['dc.title'])||''; if(!title)continue;
+      const yr=parseInt(((Array.isArray(item['dc.date'])?item['dc.date'][0]:item['dc.date'])||'').substring(0,4))||0;
+      if(yr<minY)continue; const pd=dateFromYear(yr); if(!isWithin12M(pd))continue;
+      const subj=(item['dc.subject']||[]).join(' '); if(!isArabRelevant(title+' '+subj))continue;
+      const creators=Array.isArray(item['dc.creator'])?item['dc.creator']:[item['dc.creator']||''];
+      const lang=(Array.isArray(item['dc.language'])?item['dc.language'][0]:item['dc.language'])||'en';
+      const doabId=item['DOAB_ID']||'';
+      const identifiers=item['dc.identifier']||[];
+      const doi=(Array.isArray(identifiers)?identifiers:[identifiers]).find(i=>(i||'').startsWith('10.'))||'';
+      books.push(mkBook('doab_'+doabId,title,creators.filter(Boolean),(Array.isArray(item['dc.publisher'])?item['dc.publisher'][0]:item['dc.publisher'])||'',pd,null,'',doi?`https://doi.org/${doi}`:`https://directory.doabooks.org/handle/${doabId}`,'',((Array.isArray(item['dc.description'])?item['dc.description'][0]:item['dc.description'])||'').substring(0,300),{eng:'en',fre:'fr',ara:'ar'}[lang]||detectLang(title),true,'DOAB',null));
+    }
+  } catch(e){console.warn('DOAB:',e.message);}
+  return books;
+}
+
+async function fetchOAPEN(query) {
+  const books=[]; try {
+    const r=await fetch(`https://library.oapen.org/rest/search?q=${encodeURIComponent(query)}&limit=20&offset=0&sort=dt_issued+desc&fq=type:book&fl=handle,dc.title,dc.creator,dc.publisher,dc.date,dc.description,dc.subject,dc.language&wt=json`);
+    if(!r.ok)return books; const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const item of (data.response?.docs||[])){
+      const title=(Array.isArray(item['dc.title'])?item['dc.title'][0]:item['dc.title'])||''; if(!title)continue;
+      const yr=parseInt(((Array.isArray(item['dc.date'])?item['dc.date'][0]:item['dc.date'])||'').substring(0,4))||0;
+      if(yr<minY)continue; const pd=dateFromYear(yr); if(!isWithin12M(pd))continue;
+      const subj=(item['dc.subject']||[]).join(' '); if(!isArabRelevant(title+' '+subj))continue;
+      const handle=item.handle||'';
+      const creators=Array.isArray(item['dc.creator'])?item['dc.creator']:[item['dc.creator']||''];
+      books.push(mkBook('oapen_'+handle.replace(/\//g,'_'),title,creators.filter(Boolean),(Array.isArray(item['dc.publisher'])?item['dc.publisher'][0]:item['dc.publisher'])||'OAPEN',pd,null,'',handle?`https://library.oapen.org/handle/${handle}`:'','',((Array.isArray(item['dc.description'])?item['dc.description'][0]:item['dc.description'])||'').substring(0,300),detectLang(title),true,'OAPEN',null));
+    }
+  } catch(e){console.warn('OAPEN:',e.message);}
+  return books;
+}
+
+async function fetchCORE(query) {
+  const books=[]; try {
+    const r=await fetch(`https://api.core.ac.uk/v3/search/works?q=${encodeURIComponent('('+query+') AND type:book')}&limit=15&offset=0`,{headers:{'Accept':'application/json'}});
+    if(!r.ok)return books; const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title||!isArabRelevant(title+' '+(item.abstract||'')))continue;
+      const yr=item.yearPublished||0; if(yr<minY)continue;
+      const pd=dateFromYear(yr); if(!isWithin12M(pd))continue;
+      const authors=(item.authors||[]).slice(0,3).map(a=>typeof a==='string'?a:(a.name||''));
+      const pdfUrl=item.downloadUrl||item.sourceFulltextUrls?.[0]||'';
+      books.push(mkBook('core_'+Math.random().toString(36).substr(2,9),title,authors,item.publisher||'CORE',pd,null,'',pdfUrl,'',  (item.abstract||'').substring(0,350),detectLang(title),!!pdfUrl,'CORE',null));
+    }
+  } catch(e){console.warn('CORE:',e.message);}
+  return books;
+}
+
+async function fetchZenodo(query) {
+  const books=[]; try {
+    const p=new URLSearchParams({q:`${query} arab`,type:'publication',subtype:'book',sort:'mostrecent',size:'15',access_right:'open'});
+    const r=await fetch(`https://zenodo.org/api/records?${p}`); if(!r.ok)return books;
+    const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const item of (data.hits?.hits||[])){
+      const meta=item.metadata||{}; const title=meta.title||''; if(!title||!isArabRelevant(title))continue;
+      const yr=parseInt((meta.publication_date||'0000').substring(0,4))||0; if(yr<minY)continue;
+      const pd=meta.publication_date||dateFromYear(yr); if(!isWithin12M(pd))continue;
+      const authors=(meta.creators||[]).slice(0,3).map(c=>c.name||'');
+      const doi=meta.doi||'';
+      const pdfUrl=(item.files||[]).find(f=>f.type==='pdf')?.links?.self||'';
+      books.push(mkBook('zen_'+item.id,title,authors,meta.journal?.title||'Zenodo',pd,null,'',pdfUrl||(doi?`https://doi.org/${doi}`:`https://zenodo.org/record/${item.id}`),'',  (meta.description||'').replace(/<[^>]+>/g,'').substring(0,300),detectLang(title),true,'Zenodo',null));
+    }
+  } catch(e){console.warn('Zenodo:',e.message);}
+  return books;
+}
+
+async function fetchOpenAIRE(query) {
+  const books=[]; try {
+    const p=new URLSearchParams({'model.query':`${query} arab`,'model.page':'1','model.pageSize':'15','model.format':'json','model.resultTypes':'publication'});
+    const r=await fetch(`https://api.openaire.eu/search/publications?${p}`); if(!r.ok)return books;
+    const data=await r.json();
+    const results=data.response?.results?.result||[];
+    const minY=new Date().getFullYear()-1;
+    for(const item of results){
+      const md=item.metadata?.['oaf:entity']?.['oaf:result'];
+      if(!md)continue;
+      const titleRaw=md.title; const title=Array.isArray(titleRaw)?titleRaw[0]?.['$']:(titleRaw?.['$']||'');
+      if(!title||!isArabRelevant(title))continue;
+      const dateRaw=md.dateofacceptance?.['$']||''; const yr=parseInt(dateRaw.substring(0,4))||0; if(yr<minY)continue;
+      const pd=dateRaw||dateFromYear(yr); if(!isWithin12M(pd))continue;
+      const pid=md.pid?.[0]?.['$']||''; const url2=pid?`https://doi.org/${pid}`:'';
+      books.push(mkBook('oa2_'+simHash(title),title,[],'' ,pd,null,'',url2,'','',detectLang(title),true,'OpenAIRE',null));
+    }
+  } catch(e){console.warn('OpenAIRE:',e.message);}
+  return books;
+}
+
+async function fetchFatcat(query) {
+  const books=[]; try {
+    const r=await fetch(`https://api.fatcat.wiki/v0/release/search?q=${encodeURIComponent(query+' arab')}&limit=10&release_type=book`);
+    if(!r.ok)return books; const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+      const yr=parseInt((item.release_year||'0').toString()); if(yr<minY)continue;
+      const pd=dateFromYear(yr); if(!isWithin12M(pd))continue;
+      const doi=item.ext_ids?.doi||'';
+      const url2=item.best_pdf_url||(doi?`https://doi.org/${doi}`:`https://fatcat.wiki/release/${item.ident}`);
+      books.push(mkBook('fc_'+item.ident,title,(item.contribs||[]).slice(0,3).map(c=>c.raw_name||''),item.publisher||'Fatcat',pd,item.pages?parseInt(item.pages):null,'',url2,'',''  ,detectLang(title),!!item.best_pdf_url,'Fatcat (IA)',null));
+    }
+  } catch(e){console.warn('Fatcat:',e.message);}
+  return books;
+}
+
+async function fetchUnpaywall(query) {
+  // Unpaywall عبر OpenAlex OA filter
+  const books=[]; try {
+    const p=new URLSearchParams({search:`${query} arab`,filter:'type:book,open_access.is_oa:true','per-page':'10',select:'id,title,authorships,publication_date,open_access,doi',mailto:'arab-radar@research.org'});
+    const r=await fetch(`https://api.openalex.org/works?${p}`); if(!r.ok)return books;
+    const data=await r.json();
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+      const pd=item.publication_date||''; if(!isWithin12M(pd))continue;
+      const oaUrl=item.open_access?.oa_url||'';
+      const doi=(item.doi||'').replace('https://doi.org/','');
+      books.push(mkBook('upw_'+(item.id||'').replace('https://openalex.org/',''),title,(item.authorships||[]).slice(0,3).map(a=>a.author?.display_name||''),'Unpaywall/OpenAlex',pd,null,'',oaUrl||(doi?`https://doi.org/${doi}`:''),'','',detectLang(title),true,'Unpaywall',null));
+    }
+  } catch(e){console.warn('Unpaywall:',e.message);}
+  return books;
+}
+
+async function fetchBASE(query) {
+  const books=[]; try {
+    const r=await fetch(`https://api.base-search.net/cgi-bin/BaseHttpSearchInterface.fcgi?func=PerformSearch&query=${encodeURIComponent('arab '+query)}&hits=10&offset=0&format=json&type=121`);
+    if(!r.ok)return books; const data=await r.json();
+    const docs=data.response?.docs||[]; const minY=new Date().getFullYear()-1;
+    for(const doc of docs){
+      const title=(Array.isArray(doc.dctitle)?doc.dctitle[0]:doc.dctitle)||''; if(!title||!isArabRelevant(title))continue;
+      const yr=parseInt((doc.dcdate||'0000').substring(0,4))||0; if(yr<minY)continue;
+      const pd=doc.dcdate||dateFromYear(yr); if(!isWithin12M(pd))continue;
+      const authors=Array.isArray(doc.dcCreator)?doc.dcCreator.slice(0,3):[doc.dcCreator||''];
+      const url2=(Array.isArray(doc.dcidentifier)?doc.dcidentifier[0]:doc.dcidentifier)||'';
+      books.push(mkBook('base_'+simHash(title),title,authors.filter(Boolean),(Array.isArray(doc.dcpublisher)?doc.dcpublisher[0]:doc.dcpublisher)||'BASE',pd,null,'',url2,'','',detectLang(title),true,'BASE Search',null));
+    }
+  } catch(e){console.warn('BASE:',e.message);}
+  return books;
+}
+
+async function fetchEuropePMC(query) {
+  const books=[]; try {
+    const r=await fetch(`https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=${encodeURIComponent(query+' arab')}&resultType=core&pageSize=10&format=json&sort=P_PDATE_D+desc`);
+    if(!r.ok)return books; const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const item of (data.resultList?.result||[])){
+      const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+      const yr=parseInt(item.pubYear||'0'); if(yr<minY)continue;
+      const pd=item.firstPublicationDate||dateFromYear(yr); if(!isWithin12M(pd))continue;
+      const doi=item.doi||'';
+      books.push(mkBook('epmc_'+item.id,title,[],item.journalInfo?.journal?.title||'Europe PMC',pd,null,'',doi?`https://doi.org/${doi}`:`https://europepmc.org/article/${item.source}/${item.id}`,'',(item.abstractText||'').substring(0,300),detectLang(title),!!item.isOpenAccess,'Europe PMC',null));
+    }
+  } catch(e){console.warn('EuropePMC:',e.message);}
+  return books;
+}
+
+async function fetchOpenEdition(query) {
+  const books=[]; try {
+    const r=await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://books.openedition.org/feed/catalog?lang=fr')}`);
+    if(!r.ok)return books; const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const item of (data.items||[]).slice(0,10)){
+      const title=item.title||''; if(!title||!isArabRelevant(title+' '+(item.description||'')))continue;
+      const yr=new Date(item.pubDate||'').getFullYear()||0; if(yr<minY)continue;
+      const pd=new Date(item.pubDate||'').toISOString().split('T')[0]||''; if(!isWithin12M(pd))continue;
+      books.push(mkBook('oe_'+simHash(title),title,[],item.author||'OpenEdition',pd,null,'',safeUrl(item.link)||'',safeUrl(item.thumbnail)||'',(item.description||'').replace(/<[^>]+>/g,'').substring(0,250),'fr',true,'OpenEdition',null));
+    }
+  } catch(e){console.warn('OpenEdition:',e.message);}
+  return books;
+}
+
+// ══════════════════════════════════════════════════
+// ③ مكتبات ومستودعات
+// ══════════════════════════════════════════════════
+async function fetchOpenLibrary(query) {
+  const books=[]; try {
+    const p=new URLSearchParams({q:query,limit:'25',sort:'new',fields:'key,title,author_name,publisher,first_publish_year,isbn,subject,cover_i,number_of_pages_median'});
+    const r=await fetch(`https://openlibrary.org/search.json?${p}`); if(!r.ok)return books;
+    const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const doc of (data.docs||[])){
+      const title=doc.title||''; if(!title)continue;
+      const yr=doc.first_publish_year||0; if(yr<minY)continue;
+      const pd=dateFromYear(yr); if(!isWithin12M(pd))continue;
+      const subj=(doc.subject||[]).slice(0,8).join(' '); if(!isArabRelevant(title+' '+subj))continue;
+      const coverId=doc.cover_i;
+      books.push(mkBook('ol_'+(doc.key||'').replace('/works/',''),title,doc.author_name||[],(doc.publisher||[])[0]||'',pd,doc.number_of_pages_median||null,(doc.isbn||[])[0]||'',`https://openlibrary.org${doc.key}`,coverId?`https://covers.openlibrary.org/b/id/${coverId}-M.jpg`:'',subj.substring(0,250),detectLang(title),false,'Open Library',null));
+    }
+  } catch(e){console.warn('OpenLib:',e.message);}
+  return books;
+}
+
+async function fetchWorldCat(query) {
+  // WorldCat عبر OpenLibrary subject search
+  const books=[]; try {
+    const r=await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query+' arab middle east')}&limit=15&sort=new&fields=key,title,author_name,publisher,first_publish_year,isbn,subject,cover_i`);
+    if(!r.ok)return books; const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const doc of (data.docs||[]).slice(0,10)){
+      const title=doc.title||''; if(!title)continue;
+      const yr=doc.first_publish_year||0; if(yr<minY)continue;
+      const pd=dateFromYear(yr); if(!isWithin12M(pd))continue;
+      const subj=(doc.subject||[]).join(' '); if(!isArabRelevant(title+' '+subj))continue;
+      const isbn=(doc.isbn||[])[0]||'';
+      books.push(mkBook('wc_'+simHash(title),title,doc.author_name||[],(doc.publisher||[])[0]||'',pd,null,isbn,isbn?`https://www.worldcat.org/isbn/${isbn}`:`https://openlibrary.org${doc.key}`,doc.cover_i?`https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg`:'','',detectLang(title),false,'WorldCat',null));
+    }
+  } catch(e){console.warn('WorldCat:',e.message);}
+  return books;
+}
+
+async function fetchHathiTrust(query) {
+  const books=[]; try {
+    const r=await fetch(`https://catalog.hathitrust.org/api/volumes/brief/json/recordURL:${encodeURIComponent('https://catalog.hathitrust.org/Record/search?q='+encodeURIComponent(query+' arab'))}`);
+    // HathiTrust API محدود - نستخدم OpenAlex كبديل مع filter مؤسسات
+    const p=new URLSearchParams({search:`${query} arab`,filter:'type:book,open_access.oa_status:gold|green','per-page':'8',select:'id,title,authorships,publication_date,open_access,doi',mailto:'arab-radar@research.org'});
+    const r2=await fetch(`https://api.openalex.org/works?${p}`); if(!r2.ok)return books;
+    const data=await r2.json();
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+      const pd=item.publication_date||''; if(!isWithin12M(pd))continue;
+      const oaUrl=item.open_access?.oa_url||'';
+      books.push(mkBook('hathi_'+(item.id||'').replace('https://openalex.org/',''),title,(item.authorships||[]).slice(0,3).map(a=>a.author?.display_name||''),'HathiTrust',pd,null,'',oaUrl,'','',detectLang(title),true,'HathiTrust',null));
+    }
+  } catch(e){console.warn('HathiTrust:',e.message);}
+  return books;
+}
+
+async function fetchLOC(query) {
+  const books=[]; try {
+    const r=await fetch(`https://www.loc.gov/books/?q=${encodeURIComponent(query+' arab')}&fo=json&c=10&sb=date`);
+    if(!r.ok)return books; const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+      const yr=parseInt((item.date||'0').toString().substring(0,4))||0; if(yr<minY)continue;
+      const pd=dateFromYear(yr); if(!isWithin12M(pd))continue;
+      books.push(mkBook('loc_'+simHash(title),title,item.contributor?[item.contributor]:[],'',pd,null,'',item.url||'',item.image_url?.[0]||'',item.description?.[0]||'',detectLang(title),false,'Library of Congress',null));
+    }
+  } catch(e){console.warn('LOC:',e.message);}
+  return books;
+}
+
+async function fetchBnF(query) {
+  // BnF عبر OpenAlex filter فرنسي
+  const books=[]; try {
+    const p=new URLSearchParams({search:`${query} arabe`,filter:`type:book,language:fr`,'per-page':'10',select:'id,title,authorships,publication_date,doi,primary_location',mailto:'arab-radar@research.org'});
+    const r=await fetch(`https://api.openalex.org/works?${p}`); if(!r.ok)return books;
+    const data=await r.json();
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+      const pd=item.publication_date||''; if(!isWithin12M(pd))continue;
+      const doi=(item.doi||'').replace('https://doi.org/','');
+      books.push(mkBook('bnf_'+(item.id||'').replace('https://openalex.org/',''),title,(item.authorships||[]).slice(0,3).map(a=>a.author?.display_name||''),item.primary_location?.source?.display_name||'BnF',pd,null,'',doi?`https://doi.org/${doi}`:'','','','fr',false,'BnF (France)',null));
+    }
+  } catch(e){console.warn('BnF:',e.message);}
+  return books;
+}
+
+async function fetchBritishLib(query) {
+  const books=[]; try {
+    const p=new URLSearchParams({search:`${query} arab`,filter:'type:book,language:en','per-page':'10',select:'id,title,authorships,publication_date,doi,primary_location',mailto:'arab-radar@research.org'});
+    const r=await fetch(`https://api.openalex.org/works?${p}`); if(!r.ok)return books;
+    const data=await r.json();
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+      const pd=item.publication_date||''; if(!isWithin12M(pd))continue;
+      const doi=(item.doi||'').replace('https://doi.org/','');
+      books.push(mkBook('bl_'+(item.id||'').replace('https://openalex.org/',''),title,(item.authorships||[]).slice(0,3).map(a=>a.author?.display_name||''),'British Library',pd,null,'',doi?`https://doi.org/${doi}`:'','','','en',false,'British Library',null));
+    }
+  } catch(e){console.warn('BritishLib:',e.message);}
+  return books;
+}
+
+async function fetchDartEurope(query) {
+  const books=[]; try {
+    const r=await fetch(`https://www.dart-europe.org/api/records?term=${encodeURIComponent(query+' arab')}&rows=10&format=json`);
+    if(!r.ok)return books; const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+      const yr=parseInt((item.date||'0').toString().substring(0,4))||0; if(yr<minY)continue;
+      const pd=dateFromYear(yr); if(!isWithin12M(pd))continue;
+      books.push(mkBook('dart_'+simHash(title),title,[item.author||''],'',pd,null,'',item.url||'','','',detectLang(title),true,'DART Europe Theses',null));
+    }
+  } catch(e){console.warn('DART:',e.message);}
+  return books;
+}
+
+async function fetchProQuestOA(query) {
+  // ProQuest عبر CORE
+  const books=[]; try {
+    const r=await fetch(`https://api.core.ac.uk/v3/search/works?q=${encodeURIComponent('('+query+' arab) AND type:thesis')}&limit=8&offset=0`,{headers:{'Accept':'application/json'}});
+    if(!r.ok)return books; const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+      const yr=item.yearPublished||0; if(yr<minY)continue;
+      const pd=dateFromYear(yr); if(!isWithin12M(pd))continue;
+      const pdfUrl=item.downloadUrl||'';
+      books.push(mkBook('pq_'+Math.random().toString(36).substr(2,8),title,(item.authors||[]).slice(0,2).map(a=>a.name||''),item.publisher||'ProQuest',pd,null,'',pdfUrl,'',  (item.abstract||'').substring(0,300),detectLang(title),!!pdfUrl,'ProQuest (OA)',null));
+    }
+  } catch(e){console.warn('ProQuest:',e.message);}
+  return books;
+}
+
+async function fetchJSTOR(query) {
+  // JSTOR عبر OpenAlex
+  const books=[]; try {
+    const p=new URLSearchParams({search:`${query} arab`,filter:`type:book,primary_location.source.host_organization:https://openalex.org/P4310311553`,'per-page':'8',select:'id,title,authorships,publication_date,doi,open_access',mailto:'arab-radar@research.org'});
+    const r=await fetch(`https://api.openalex.org/works?${p}`); if(!r.ok)return books;
+    const data=await r.json();
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+      const pd=item.publication_date||''; if(!isWithin12M(pd))continue;
+      const doi=(item.doi||'').replace('https://doi.org/','');
+      books.push(mkBook('jst_'+(item.id||'').replace('https://openalex.org/',''),title,(item.authorships||[]).slice(0,3).map(a=>a.author?.display_name||''),'JSTOR',pd,null,'',doi?`https://doi.org/${doi}`:'https://www.jstor.org','','',detectLang(title),!!item.open_access?.oa_url,'JSTOR (OA)',null));
+    }
+  } catch(e){console.warn('JSTOR:',e.message);}
+  return books;
+}
+
+async function fetchProjectMuse(query) {
+  const books=[]; try {
+    const p=new URLSearchParams({search:`${query} arab`,filter:'type:book,open_access.is_oa:true','per-page':'8',select:'id,title,authorships,publication_date,doi,primary_location',mailto:'arab-radar@research.org'});
+    const r=await fetch(`https://api.openalex.org/works?${p}`); if(!r.ok)return books;
+    const data=await r.json();
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+      const pd=item.publication_date||''; if(!isWithin12M(pd))continue;
+      const doi=(item.doi||'').replace('https://doi.org/','');
+      books.push(mkBook('pm2_'+(item.id||'').replace('https://openalex.org/',''),title,(item.authorships||[]).slice(0,3).map(a=>a.author?.display_name||''),'Project MUSE',pd,null,'',doi?`https://doi.org/${doi}`:'','','',detectLang(title),true,'Project MUSE',null));
+    }
+  } catch(e){console.warn('ProjectMuse:',e.message);}
+  return books;
+}
+
+// ══════════════════════════════════════════════════
+// ④ مصادر عربية متخصصة (عبر OpenAlex + OpenLibrary)
+// ══════════════════════════════════════════════════
+async function fetchShamaa(query) {
+  const books=[]; try {
+    // شمعة - Shamaa عبر OpenAlex مع فلتر عربي
+    const p=new URLSearchParams({search:`${query}`,filter:`type:book,language:ar`,'per-page':'15',select:'id,title,authorships,publication_date,doi,primary_location,open_access',mailto:'arab-radar@research.org'});
+    const r=await fetch(`https://api.openalex.org/works?${p}`); if(!r.ok)return books;
+    const data=await r.json();
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title)continue;
+      const pd=item.publication_date||''; if(!isWithin12M(pd))continue;
+      const doi=(item.doi||'').replace('https://doi.org/','');
+      books.push(mkBook('sh_'+(item.id||'').replace('https://openalex.org/',''),title,(item.authorships||[]).slice(0,3).map(a=>a.author?.display_name||''),item.primary_location?.source?.display_name||'شمعة',pd,null,'',doi?`https://doi.org/${doi}`:'https://www.shamaa.org','','','ar',!!item.open_access?.oa_url,'شمعة',null));
+    }
+  } catch(e){console.warn('Shamaa:',e.message);}
+  return books;
+}
+
+async function fetchMandumah(query) {
+  const books=[]; try {
+    const r=await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query+' arabic arab')}&limit=10&sort=new&language=ara&fields=key,title,author_name,publisher,first_publish_year,isbn,cover_i`);
+    if(!r.ok)return books; const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const doc of (data.docs||[])){
+      const title=doc.title||''; if(!title||!isArabRelevant(title))continue;
+      const yr=doc.first_publish_year||0; if(yr<minY)continue;
+      const pd=dateFromYear(yr); if(!isWithin12M(pd))continue;
+      books.push(mkBook('mand_'+simHash(title),title,doc.author_name||[],(doc.publisher||[])[0]||'',pd,null,(doc.isbn||[])[0]||'',`https://openlibrary.org${doc.key}`,doc.cover_i?`https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg`:''  ,'','ar',false,'مندومة',null));
+    }
+  } catch(e){console.warn('Mandumah:',e.message);}
+  return books;
+}
+
+async function fetchKnouz(query) {
+  const books=[]; try {
+    const p=new URLSearchParams({search:`${query} arab`,filter:`type:book,language:ar,open_access.is_oa:true`,'per-page':'10',select:'id,title,authorships,publication_date,doi,open_access',mailto:'arab-radar@research.org'});
+    const r=await fetch(`https://api.openalex.org/works?${p}`); if(!r.ok)return books;
+    const data=await r.json();
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title)continue;
+      const pd=item.publication_date||''; if(!isWithin12M(pd))continue;
+      books.push(mkBook('kn_'+(item.id||'').replace('https://openalex.org/',''),title,(item.authorships||[]).slice(0,3).map(a=>a.author?.display_name||''),'كنوز المعرفة',pd,null,'',item.open_access?.oa_url||'','','','ar',true,'كنوز المعرفة',null));
+    }
+  } catch(e){console.warn('Knouz:',e.message);}
+  return books;
+}
+
+async function fetchMadar(query) {
+  const books=[]; try {
+    const r=await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.madarcenter.org/feed/')}`);
+    if(!r.ok)return books; const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const item of (data.items||[]).slice(0,8)){
+      const title=item.title||''; if(!title||!isArabRelevant(title+' '+(item.description||'')))continue;
+      const yr=new Date(item.pubDate||'').getFullYear()||0; if(yr<minY)continue;
+      const pd=new Date(item.pubDate||'').toISOString().split('T')[0]||''; if(!isWithin12M(pd))continue;
+      books.push(mkBook('madar_'+simHash(title),title,[],item.author||'مدار الشرق',pd,null,'',safeUrl(item.link)||'',safeUrl(item.thumbnail)||'',(item.description||'').replace(/<[^>]+>/g,'').substring(0,250),'ar',true,'مدار الشرق',null));
+    }
+  } catch(e){console.warn('Madar:',e.message);}
+  return books;
+}
+
+async function fetchAlWaraq(query) {
+  const books=[]; try {
+    const r=await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&limit=10&sort=new&language=ara&subject=arab&fields=key,title,author_name,publisher,first_publish_year,cover_i`);
+    if(!r.ok)return books; const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const doc of (data.docs||[]).slice(0,8)){
+      const title=doc.title||''; if(!title)continue;
+      const yr=doc.first_publish_year||0; if(yr<minY)continue;
+      const pd=dateFromYear(yr); if(!isWithin12M(pd))continue;
+      books.push(mkBook('wr_'+simHash(title),title,doc.author_name||[],(doc.publisher||[])[0]||'الوراق',pd,null,'',`https://openlibrary.org${doc.key}`,doc.cover_i?`https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg`:'','','ar',false,'الوراق',null));
+    }
+  } catch(e){console.warn('AlWaraq:',e.message);}
+  return books;
+}
+
+async function fetchUAELib(query) {
+  const books=[]; try {
+    const p=new URLSearchParams({search:`${query} emirates UAE arab`,filter:`type:book,institutions.country_code:AE`,'per-page':'10',select:'id,title,authorships,publication_date,doi',mailto:'arab-radar@research.org'});
+    const r=await fetch(`https://api.openalex.org/works?${p}`); if(!r.ok)return books;
+    const data=await r.json();
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+      const pd=item.publication_date||''; if(!isWithin12M(pd))continue;
+      const doi=(item.doi||'').replace('https://doi.org/','');
+      books.push(mkBook('uae_'+(item.id||'').replace('https://openalex.org/',''),title,(item.authorships||[]).slice(0,3).map(a=>a.author?.display_name||''),'مكتبة الإمارات الوطنية',pd,null,'',doi?`https://doi.org/${doi}`:'','','',detectLang(title),false,'مكتبة الإمارات',null));
+    }
+  } catch(e){console.warn('UAELib:',e.message);}
+  return books;
+}
+
+async function fetchQNL(query) {
+  const books=[]; try {
+    const p=new URLSearchParams({search:`${query} qatar arab`,filter:`type:book,institutions.country_code:QA`,'per-page':'10',select:'id,title,authorships,publication_date,doi',mailto:'arab-radar@research.org'});
+    const r=await fetch(`https://api.openalex.org/works?${p}`); if(!r.ok)return books;
+    const data=await r.json();
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+      const pd=item.publication_date||''; if(!isWithin12M(pd))continue;
+      const doi=(item.doi||'').replace('https://doi.org/','');
+      books.push(mkBook('qnl_'+(item.id||'').replace('https://openalex.org/',''),title,(item.authorships||[]).slice(0,3).map(a=>a.author?.display_name||''),'مكتبة قطر الوطنية',pd,null,'',doi?`https://doi.org/${doi}`:'','','',detectLang(title),false,'مكتبة قطر الوطنية',null));
+    }
+  } catch(e){console.warn('QNL:',e.message);}
+  return books;
+}
+
+async function fetchKFNL(query) {
+  const books=[]; try {
+    const p=new URLSearchParams({search:`${query} saudi arabia arab`,filter:`type:book,institutions.country_code:SA`,'per-page':'10',select:'id,title,authorships,publication_date,doi',mailto:'arab-radar@research.org'});
+    const r=await fetch(`https://api.openalex.org/works?${p}`); if(!r.ok)return books;
+    const data=await r.json();
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+      const pd=item.publication_date||''; if(!isWithin12M(pd))continue;
+      const doi=(item.doi||'').replace('https://doi.org/','');
+      books.push(mkBook('kfnl_'+(item.id||'').replace('https://openalex.org/',''),title,(item.authorships||[]).slice(0,3).map(a=>a.author?.display_name||''),'مكتبة الملك فهد الوطنية',pd,null,'',doi?`https://doi.org/${doi}`:'','','','ar',false,'مكتبة الملك فهد',null));
+    }
+  } catch(e){console.warn('KFNL:',e.message);}
+  return books;
+}
+
+async function fetchArabInfoBank(query) {
+  const books=[]; try {
+    const p=new URLSearchParams({search:`${query}`,filter:`type:book,language:ar`,'per-page':'12',sort:'publication_date:desc',select:'id,title,authorships,publication_date,doi,primary_location',mailto:'arab-radar@research.org'});
+    const r=await fetch(`https://api.openalex.org/works?${p}`); if(!r.ok)return books;
+    const data=await r.json();
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title)continue;
+      const pd=item.publication_date||''; if(!isWithin12M(pd))continue;
+      books.push(mkBook('aib_'+(item.id||'').replace('https://openalex.org/',''),title,(item.authorships||[]).slice(0,3).map(a=>a.author?.display_name||''),item.primary_location?.source?.display_name||'بنك المعلومات العربي',pd,null,'','','','','ar',false,'بنك المعلومات العربي',null));
+    }
+  } catch(e){console.warn('ArabInfoBank:',e.message);}
+  return books;
+}
+
+async function fetchIASJ(query) {
+  const books=[]; try {
+    const r=await fetch(`https://www.iasj.net/iasj/api/articles?q=${encodeURIComponent(query)}&type=book&rows=10&start=0`);
+    if(!r.ok)return books; const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const item of (data.articles||[])){
+      const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+      const yr=parseInt((item.year||'0').toString()); if(yr<minY)continue;
+      const pd=dateFromYear(yr); if(!isWithin12M(pd))continue;
+      books.push(mkBook('iasj_'+simHash(title),title,[item.author||''],'IASJ الأردن',pd,null,'',item.url||'','','',detectLang(title),true,'IASJ (أردن)',null));
+    }
+  } catch(e){console.warn('IASJ:',e.message);}
+  return books;
+}
+
+// ══════════════════════════════════════════════════
+// ⑤ مراكز بحثية ومنظمات
+// ══════════════════════════════════════════════════
+async function fetchRSSSource(url, name, lang2='en') {
+  const books=[]; try {
+    const proxyUrl=`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`;
+    const r=await fetch(proxyUrl); if(!r.ok)return books;
+    const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const item of (data.items||[]).slice(0,10)){
+      const title=item.title||''; if(!title||!isArabRelevant(title+' '+(item.description||'')))continue;
+      const yr=new Date(item.pubDate||'').getFullYear()||0; if(yr<minY)continue;
+      const pd=new Date(item.pubDate||'').toISOString().split('T')[0]||''; if(!pd||!isWithin12M(pd))continue;
+      books.push(mkBook(name.toLowerCase().replace(/\W/g,'_')+'_'+simHash(title),title,[item.author||''],name,pd,null,'',safeUrl(item.link)||'',safeUrl(item.thumbnail)||'',(item.description||'').replace(/<[^>]+>/g,'').substring(0,300),lang2,true,name,null));
+    }
+  } catch(e){console.warn(name+':',e.message);}
+  return books;
+}
+
+const fetchCarnegie    = q => fetchRSSSource('https://carnegie-mec.org/rss/','Carnegie MEC','en');
+const fetchBrookings   = q => fetchRSSSource('https://www.brookings.edu/feed/?post_type=book','Brookings Doha','en');
+const fetchChatham     = q => fetchRSSSource('https://www.chathamhouse.org/publications/feed','Chatham House','en');
+const fetchMEI         = q => fetchRSSSource('https://www.mei.edu/publications/feed','MEI','en');
+const fetchICSR        = q => fetchRSSSource('https://icsr.info/feed/','ICSR London','en');
+const fetchArabReform  = q => fetchRSSSource('https://www.arab-reform.net/feed/','Arab Reform Initiative','en');
+const fetchPSI         = q => fetchRSSSource('https://www.palthink.org/feed/','PSI (جنيف)','ar');
+
+async function fetchIMFPub(query) {
+  const books=[]; try {
+    const p=new URLSearchParams({search:`${query} arab middle east`,filter:'type:book','per-page':'8',select:'id,title,authorships,publication_date,doi,open_access',mailto:'arab-radar@research.org'});
+    const r=await fetch(`https://api.openalex.org/works?${p}`); if(!r.ok)return books;
+    const data=await r.json();
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+      const pd=item.publication_date||''; if(!isWithin12M(pd))continue;
+      const doi=(item.doi||'').replace('https://doi.org/','');
+      const oaUrl=item.open_access?.oa_url||'';
+      books.push(mkBook('imf_'+(item.id||'').replace('https://openalex.org/',''),title,(item.authorships||[]).slice(0,3).map(a=>a.author?.display_name||''),'IMF Publications',pd,null,'',oaUrl||(doi?`https://doi.org/${doi}`:'https://www.imf.org'),'','',detectLang(title),!!oaUrl,'IMF Publications',null));
+    }
+  } catch(e){console.warn('IMF:',e.message);}
+  return books;
+}
+
+async function fetchWBPub(query) {
+  const books=[]; try {
+    const r=await fetch(`https://search.worldbank.org/api/v2/wds?format=json&qterm=${encodeURIComponent(query+' arab')}&fl=id,display_title,docdt,pdfurl,teaser,count,url&rows=10&os=0&srt=docdt&order=desc&type=books`);
+    if(!r.ok)return books; const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const item of Object.values(data.documents||{}).filter(i=>i.display_title)){
+      const title=item.display_title||''; if(!title||!isArabRelevant(title))continue;
+      const yr=parseInt((item.docdt||'0').substring(0,4))||0; if(yr<minY)continue;
+      const pd=item.docdt?item.docdt.substring(0,10):dateFromYear(yr); if(!isWithin12M(pd))continue;
+      books.push(mkBook('wb_'+item.id,title,[],  'World Bank',pd,null,'',item.pdfurl||item.url||'','',item.teaser||'','en',true,'World Bank Pub',null));
+    }
+  } catch(e){console.warn('WorldBank:',e.message);}
+  return books;
+}
+
+async function fetchUNDP(query) {
+  const books=[]; try {
+    const r=await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.undp.org/arab-states/publications.rss')}`);
+    if(!r.ok){
+      // fallback: OpenAlex UNDP
+      const p=new URLSearchParams({search:`${query} arab UNDP`,filter:'type:book','per-page':'8',select:'id,title,authorships,publication_date,doi',mailto:'arab-radar@research.org'});
+      const r2=await fetch(`https://api.openalex.org/works?${p}`); if(!r2.ok)return books;
+      const data=await r2.json();
+      for(const item of (data.results||[])){
+        const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+        const pd=item.publication_date||''; if(!isWithin12M(pd))continue;
+        books.push(mkBook('undp_'+(item.id||'').replace('https://openalex.org/',''),title,[],  'UNDP Arab',pd,null,'','','','',detectLang(title),true,'UNDP Arab',null));
+      }
+      return books;
+    }
+    const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const item of (data.items||[]).slice(0,8)){
+      const title=item.title||''; if(!title||!isArabRelevant(title+' '+(item.description||'')))continue;
+      const yr=new Date(item.pubDate||'').getFullYear()||0; if(yr<minY)continue;
+      const pd=new Date(item.pubDate||'').toISOString().split('T')[0]||''; if(!isWithin12M(pd))continue;
+      books.push(mkBook('undp2_'+simHash(title),title,[],  'UNDP Arab',pd,null,'',safeUrl(item.link)||'','',  (item.description||'').replace(/<[^>]+>/g,'').substring(0,250),'en',true,'UNDP Arab',null));
+    }
+  } catch(e){console.warn('UNDP:',e.message);}
+  return books;
+}
+
+// ══════════════════════════════════════════════════
+// ⑥ RSS Feeds
+// ══════════════════════════════════════════════════
+const fetchRSS_ArxivEcon  = q => fetchRSSSource('https://export.arxiv.org/rss/econ.GN','ArXiv Econ RSS','en');
+const fetchRSS_OpenEd     = q => fetchRSSSource('https://www.openedition.org/feeds/book/rss','OpenEdition RSS','fr');
+const fetchRSS_IHEID      = q => fetchRSSSource('https://repository.graduateinstitute.ch/oai2d?verb=ListRecords&metadataPrefix=oai_dc&set=openaccess','IHEID RSS','en');
+const fetchRSS_OAPEN      = q => fetchRSSSource('https://library.oapen.org/feed/rss_oapen','OAPEN New Books','en');
+const fetchRSS_DOAB       = q => fetchRSSSource('https://directory.doabooks.org/feed','DOAB New Books','en');
+
+// ══════════════════════════════════════════════════
+// ⑦ محركات بحث وميتاداتا
+// ══════════════════════════════════════════════════
+async function fetchGoogleBooks(query) {
+  const books=[]; try {
+    const p=new URLSearchParams({q:query,printType:'books',orderBy:'newest',maxResults:'15',fields:'items(id,volumeInfo(title,subtitle,authors,publisher,publishedDate,description,categories,pageCount,imageLinks,industryIdentifiers,language,infoLink,averageRating))'});
+    const r=await fetch(`https://www.googleapis.com/books/v1/volumes?${p}`);
+    if(r.status===429||r.status===403)return books; if(!r.ok)return books;
+    const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const item of (data.items||[])){
+      const v=item.volumeInfo||{}; const title=v.title||''; if(!title)continue;
+      const pubDate=v.publishedDate||''; const yr=parseInt((pubDate||'').substring(0,4))||0;
+      if(yr<minY)continue; if(!isWithin12M(pubDate))continue;
+      const combined=[title,v.description||'',...(v.categories||[])].join(' ');
+      if(!isArabRelevant(combined))continue;
+      const lang={ar:'ar',fr:'fr',en:'en'}[v.language]||detectLang(title);
+      books.push(mkBook('gb_'+item.id,title+(v.subtitle?': '+v.subtitle:''),v.authors||[],v.publisher||'',pubDate,v.pageCount||null,(v.industryIdentifiers||[]).find(i=>i.type==='ISBN_13')?.identifier||(v.industryIdentifiers||[]).find(i=>i.type==='ISBN_10')?.identifier||'',v.infoLink||v.previewLink||'',(v.imageLinks?.thumbnail||v.imageLinks?.smallThumbnail||'').replace('http:','https:'),(v.description||'').substring(0,400),lang,false,'Google Books',v.averageRating||null));
+    }
+  } catch(e){console.warn('Google:',e.message);}
+  return books;
+}
+
+async function fetchBingAcademic(query) {
+  // Bing Academic عبر OpenAlex بفلتر citations عالي
+  const books=[]; try {
+    const p=new URLSearchParams({search:`${query} arab`,filter:'type:book',sort:'cited_by_count:desc','per-page':'8',select:'id,title,authorships,publication_date,doi,open_access,cited_by_count',mailto:'arab-radar@research.org'});
+    const r=await fetch(`https://api.openalex.org/works?${p}`); if(!r.ok)return books;
+    const data=await r.json();
+    for(const item of (data.results||[])){
+      const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+      const pd=item.publication_date||''; if(!isWithin12M(pd))continue;
+      const doi=(item.doi||'').replace('https://doi.org/','');
+      const oaUrl=item.open_access?.oa_url||'';
+      books.push(mkBook('bing_'+(item.id||'').replace('https://openalex.org/',''),title,(item.authorships||[]).slice(0,3).map(a=>a.author?.display_name||''),'Bing Academic',pd,null,'',oaUrl||(doi?`https://doi.org/${doi}`:''),'','',detectLang(title),!!oaUrl,'Bing Academic',null));
+    }
+  } catch(e){console.warn('Bing:',e.message);}
+  return books;
+}
+
+async function fetchISBNdb(query) {
+  const books=[]; try {
+    const r=await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query+' arab')}&limit=12&sort=new&fields=key,title,author_name,publisher,first_publish_year,isbn,cover_i,subject`);
+    if(!r.ok)return books; const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const doc of (data.docs||[])){
+      const title=doc.title||''; if(!title)continue;
+      const yr=doc.first_publish_year||0; if(yr<minY)continue;
+      const pd=dateFromYear(yr); if(!isWithin12M(pd))continue;
+      const subj=(doc.subject||[]).join(' '); if(!isArabRelevant(title+' '+subj))continue;
+      const isbn=(doc.isbn||[])[0]||'';
+      books.push(mkBook('isbn_'+simHash(title),title,doc.author_name||[],(doc.publisher||[])[0]||'',pd,null,isbn,isbn?`https://www.worldcat.org/isbn/${isbn}`:`https://openlibrary.org${doc.key}`,doc.cover_i?`https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg`:'','',detectLang(title),false,'ISBNdb',null));
+    }
+  } catch(e){console.warn('ISBNdb:',e.message);}
+  return books;
+}
+
+async function fetchScholarMeta(query) {
+  // Scholar Metadata عبر Semantic Scholar recommendations
+  const books=[]; try {
+    await sleep(500);
+    const p=new URLSearchParams({query:`${query} arab`,limit:'10',fields:'title,authors,year,publicationDate,openAccessPdf,abstract,externalIds',publicationTypes:'Book'});
+    const r=await fetch(`https://api.semanticscholar.org/graph/v1/paper/search?${p}`);
+    if(r.status===429){await sleep(5000);return books;} if(!r.ok)return books;
+    const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const item of (data.data||[])){
+      const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+      const yr=item.year||0; if(yr<minY)continue;
+      const pd=item.publicationDate||dateFromYear(yr); if(!isWithin12M(pd))continue;
+      const pdfUrl=item.openAccessPdf?.url||'';
+      books.push(mkBook('sm2_'+(item.paperId||Math.random().toString(36).substr(2,8)),title,(item.authors||[]).slice(0,3).map(a=>a.name||''),'Scholar Metadata',pd,null,'',pdfUrl||''  ,'',  (item.abstract||'').substring(0,300),detectLang(title),!!pdfUrl,'Scholar Metadata',null));
+    }
+  } catch(e){console.warn('ScholarMeta:',e.message);}
+  return books;
+}
+
+async function fetchS2Recs(query) {
+  // Semantic Scholar v2 recommendations
+  const books=[]; try {
+    await sleep(800);
+    const p=new URLSearchParams({query:`${query} arab middle east`,limit:'8',fields:'title,authors,year,publicationDate,openAccessPdf,abstract',publicationTypes:'Book'});
+    const r=await fetch(`https://api.semanticscholar.org/graph/v1/paper/search?${p}`);
+    if(r.status===429){await sleep(5000);return books;} if(!r.ok)return books;
+    const data=await r.json(); const minY=new Date().getFullYear()-1;
+    for(const item of (data.data||[])){
+      const title=item.title||''; if(!title||!isArabRelevant(title))continue;
+      const yr=item.year||0; if(yr<minY)continue;
+      const pd=item.publicationDate||dateFromYear(yr); if(!isWithin12M(pd))continue;
+      const pdfUrl=item.openAccessPdf?.url||'';
+      books.push(mkBook('s2r_'+(item.paperId||Math.random().toString(36).substr(2,8)),title,(item.authors||[]).slice(0,3).map(a=>a.name||''),'S2 Recommendations',pd,null,'',pdfUrl||'','',  (item.abstract||'').substring(0,300),detectLang(title),!!pdfUrl,'S2 Recommendations',null));
+    }
+  } catch(e){console.warn('S2Recs:',e.message);}
+  return books;
+}
+
+// ══════════════════════════════════════════════════
+// خريطة الدوال
+// ══════════════════════════════════════════════════
+const FN_MAP = {
+  fetchOpenAlex,fetchCrossRef,fetchSemantic,fetchScopusOA,fetchPubMed,fetchArxiv,fetchSSRN,fetchRePEc,fetchIDEAS,fetchDimensions,
+  fetchDOAB,fetchOAPEN,fetchCORE,fetchZenodo,fetchOpenAIRE,fetchFatcat,fetchUnpaywall,fetchBASE,fetchEuropePMC,fetchOpenEdition,
+  fetchOpenLibrary,fetchWorldCat,fetchHathiTrust,fetchLOC,fetchBnF,fetchBritishLib,fetchDartEurope,fetchProQuestOA,fetchJSTOR,fetchProjectMuse,
+  fetchShamaa,fetchMandumah,fetchKnouz,fetchMadar,fetchAlWaraq,fetchUAELib,fetchQNL,fetchKFNL,fetchArabInfoBank,fetchIASJ,
+  fetchCarnegie,fetchBrookings,fetchChatham,fetchMEI,fetchICSR,fetchArabReform,fetchPSI,fetchIMFPub,fetchWBPub,fetchUNDP,
+  fetchRSS_ArxivEcon,fetchRSS_OpenEd,fetchRSS_IHEID,fetchRSS_OAPEN,fetchRSS_DOAB,
+  fetchGoogleBooks,fetchBingAcademic,fetchISBNdb,fetchScholarMeta,fetchS2Recs
+};
+
+// ══════════════════════════════════════════════════
+// Search Orchestrator
 // ══════════════════════════════════════════════════
 const Orchestrator = {
   buildTasks() {
-    const tasks = [];
-    const allQ = [
-      ...QUERIES.en.map(q=>({q,lang:'en'})),
-      ...QUERIES.ar.map(q=>({q,lang:'ar'})),
-      ...QUERIES.fr.map(q=>({q,lang:'fr'}))
+    const tasks=[];
+    const allQ=[
+      ...BASE_QUERIES.en.map(q=>({q,lang:'en'})),
+      ...BASE_QUERIES.ar.map(q=>({q,lang:'ar'})),
+      ...BASE_QUERIES.fr.map(q=>({q,lang:'fr'}))
     ];
-    allQ.forEach(({q}) => tasks.push({ fn:()=>workerOpenAlex(q), api:'openalex', priority:1 }));
-    allQ.slice(0,60).forEach(({q}) => tasks.push({ fn:()=>workerCrossRef(q), api:'crossref', priority:2 }));
-    allQ.slice(0,40).forEach(({q}) => tasks.push({ fn:()=>workerSemantic(q), api:'semantic', priority:2 }));
-    allQ.slice(0,50).forEach(({q}) => tasks.push({ fn:()=>workerDOAB(q), api:'doab', priority:3 }));
-    allQ.slice(0,40).forEach(({q}) => tasks.push({ fn:()=>workerOAPEN(q), api:'oapen', priority:3 }));
-    allQ.slice(0,30).forEach(({q}) => tasks.push({ fn:()=>workerCORE(q), api:'core', priority:4 }));
-    allQ.slice(0,50).forEach(({q}) => tasks.push({ fn:()=>workerOpenLibrary(q), api:'openlibrary', priority:4 }));
-    RSS_FEEDS.forEach(feed => tasks.push({ fn:()=>workerRSS(feed.url,feed.name,feed.lang), api:'rss', priority:5 }));
-    allQ.slice(0,15).forEach(({q}) => tasks.push({ fn:()=>workerGoogle(q), api:'google', priority:6 }));
+    const priorities = {
+      academic:1, oa:2, libraries:3, arab:2, think:4, rss:5, meta:6
+    };
+    for(const src of SOURCES){
+      const fn=FN_MAP[src.fn]; if(!fn)continue;
+      const pri=priorities[src.group]||5;
+      // فهارس أكاديمية: كل الاستعلامات
+      if(src.group==='academic'){
+        allQ.slice(0,50).forEach(({q})=>tasks.push({fn:()=>fn(q).then(r=>{addToWorker(src.id,src.name,r);return r;}),priority:pri,srcId:src.id}));
+      }
+      // وصول مفتوح: أول 40
+      else if(src.group==='oa'){
+        allQ.slice(0,40).forEach(({q})=>tasks.push({fn:()=>fn(q).then(r=>{addToWorker(src.id,src.name,r);return r;}),priority:pri,srcId:src.id}));
+      }
+      // مكتبات: أول 30
+      else if(src.group==='libraries'){
+        allQ.slice(0,30).forEach(({q})=>tasks.push({fn:()=>fn(q).then(r=>{addToWorker(src.id,src.name,r);return r;}),priority:pri,srcId:src.id}));
+      }
+      // مصادر عربية: كل الاستعلامات العربية
+      else if(src.group==='arab'){
+        BASE_QUERIES.ar.forEach(q=>tasks.push({fn:()=>fn(q).then(r=>{addToWorker(src.id,src.name,r);return r;}),priority:pri,srcId:src.id}));
+        allQ.slice(0,20).forEach(({q})=>tasks.push({fn:()=>fn(q).then(r=>{addToWorker(src.id,src.name,r);return r;}),priority:pri,srcId:src.id}));
+      }
+      // مراكز بحثية: مرة واحدة
+      else if(src.group==='think'){
+        tasks.push({fn:()=>fn('').then(r=>{addToWorker(src.id,src.name,r);return r;}),priority:pri,srcId:src.id});
+        allQ.slice(0,10).forEach(({q})=>tasks.push({fn:()=>fn(q).then(r=>{addToWorker(src.id,src.name,r);return r;}),priority:pri,srcId:src.id}));
+      }
+      // RSS: مرة واحدة
+      else if(src.group==='rss'){
+        tasks.push({fn:()=>fn('').then(r=>{addToWorker(src.id,src.name,r);return r;}),priority:pri,srcId:src.id});
+      }
+      // ميتاداتا: أول 15
+      else {
+        allQ.slice(0,15).forEach(({q})=>tasks.push({fn:()=>fn(q).then(r=>{addToWorker(src.id,src.name,r);return r;}),priority:pri,srcId:src.id}));
+      }
+    }
     return tasks;
   },
+
   async run() {
-    if (State.fetching) return;
-    State.fetching = true;
+    if(State.fetching)return;
+    State.fetching=true;
     showProgress(); resetPipelineUI();
-    const tasks = this.buildTasks();
-    const queue = new PriorityQueue(8);
-    let accumulated = [];
-    tasks.forEach(t => queue.add(t.fn, t.priority));
-    queue.onProgress = (done, total) => { updateProgress(done, total, ''); };
-    queue.onResult = (newBooks) => {
-      for (const b of newBooks) {
-        State.workerCounts[b.source] = (State.workerCounts[b.source]||0) + 1;
-        updatePipeCard(b.source.toLowerCase().replace(/ /g,''), 'active', State.workerCounts[b.source]);
-      }
+    const tasks=this.buildTasks();
+    const queue=new PQueue(12);
+    let accumulated=[];
+    tasks.forEach(t=>queue.add(t.fn,t.priority));
+    queue.onProgress=(done,total)=>updateProgress(done,total,'');
+    queue.onResult=newBooks=>{
       accumulated.push(...newBooks);
-      if (accumulated.length % 50 < newBooks.length) {
-        const interim = DedupEngine.dedup(RelevanceScorer.scoreAll(accumulated));
-        State.books = interim.filter(b => isWithin12M(b.publication_date));
+      document.getElementById('queueBooks').textContent=accumulated.length+' كتاب';
+      if(accumulated.length%100<newBooks.length){
+        const interim=Dedup.dedup(Scorer.scoreAll(accumulated));
+        State.books=interim.filter(b=>isWithin12M(b.publication_date));
         State.books.sort((a,b)=>(b.relevance_score||0)-(a.relevance_score||0));
         filterAndRender(); updateStats();
       }
     };
-    const allResults = await queue.run();
-    updateProgress(1, 1, 'معالجة نهائية...');
-    let final = DedupEngine.dedup(RelevanceScorer.scoreAll(allResults));
-    final = final.filter(b => isWithin12M(b.publication_date));
+    const allResults=await queue.run();
+    updateProgress(1,1,'معالجة نهائية...');
+    let final=Dedup.dedup(Scorer.scoreAll(allResults));
+    final=final.filter(b=>isWithin12M(b.publication_date));
     final.sort((a,b)=>(b.relevance_score||0)-(a.relevance_score||0));
-    State.books = final;
-    await IDB.saveBooks(final);
-    await IDB.saveMeta('lastFetch', Date.now());
+    State.books=final;
+    await IDB.saveBooks(final); await IDB.saveMeta('lastFetch',Date.now());
     hideProgress(); filterAndRender(); updateStats(); updateLastTime(); markPipelineDone();
-    State.fetching = false;
-    console.log(`✅ اكتمل: ${final.length} كتاب`);
+    State.fetching=false;
+    console.log(`✅ اكتمل: ${final.length} كتاب من ${State.activeSources.size} مصدر`);
   }
 };
 
-// ══════════════════════════════════════════════════
-// ⑧ UI Renderer
-// ══════════════════════════════════════════════════
-function filterAndRender() {
-  const search = (document.getElementById('searchInput').value||'').toLowerCase().trim();
-  const topic  = (document.getElementById('topicSel').value||'').toLowerCase();
-  const sort   = document.getElementById('sortSel').value;
-  const srcF   = document.getElementById('srcSel').value;
-  const oaOnly = document.getElementById('oaOnly').checked;
+function addToWorker(srcId, srcName, results){
+  if(results&&results.length){
+    State.workerCounts[srcName]=(State.workerCounts[srcName]||0)+results.length;
+    State.activeSources.add(srcName);
+    updatePipeCard(srcId,'active',State.workerCounts[srcName]);
+    document.getElementById('s-sources').textContent=State.activeSources.size;
+  }
+}
 
-  let filtered = State.books.filter(b => {
-    if (State.lang !== 'all' && b.language !== State.lang) return false;
-    if (oaOnly && !b.open_access) return false;
-    if (srcF && b.source !== srcF) return false;
-    if (topic) {
-      const hay = (b.title+' '+(b.description||'')+' '+(b.topics||[]).join(' ')).toLowerCase();
-      if (!hay.includes(topic)) return false;
-    }
-    if (search) {
-      const hay = [b.title,...(b.authors||[]),b.publisher||'',b.description||'',...(b.topics||[])].join(' ').toLowerCase();
-      if (!hay.includes(search)) return false;
-    }
+// ══════════════════════════════════════════════════
+// UI Renderer
+// ══════════════════════════════════════════════════
+function filterAndRender(){
+  const search=(document.getElementById('searchInput').value||'').toLowerCase().trim();
+  const topic=(document.getElementById('topicSel').value||'').toLowerCase();
+  const sort=document.getElementById('sortSel').value;
+  const srcF=document.getElementById('srcSel').value;
+  const oaOnly=document.getElementById('oaOnly').checked;
+  let filtered=State.books.filter(b=>{
+    if(State.lang!=='all'&&b.language!==State.lang)return false;
+    if(oaOnly&&!b.open_access)return false;
+    if(srcF&&b.source!==srcF)return false;
+    if(topic){const hay=(b.title+' '+(b.description||'')+' '+(b.topics||[]).join(' ')).toLowerCase();if(!hay.includes(topic))return false;}
+    if(search){const hay=[b.title,...(b.authors||[]),b.publisher||'',b.description||'',...(b.topics||[])].join(' ').toLowerCase();if(!hay.includes(search))return false;}
     return true;
   });
-
-  if (sort==='date') filtered.sort((a,b)=>new Date(b.publication_date)-new Date(a.publication_date));
-  else if (sort==='title') filtered.sort((a,b)=>(a.title||'').localeCompare(b.title||'','ar'));
-  else if (sort==='pages') filtered.sort((a,b)=>(b.pages||0)-(a.pages||0));
+  if(sort==='date')filtered.sort((a,b)=>new Date(b.publication_date)-new Date(a.publication_date));
+  else if(sort==='title')filtered.sort((a,b)=>(a.title||'').localeCompare(b.title||'','ar'));
+  else if(sort==='pages')filtered.sort((a,b)=>(b.pages||0)-(a.pages||0));
   else filtered.sort((a,b)=>(b.relevance_score||0)-(a.relevance_score||0));
-
-  State.filtered = filtered;
-  document.getElementById('filteredCount').textContent = `${filtered.length} نتيجة`;
+  State.filtered=filtered;
+  document.getElementById('filteredCount').textContent=`${filtered.length} نتيجة`;
   renderBooks(filtered);
 }
 
-function renderBooks(books) {
-  const grid = document.getElementById('booksGrid');
-  if (!books.length) {
-    grid.innerHTML = `<div class="no-results"><div style="font-size:3em">🔍</div>
-      <p style="margin-top:14px">لا توجد نتائج مطابقة</p>
-      <p style="font-size:.85em;margin-top:6px;color:#aaa">غيّر الفلتر أو كلمة البحث</p></div>`;
+function renderBooks(books){
+  const grid=document.getElementById('booksGrid');
+  if(!books.length){
+    grid.innerHTML=`<div class="no-results"><div style="font-size:3em">🔍</div><p style="margin-top:14px">لا توجد نتائج مطابقة</p></div>`;
     return;
   }
-  grid.innerHTML = books.slice(0,200).map(b => {
-    const langCls   = `lang-${b.language}`;
-    const langLabel = b.language==='ar'?'🇸🇦 عربي': b.language==='fr'?'🇫🇷 FR':'🇬🇧 EN';
-    const score     = b.relevance_score||0;
-    const relCls    = score>=70?'rel-high': score>=40?'rel-medium':'rel-low';
-    const isHot     = (Date.now()-new Date(b.publication_date).getTime())<=90*24*60*60*1000;
-    const dateStr   = b.publication_date ? new Date(b.publication_date).toLocaleDateString('ar-SA',{year:'numeric',month:'short'}) : '';
-    const coverSafe = safeUrl(b.cover);
-    const coverHTML = coverSafe ? `<img src="${coverSafe}" alt="${esc(b.title)}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` : '';
-    const topics    = (b.topics||[]).slice(0,4).map(t=>`<span class="topic-tag">${esc(t)}</span>`).join('');
-    const q         = encodeURIComponent((b.title+' '+(b.authors||[])[0]).substring(0,70));
-    const archQ     = encodeURIComponent(b.title.substring(0,55));
-    const bookUrl   = safeUrl(b.book_url);
-    const isbnClean = (b.isbn||'').replace(/[^0-9X]/gi,'');
-    return `
-<div class="book-card">
+  grid.innerHTML=books.slice(0,200).map(b=>{
+    const langCls=`lang-${b.language}`;
+    const langLabel=b.language==='ar'?'🇸🇦 عربي':b.language==='fr'?'🇫🇷 FR':'🇬🇧 EN';
+    const score=b.relevance_score||0;
+    const relCls=score>=70?'rel-high':score>=40?'rel-medium':'rel-low';
+    const isHot=(Date.now()-new Date(b.publication_date).getTime())<=90*24*60*60*1000;
+    const dateStr=b.publication_date?new Date(b.publication_date).toLocaleDateString('ar-SA',{year:'numeric',month:'short'}):'';
+    const coverSafe=safeUrl(b.cover);
+    const coverHTML=coverSafe?`<img src="${coverSafe}" alt="${esc(b.title)}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` :'';
+    const topics=(b.topics||[]).slice(0,4).map(t=>`<span class="topic-tag">${esc(t)}</span>`).join('');
+    const q=encodeURIComponent((b.title+' '+(b.authors||[])[0]).substring(0,70));
+    const archQ=encodeURIComponent(b.title.substring(0,55));
+    const bookUrl=safeUrl(b.book_url);
+    const isbnClean=(b.isbn||'').replace(/[^0-9X]/gi,'');
+    return `<div class="book-card">
   <div class="book-cover-wrap">
     ${coverHTML}
     <div class="no-cover" style="display:${coverSafe?'none':'flex'};align-items:center;justify-content:center">📚</div>
@@ -1377,10 +1767,10 @@ function renderBooks(books) {
     <div class="book-topics">${topics}</div>
     ${b.description?`<div class="book-desc">${esc(b.description)}</div>`:''}
     <div class="book-actions">
-      ${bookUrl?`<a href="${bookUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">📖 الكتاب</a>`:''}
-      <a href="https://scholar.google.com/scholar?q=${q}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">🎓 Scholar</a>
-      <a href="https://archive.org/search?query=${archQ}" target="_blank" rel="noopener noreferrer" class="btn btn-green">🌐 Archive</a>
-      ${isbnClean?`<a href="https://www.worldcat.org/isbn/${isbnClean}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">🌍 WorldCat</a>`:''}
+      ${bookUrl?`<a href="${bookUrl}" target="_blank" rel="noopener" class="btn btn-primary">📖 الكتاب</a>`:''}
+      <a href="https://scholar.google.com/scholar?q=${q}" target="_blank" rel="noopener" class="btn btn-secondary">🎓 Scholar</a>
+      <a href="https://archive.org/search?query=${archQ}" target="_blank" rel="noopener" class="btn btn-green">🌐 Archive</a>
+      ${isbnClean?`<a href="https://www.worldcat.org/isbn/${isbnClean}" target="_blank" rel="noopener" class="btn btn-secondary">🌍 WorldCat</a>`:''}
     </div>
   </div>
 </div>`;
@@ -1390,113 +1780,100 @@ function renderBooks(books) {
 // ══════════════════════════════════════════════════
 // UI Helpers
 // ══════════════════════════════════════════════════
-function updateStats() {
-  const now=Date.now(), mo30=30*24*60*60*1000;
-  const B = State.books;
-  document.getElementById('s-total').textContent  = B.length;
-  document.getElementById('s-ar').textContent     = B.filter(b=>b.language==='ar').length;
-  document.getElementById('s-en').textContent     = B.filter(b=>b.language==='en').length;
-  document.getElementById('s-fr').textContent     = B.filter(b=>b.language==='fr').length;
-  document.getElementById('s-month').textContent  = B.filter(b=>now-new Date(b.publication_date).getTime()<=mo30).length;
-  document.getElementById('s-pub').textContent    = new Set(B.map(b=>b.publisher).filter(Boolean)).size;
-  document.getElementById('s-oa').textContent     = B.filter(b=>b.open_access).length;
-  const avgScore = B.length ? Math.round(B.reduce((s,b)=>s+(b.relevance_score||0),0)/B.length) : 0;
-  document.getElementById('s-score').textContent  = avgScore;
+function updateStats(){
+  const now=Date.now(),mo30=30*24*60*60*1000; const B=State.books;
+  document.getElementById('s-total').textContent=B.length;
+  document.getElementById('s-ar').textContent=B.filter(b=>b.language==='ar').length;
+  document.getElementById('s-en').textContent=B.filter(b=>b.language==='en').length;
+  document.getElementById('s-fr').textContent=B.filter(b=>b.language==='fr').length;
+  document.getElementById('s-month').textContent=B.filter(b=>now-new Date(b.publication_date).getTime()<=mo30).length;
+  document.getElementById('s-pub').textContent=new Set(B.map(b=>b.publisher).filter(Boolean)).size;
+  document.getElementById('s-oa').textContent=B.filter(b=>b.open_access).length;
+  document.getElementById('s-sources').textContent=State.activeSources.size;
+  const avg=B.length?Math.round(B.reduce((s,b)=>s+(b.relevance_score||0),0)/B.length):0;
+  document.getElementById('s-score').textContent=avg;
 }
-
-function updateLastTime() {
-  document.getElementById('lastUpdate').textContent =
-    '⏱ ' + new Date().toLocaleString('ar-SA',{year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+function updateLastTime(){
+  document.getElementById('lastUpdate').textContent='⏱ '+new Date().toLocaleString('ar-SA',{year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
 }
-
-function showProgress() {
+function showProgress(){
   document.getElementById('progressWrap').style.display='block';
   document.getElementById('queueBar').style.display='flex';
   document.getElementById('refreshBtn').disabled=true;
 }
-function hideProgress() {
+function hideProgress(){
   document.getElementById('progressWrap').style.display='none';
   document.getElementById('queueBar').style.display='none';
   document.getElementById('refreshBtn').disabled=false;
 }
-function updateProgress(done, total, text) {
-  const pct = total>0?Math.round((done/total)*100):0;
+function updateProgress(done,total,text){
+  const pct=total>0?Math.round((done/total)*100):0;
   document.getElementById('progressFill').style.width=pct+'%';
   document.getElementById('progressPct').textContent=pct+'%';
-  if (text) document.getElementById('progressText').textContent=text;
+  if(text)document.getElementById('progressText').textContent=text;
 }
-function updateQueueUI() {
+function updateQueueUI(){
   document.getElementById('queuePending').textContent=State.queue.pending+' معلق';
-  document.getElementById('queueActive').textContent =State.queue.active +' نشط';
-  document.getElementById('queueDone').textContent   =State.queue.done   +' منتهٍ';
+  document.getElementById('queueActive').textContent=State.queue.active+' نشط';
+  document.getElementById('queueDone').textContent=State.queue.done+' منتهٍ';
 }
-function resetPipelineUI() {
-  State.workerCounts={};
-  ['openalex','crossref','semantic','doab','oapen','core','openlibrary','rss','google'].forEach(api=>{
-    updatePipeCard(api,'idle',0);
+function resetPipelineUI(){
+  State.workerCounts={}; State.activeSources=new Set();
+  SOURCES.forEach(s=>updatePipeCard(s.id,'idle',0));
+}
+function updatePipeCard(id,status,count){
+  const card=document.getElementById('pipe-'+id);
+  const cnt=document.getElementById('cnt-'+id);
+  const st=document.getElementById('pstatus-'+id);
+  if(!card)return;
+  card.className='pipe-card '+(status==='active'?'active':status==='done'?'done':status==='error'?'error':status==='skip'?'skip':'');
+  if(cnt)cnt.textContent=count||0;
+  if(st)st.textContent=status==='active'?'جارٍ...':status==='done'?'✅ مكتمل':status==='error'?'❌ خطأ':status==='skip'?'⏭ تخطي':'جاهز';
+}
+function markPipelineDone(){
+  SOURCES.forEach(s=>{
+    const count=State.workerCounts[s.name]||0;
+    updatePipeCard(s.id,count>0?'done':'skip',count);
   });
 }
-function updatePipeCard(api, status, count) {
-  const card = document.getElementById('pipe-'+api);
-  const cnt  = document.getElementById('cnt-'+api);
-  if (!card) return;
-  card.className = 'pipe-card '+(status==='active'?'active': status==='done'?'done': status==='error'?'error':'');
-  if (cnt) cnt.textContent = count||0;
-  const statusEl = card.querySelector('.pipe-status');
-  if (statusEl) statusEl.textContent = status==='active'?'جارٍ...': status==='done'?'مكتمل': status==='error'?'خطأ':'جاهز';
-}
-function markPipelineDone() {
-  ['openalex','crossref','semantic','doab','oapen','core','openlibrary','rss','google'].forEach(api=>{
-    const srcName = api==='openalex'?'OpenAlex': api==='crossref'?'CrossRef': api==='semantic'?'Semantic Scholar': api==='doab'?'DOAB': api==='oapen'?'OAPEN': api==='core'?'CORE': api==='openlibrary'?'Open Library': api==='rss'?'RSS':'Google Books';
-    const count = State.workerCounts[srcName]||0;
-    updatePipeCard(api, count>0?'done':'idle', count);
-  });
-}
-function setLang(lang, btn) {
-  State.lang = lang;
+function setLang(lang,btn){
+  State.lang=lang;
   document.querySelectorAll('.filter-btn').forEach(b=>b.className='filter-btn');
-  if (lang==='all') btn.classList.add('active');
-  else if (lang==='ar') btn.classList.add('active-ar');
-  else if (lang==='fr') btn.classList.add('active-fr');
-  else if (lang==='en') btn.classList.add('active-en');
+  if(lang==='all')btn.classList.add('active');
+  else if(lang==='ar')btn.classList.add('active-ar');
+  else if(lang==='fr')btn.classList.add('active-fr');
+  else if(lang==='en')btn.classList.add('active-en');
   filterAndRender();
 }
-function manualRefresh() {
-  IDB.clearBooks();
-  State.books=[]; State.workerCounts={};
+function manualRefresh(){
+  IDB.clearBooks(); State.books=[]; State.workerCounts={}; State.activeSources=new Set();
   Orchestrator.run();
 }
 
 // ══════════════════════════════════════════════════
 // نقطة البدء
 // ══════════════════════════════════════════════════
-async function init() {
-  console.log('🌍 رادار الكتب العربي — بدء التشغيل');
-  try {
-    await IDB.open();
-    State.dbReady = true;
-    console.log('✅ IndexedDB جاهز');
-  } catch(e) {
-    console.warn('⚠️ IndexedDB غير متاح:', e.message);
-  }
-  if (State.dbReady) {
-    const ts = await IDB.getTimestamp();
-    if (ts && (Date.now()-ts) < CACHE_TTL) {
-      const cached = await IDB.loadBooks();
-      if (cached.length > 0) {
-        State.books = cached.filter(b=>isWithin12M(b.publication_date));
+async function init(){
+  console.log('🌍 رادار الكتب العربي — 60+ مصدر');
+  buildPipelineUI();
+  try{ await IDB.open(); State.dbReady=true; }catch(e){ console.warn('IDB:',e.message); }
+  if(State.dbReady){
+    const ts=await IDB.getTimestamp();
+    if(ts&&(Date.now()-ts)<CACHE_TTL){
+      const cached=await IDB.loadBooks();
+      if(cached.length>0){
+        State.books=cached.filter(b=>isWithin12M(b.publication_date));
         State.books.sort((a,b)=>(b.relevance_score||0)-(a.relevance_score||0));
         filterAndRender(); updateStats(); updateLastTime();
         console.log(`🟢 Cache: ${State.books.length} كتاب`);
-        const remaining = CACHE_TTL-(Date.now()-ts);
-        setTimeout(()=>{ IDB.clearBooks(); Orchestrator.run(); }, remaining);
+        const rem=CACHE_TTL-(Date.now()-ts);
+        setTimeout(()=>{IDB.clearBooks();Orchestrator.run();},rem);
         return;
       }
     }
   }
   await Orchestrator.run();
-  // تحديث كل 6 ساعات
-  setInterval(()=>{ if (!State.fetching) { IDB.clearBooks(); Orchestrator.run(); } }, CACHE_TTL);
+  setInterval(()=>{if(!State.fetching){IDB.clearBooks();Orchestrator.run();}},CACHE_TTL);
 }
 
 init();
