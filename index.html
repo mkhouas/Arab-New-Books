@@ -3,1084 +3,806 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌍 رادار الكتب العربي — تحديث يومي تلقائي</title>
-<meta name="description" content="رادار متخصص يجمع كل الكتب والتقارير المنشورة حول العالم العربي بالعربية والفرنسية والإنجليزية خلال آخر 12 شهراً — تحديث يومي تلقائي من 200+ مصدر">
+<title>🌍 رادار الكتب العربي</title>
 <style>
+/* ... نفس الـ CSS السابق ... */
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
---bg:#f0f2f5;--card:#fff;--text:#1a1a2e;--text2:#555;
---accent:#b8860b;--accent2:#c9a227;--gold:#d4a017;
---ar:#059669;--fr:#2563eb;--en:#7c3aed;
---shadow:0 2px 20px rgba(0,0,0,.06);--radius:16px
+  --bg:#f0f2f5;--card:#fff;--text:#1a1a2e;--text2:#555;
+  --accent:#b8860b;--accent2:#c9a227;--gold:#d4a017;
+  --ar:#059669;--fr:#2563eb;--en:#7c3aed;
+  --shadow:0 2px 20px rgba(0,0,0,.06);--radius:16px
 }
 body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
-.hero{
-background:linear-gradient(135deg,#0a0f1e 0%,#8B0000 35%,#b8860b 70%,#1a3a1a 100%);
-color:#fff;padding:45px 20px 55px;text-align:center;
-position:relative;overflow:hidden
-}
-.hero::before{
-content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
-background:radial-gradient(circle,rgba(255,255,255,.04) 0%,transparent 65%);
-animation:hpulse 10s ease-in-out infinite
-}
-@keyframes hpulse{0%,100%{transform:scale(1) rotate(0deg)}50%{transform:scale(1.08) rotate(2deg)}}
-.hero-icon{font-size:3em;display:block;margin-bottom:10px;position:relative;animation:spin3d 20s linear infinite}
-@keyframes spin3d{0%{text-shadow:0 0 20px rgba(255,255,255,.3)}50%{text-shadow:0 0 40px rgba(255,200,0,.5)}100%{text-shadow:0 0 20px rgba(255,255,255,.3)}}
-.hero h1{font-size:2.2em;font-weight:800;position:relative;margin-bottom:8px;text-shadow:0 2px 8px rgba(0,0,0,.4)}
-.hero-sub{font-size:.98em;opacity:.88;position:relative;max-width:750px;margin:6px auto}
-.hero-badge{
-display:inline-flex;align-items:center;gap:8px;
-background:rgba(212,160,23,.2);border:1px solid var(--gold);
-color:var(--gold);padding:6px 18px;border-radius:20px;
-font-size:.82em;font-weight:700;margin-top:12px;position:relative
-}
+.hero{background:linear-gradient(135deg,#0a0f1e 0%,#8B0000 35%,#b8860b 70%,#1a3a1a 100%);color:#fff;padding:45px 20px 55px;text-align:center;position:relative;overflow:hidden}
+.hero h1{font-size:2.2em;font-weight:800;margin-bottom:8px;text-shadow:0 2px 8px rgba(0,0,0,.4)}
+.hero-sub{font-size:.98em;opacity:.88;max-width:750px;margin:6px auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(212,160,23,.2);border:1px solid var(--gold);color:var(--gold);padding:6px 18px;border-radius:20px;font-size:.82em;font-weight:700;margin-top:12px}
 .radar-dot{width:10px;height:10px;background:#10b981;border-radius:50%;animation:radarpulse 1.5s ease-in-out infinite}
 @keyframes radarpulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.4}}
-.stats-bar{
-display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
-gap:12px;max-width:1400px;margin:-28px auto 0;
-padding:0 20px;position:relative;z-index:2
-}
-.stat-card{
-background:var(--card);border-radius:var(--radius);padding:18px 14px;
-text-align:center;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.05);
-transition:transform .2s
-}
+.stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;max-width:1400px;margin:-28px auto 0;padding:0 20px;position:relative;z-index:2}
+.stat-card{background:var(--card);border-radius:var(--radius);padding:18px 14px;text-align:center;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.05);transition:transform .2s}
 .stat-card:hover{transform:translateY(-3px)}
 .stat-card .num{font-size:1.7em;font-weight:800}
 .stat-card .lbl{font-size:.77em;color:var(--text2);margin-top:3px}
-.controls{
-max-width:1400px;margin:28px auto 0;padding:0 20px;
-display:flex;flex-wrap:wrap;gap:10px;align-items:center
-}
-.search-box{
-flex:1;min-width:240px;padding:12px 20px;border-radius:50px;
-border:2px solid #e0e0e0;font-size:1em;outline:none;
-transition:border .3s;direction:rtl;background:#fff
-}
+.api-status{max-width:1400px;margin:16px auto 0;padding:0 20px;display:flex;flex-wrap:wrap;gap:8px}
+.api-badge{padding:4px 12px;border-radius:20px;font-size:.75em;font-weight:700;display:flex;align-items:center;gap:5px}
+.api-ok{background:#d1fae5;color:#065f46}
+.api-warn{background:#fef3c7;color:#92400e}
+.api-err{background:#fee2e2;color:#991b1b}
+.controls{max-width:1400px;margin:20px auto 0;padding:0 20px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.search-box{flex:1;min-width:240px;padding:12px 20px;border-radius:50px;border:2px solid #e0e0e0;font-size:1em;outline:none;transition:border .3s;direction:rtl;background:#fff}
 .search-box:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(184,134,11,.1)}
-.filter-btn{
-padding:10px 20px;border-radius:50px;border:2px solid #e0e0e0;
-background:var(--card);cursor:pointer;font-size:.88em;
-font-weight:600;transition:all .3s;white-space:nowrap
-}
-.filter-btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+.filter-btn{padding:10px 20px;border-radius:50px;border:2px solid #e0e0e0;background:var(--card);cursor:pointer;font-size:.88em;font-weight:600;transition:all .3s;white-space:nowrap}
 .filter-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 .filter-btn.active-ar{background:var(--ar);color:#fff;border-color:var(--ar)}
 .filter-btn.active-fr{background:var(--fr);color:#fff;border-color:var(--fr)}
 .filter-btn.active-en{background:var(--en);color:#fff;border-color:var(--en)}
-select.search-box{flex:none;width:200px;cursor:pointer}
-.update-bar{
-max-width:1400px;margin:14px auto 0;padding:0 20px;
-display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px
-}
-.update-bar span{font-size:.83em;color:var(--text2)}
+select.search-box{flex:none;width:190px;cursor:pointer}
+.update-bar{max-width:1400px;margin:12px auto 0;padding:0 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 .live{display:flex;align-items:center;gap:6px;font-size:.83em;color:var(--accent);font-weight:600}
 .live-dot{width:8px;height:8px;background:#10b981;border-radius:50%;animation:blink 2s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
-.refresh-btn{
-padding:7px 18px;border-radius:50px;border:none;background:var(--accent);
-color:#fff;cursor:pointer;font-size:.83em;font-weight:600;transition:background .3s
-}
+.refresh-btn{padding:7px 18px;border-radius:50px;border:none;background:var(--accent);color:#fff;cursor:pointer;font-size:.83em;font-weight:600;transition:background .3s}
 .refresh-btn:hover{background:var(--accent2)}
 .refresh-btn:disabled{opacity:.5;cursor:not-allowed}
 .progress-bar{max-width:1400px;margin:10px auto 0;padding:0 20px}
-.progress-track{height:5px;background:#e0e0e0;border-radius:4px;overflow:hidden}
-.progress-fill{
-height:100%;background:linear-gradient(90deg,var(--accent),#8B0000,var(--gold));
-border-radius:4px;transition:width .4s;background-size:200% 100%;
-animation:progressshine 2s linear infinite
-}
-@keyframes progressshine{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.progress-track{height:6px;background:#e0e0e0;border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),#8B0000,var(--gold));border-radius:4px;transition:width .3s}
 .progress-text{font-size:.76em;color:var(--text2);margin-top:4px;text-align:center}
-.books-grid{
-max-width:1400px;margin:18px auto 0;padding:0 20px 50px;
-display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:20px
-}
-.book-card{
-background:var(--card);border-radius:var(--radius);overflow:hidden;
-box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.05);
-transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column;
-animation:fadeUp .4s ease
-}
+.type-tabs{max-width:1400px;margin:10px auto 0;padding:0 20px;display:flex;flex-wrap:wrap;gap:8px}
+.type-tab{padding:6px 16px;border-radius:20px;border:2px solid #e0e0e0;background:var(--card);cursor:pointer;font-size:.82em;font-weight:600;transition:all .3s}
+.type-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.books-grid{max-width:1400px;margin:18px auto 0;padding:0 20px 50px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.book-card{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.05);transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column;animation:fadeUp .4s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .book-card:hover{transform:translateY(-5px);box-shadow:0 10px 35px rgba(0,0,0,.12)}
-.book-cover-wrap{
-position:relative;height:215px;
-background:linear-gradient(135deg,#0a0f1e,#8B0000 60%,#b8860b);
-display:flex;align-items:center;justify-content:center;overflow:hidden
-}
-.book-cover-wrap img{height:185px;max-width:130px;object-fit:cover;border-radius:6px;box-shadow:4px 4px 20px rgba(0,0,0,.4);transition:transform .3s}
-.book-card:hover .book-cover-wrap img{transform:scale(1.05)}
-.no-cover-icon{font-size:3.5em;opacity:.35}
-.lang-badge{position:absolute;top:11px;right:11px;padding:3px 12px;border-radius:18px;font-size:.73em;font-weight:700;color:#fff}
+.book-cover-wrap{position:relative;height:220px;background:linear-gradient(135deg,#0a0f1e,#8B0000 60%,#b8860b);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.book-cover-wrap img{height:190px;max-width:135px;object-fit:cover;border-radius:6px;box-shadow:4px 4px 20px rgba(0,0,0,.5);transition:transform .3s}
+.book-card:hover .book-cover-wrap img{transform:scale(1.05) rotate(1deg)}
+.no-cover{font-size:4em;opacity:.3}
+.lang-badge{position:absolute;top:10px;right:10px;padding:3px 10px;border-radius:18px;font-size:.72em;font-weight:700;color:#fff}
 .lang-ar{background:var(--ar)}.lang-fr{background:var(--fr)}.lang-en{background:var(--en)}
-.source-badge{
-position:absolute;bottom:9px;left:9px;padding:3px 9px;border-radius:9px;
-font-size:.62em;background:rgba(255,255,255,.15);color:rgba(255,255,255,.9);
-backdrop-filter:blur(4px)
-}
-.new-badge{
-position:absolute;top:11px;left:11px;padding:3px 10px;border-radius:18px;
-font-size:.68em;font-weight:800;background:#fef08a;color:#713f12;
-animation:nblink 2s infinite
-}
-@keyframes nblink{0%,100%{opacity:1}50%{opacity:.5}}
-.book-body{padding:17px;flex:1;display:flex;flex-direction:column;direction:rtl}
-.book-title{font-size:1em;font-weight:700;line-height:1.45;margin-bottom:7px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.book-author{font-size:.87em;color:var(--accent);font-weight:600;margin-bottom:3px}
-.book-publisher{font-size:.8em;color:var(--text2);margin-bottom:7px}
-.book-meta{display:flex;flex-wrap:wrap;gap:10px;font-size:.76em;color:var(--text2);margin-bottom:9px;padding-bottom:9px;border-bottom:1px dashed #eee}
-.book-meta span{display:flex;align-items:center;gap:3px}
-.book-topics{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
-.topic-tag{padding:2px 10px;border-radius:18px;font-size:.7em;font-weight:600;background:#fef9f0;color:var(--accent)}
-.book-desc{font-size:.8em;color:var(--text2);line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:11px}
-.book-actions{margin-top:auto;display:flex;gap:7px;flex-wrap:wrap}
-.btn-link{flex:1;padding:9px 6px;text-align:center;border-radius:10px;font-size:.8em;font-weight:600;text-decoration:none;transition:all .3s;min-width:80px}
-.btn-primary{background:var(--text);color:#fff}
-.btn-primary:hover{background:var(--accent)}
-.btn-secondary{background:#f5f5f5;color:var(--text);border:1px solid #e0e0e0}
-.btn-secondary:hover{background:#eee}
-.btn-green{background:#7c3d00;color:#fff}
-.btn-green:hover{background:#5a2d00}
+.src-badge{position:absolute;bottom:8px;left:8px;padding:3px 8px;border-radius:8px;font-size:.61em;background:rgba(255,255,255,.18);color:#fff;backdrop-filter:blur(4px)}
+.hot-badge{position:absolute;top:10px;left:10px;padding:3px 9px;border-radius:18px;font-size:.67em;font-weight:800;background:#fef08a;color:#713f12;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.book-body{padding:16px;flex:1;display:flex;flex-direction:column;direction:rtl}
+.book-title{font-size:1em;font-weight:700;line-height:1.45;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.book-author{font-size:.86em;color:var(--accent);font-weight:600;margin-bottom:3px}
+.book-pub{font-size:.79em;color:var(--text2);margin-bottom:7px}
+.book-meta{display:flex;flex-wrap:wrap;gap:8px;font-size:.75em;color:var(--text2);margin-bottom:8px;padding-bottom:8px;border-bottom:1px dashed #eee}
+.book-topics{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:9px}
+.topic-tag{padding:2px 9px;border-radius:18px;font-size:.69em;font-weight:600;background:#fef9f0;color:var(--accent)}
+.book-desc{font-size:.79em;color:var(--text2);line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:10px}
+.book-actions{margin-top:auto;display:flex;gap:6px;flex-wrap:wrap}
+.btn{flex:1;padding:8px 5px;text-align:center;border-radius:10px;font-size:.78em;font-weight:600;text-decoration:none;transition:all .3s;min-width:75px;cursor:pointer;border:none}
+.btn-dark{background:var(--text);color:#fff}.btn-dark:hover{background:var(--accent)}
+.btn-gray{background:#f0f0f0;color:var(--text);border:1px solid #ddd}.btn-gray:hover{background:#e0e0e0}
+.btn-brown{background:#7c3d00;color:#fff}.btn-brown:hover{background:#5a2d00}
+.btn-blue{background:#1e40af;color:#fff}.btn-blue:hover{background:#1e3a8a}
 .loader{text-align:center;padding:70px;grid-column:1/-1}
 .spinner{width:55px;height:55px;border:4px solid #e0e0e0;border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px}
 @keyframes spin{to{transform:rotate(360deg)}}
 .no-results{text-align:center;padding:70px;grid-column:1/-1;color:var(--text2)}
-.no-results .emoji{font-size:3.5em;margin-bottom:14px}
-footer{text-align:center;padding:30px 20px;font-size:.8em;color:var(--text2);border-top:1px solid #e0e0e0;max-width:1400px;margin:0 auto}
-.sources-toggle{background:none;border:1px solid #ddd;padding:6px 16px;border-radius:20px;cursor:pointer;font-size:.83em;margin-top:8px;color:var(--accent);font-weight:600}
-.sources-list{display:none;max-width:1200px;margin:12px auto;font-size:.76em;color:var(--text2);line-height:2.1;columns:3;column-gap:30px;padding:0 20px;text-align:right}
-.sources-list.open{display:block}
-.type-tabs{max-width:1400px;margin:10px auto 0;padding:0 20px;display:flex;flex-wrap:wrap;gap:8px}
-.type-tab{padding:6px 16px;border-radius:20px;border:2px solid #e0e0e0;background:var(--card);cursor:pointer;font-size:.82em;font-weight:600;transition:all .3s}
-.type-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-.type-tab:hover{border-color:var(--accent)}
+footer{text-align:center;padding:28px 20px;font-size:.8em;color:var(--text2);border-top:1px solid #e0e0e0;margin-top:20px}
+.src-toggle{background:none;border:1px solid #ddd;padding:6px 14px;border-radius:20px;cursor:pointer;font-size:.82em;margin-top:8px;color:var(--accent);font-weight:600}
+.src-list{display:none;max-width:1100px;margin:10px auto;font-size:.75em;color:var(--text2);line-height:2;columns:3;gap:20px;padding:0 20px;text-align:right}
+.src-list.open{display:block}
 @media(max-width:768px){
-.hero h1{font-size:1.4em}
-.books-grid{grid-template-columns:1fr}
-.stats-bar{grid-template-columns:repeat(3,1fr)}
-.sources-list{columns:1}
-.controls{flex-direction:column;align-items:stretch}
-select.search-box{width:100%}
+  .hero h1{font-size:1.4em}
+  .books-grid{grid-template-columns:1fr}
+  .stats-bar{grid-template-columns:repeat(3,1fr)}
+  .src-list{columns:1}
+  .controls{flex-direction:column;align-items:stretch}
+  select.search-box{width:100%}
 }
 </style>
 </head>
 <body>
 
-<!-- ══ Hero ══ -->
 <div class="hero">
-  <span class="hero-icon">🌍</span>
+  <span style="font-size:3em;display:block;margin-bottom:10px">🌍</span>
   <h1>🔭 رادار الكتب العربي</h1>
   <p class="hero-sub">
-    رصد شامل لكل الكتب والتقارير المنشورة حول العالم العربي خلال آخر 12 شهراً<br>
-    <em>Radar des livres arabes · Arab World Books Radar — AR / FR / EN</em>
+    رصد شامل — 12 شهراً الأخيرة — بالعربية والفرنسية والإنجليزية<br>
+    <em>APIs مجانية 100% · غير محدودة · بدون مفتاح</em>
   </p>
   <div class="hero-badge">
     <span class="radar-dot"></span>
-    تحديث يومي تلقائي — 200+ مصدر — Google Books · OpenAlex · CrossRef · CORE · Open Library
+    Open Library · OpenAlex · CrossRef · CORE · Semantic Scholar · Internet Archive
   </div>
 </div>
 
-<!-- ══ Stats ══ -->
+<!-- Stats -->
 <div class="stats-bar">
-  <div class="stat-card"><div class="num" id="totalCount">-</div><div class="lbl">📚 إجمالي</div></div>
-  <div class="stat-card"><div class="num" id="arCount" style="color:var(--ar)">-</div><div class="lbl">🇸🇦 عربي</div></div>
-  <div class="stat-card"><div class="num" id="frCount" style="color:var(--fr)">-</div><div class="lbl">🇫🇷 Français</div></div>
-  <div class="stat-card"><div class="num" id="enCount" style="color:var(--en)">-</div><div class="lbl">🇬🇧 English</div></div>
-  <div class="stat-card"><div class="num" id="booksCount" style="color:var(--accent)">-</div><div class="lbl">📖 كتب</div></div>
-  <div class="stat-card"><div class="num" id="reportsCount" style="color:#e53e3e">-</div><div class="lbl">📊 تقارير</div></div>
-  <div class="stat-card"><div class="num" id="srcCount" style="color:var(--gold)">200+</div><div class="lbl">🔗 المصادر</div></div>
-  <div class="stat-card"><div class="num" id="monthCount" style="color:#e53e3e">-</div><div class="lbl">🗓 هذا الشهر</div></div>
+  <div class="stat-card"><div class="num" id="stTotal">-</div><div class="lbl">📚 إجمالي</div></div>
+  <div class="stat-card"><div class="num" id="stAr" style="color:var(--ar)">-</div><div class="lbl">🇸🇦 عربي</div></div>
+  <div class="stat-card"><div class="num" id="stFr" style="color:var(--fr)">-</div><div class="lbl">🇫🇷 Français</div></div>
+  <div class="stat-card"><div class="num" id="stEn" style="color:var(--en)">-</div><div class="lbl">🇬🇧 English</div></div>
+  <div class="stat-card"><div class="num" id="stBooks" style="color:var(--accent)">-</div><div class="lbl">📖 كتب</div></div>
+  <div class="stat-card"><div class="num" id="stReports" style="color:#e53e3e">-</div><div class="lbl">📊 تقارير</div></div>
+  <div class="stat-card"><div class="num" id="stSrc" style="color:var(--gold)">6</div><div class="lbl">🔗 مصادر نشطة</div></div>
+  <div class="stat-card"><div class="num" id="stMonth" style="color:#e53e3e">-</div><div class="lbl">🗓 هذا الشهر</div></div>
 </div>
 
-<!-- ══ Type Tabs ══ -->
+<!-- API Status -->
+<div class="api-status" id="apiStatus"></div>
+
+<!-- Type Tabs -->
 <div class="type-tabs">
   <button class="type-tab active" onclick="setType('all',this)">📚 الكل</button>
   <button class="type-tab" onclick="setType('book',this)">📖 كتب</button>
-  <button class="type-tab" onclick="setType('report',this)">📊 تقارير ودراسات</button>
-  <button class="type-tab" onclick="setType('thesis',this)">🎓 رسائل أكاديمية</button>
+  <button class="type-tab" onclick="setType('report',this)">📊 تقارير</button>
+  <button class="type-tab" onclick="setType('thesis',this)">🎓 رسائل</button>
 </div>
 
-<!-- ══ Controls ══ -->
+<!-- Controls -->
 <div class="controls">
   <input type="text" class="search-box" id="searchInput"
-    placeholder="🔍 ابحث بالعنوان، المؤلف، الناشر، البلد، الموضوع..."
+    placeholder="🔍 ابحث بالعنوان، المؤلف، الناشر، الموضوع..."
     oninput="filterBooks()">
-
   <button class="filter-btn active" onclick="setLang('all',this)">🌐 الكل</button>
   <button class="filter-btn" onclick="setLang('ar',this)">🇸🇦 عربي</button>
   <button class="filter-btn" onclick="setLang('fr',this)">🇫🇷 Français</button>
   <button class="filter-btn" onclick="setLang('en',this)">🇬🇧 English</button>
-
-  <select class="search-box" id="topicSelect" onchange="filterBooks()">
+  <select class="search-box" id="topicSel" onchange="filterBooks()">
     <option value="">🗂 كل الموضوعات</option>
-    <optgroup label="── الدول العربية ──">
+    <optgroup label="── الدول ──">
+      <option value="فلسطين|Palestine|Gaza|غزة">🇵🇸 فلسطين</option>
       <option value="مصر|Egypt|Égypte">🇪🇬 مصر</option>
-      <option value="السعودية|Saudi Arabia|Arabie saoudite">🇸🇦 السعودية</option>
+      <option value="السعودية|Saudi|Arabia">🇸🇦 السعودية</option>
       <option value="العراق|Iraq">🇮🇶 العراق</option>
       <option value="سوريا|Syria|Syrie">🇸🇾 سوريا</option>
       <option value="اليمن|Yemen">🇾🇪 اليمن</option>
       <option value="ليبيا|Libya|Libye">🇱🇾 ليبيا</option>
-      <option value="السودان|Sudan|Soudan">🇸🇩 السودان</option>
-      <option value="المغرب|Maroc|Morocco">🇲🇦 المغرب</option>
-      <option value="الجزائر|Algérie|Algeria">🇩🇿 الجزائر</option>
-      <option value="تونس|Tunisie|Tunisia">🇹🇳 تونس</option>
-      <option value="لبنان|Liban|Lebanon">🇱🇧 لبنان</option>
-      <option value="الأردن|Jordanie|Jordan">🇯🇴 الأردن</option>
-      <option value="فلسطين|Palestine|Palestinian">🇵🇸 فلسطين</option>
-      <option value="الكويت|Kuwait|Koweït">🇰🇼 الكويت</option>
-      <option value="الإمارات|UAE|Émirats">🇦🇪 الإمارات</option>
-      <option value="قطر|Qatar">🇶🇦 قطر</option>
-      <option value="البحرين|Bahrain|Bahreïn">🇧🇭 البحرين</option>
-      <option value="عمان|Oman">🇴🇲 عُمان</option>
-      <option value="موريتانيا|Mauritanie|Mauritania">🇲🇷 موريتانيا</option>
-      <option value="الصومال|Somalia|Somalie">🇸🇴 الصومال</option>
-      <option value="جيبوتي|Djibouti">🇩🇯 جيبوتي</option>
-      <option value="القمر|Comores|Comoros">🇰🇲 القمر</option>
+      <option value="السودان|Sudan">🇸🇩 السودان</option>
+      <option value="لبنان|Lebanon|Liban">🇱🇧 لبنان</option>
+      <option value="المغرب|Morocco|Maroc">🇲🇦 المغرب</option>
+      <option value="الجزائر|Algeria|Algérie">🇩🇿 الجزائر</option>
+      <option value="تونس|Tunisia|Tunisie">🇹🇳 تونس</option>
     </optgroup>
-    <optgroup label="── المناطق ──">
-      <option value="المشرق العربي|Machrek|Mashreq">المشرق العربي</option>
-      <option value="المغرب العربي|Maghreb">المغرب العربي</option>
-      <option value="الخليج العربي|Gulf|Golfe persique">الخليج العربي</option>
-      <option value="شمال أفريقيا|Afrique du Nord|North Africa">شمال أفريقيا</option>
-      <option value="القرن الأفريقي|Horn of Africa|Corne de l'Afrique">القرن الأفريقي</option>
-      <option value="بلاد الشام|Levant">بلاد الشام</option>
-    </optgroup>
-    <optgroup label="── الموضوعات ──">
-      <option value="السياسة|Politique|Politics">🏛 السياسة</option>
-      <option value="الاقتصاد|Économie|Economy">💰 الاقتصاد</option>
-      <option value="الأمن|Sécurité|Security">🛡 الأمن</option>
-      <option value="فلسطين|Palestine">🇵🇸 فلسطين</option>
-      <option value="الإسلام|Islam">🕌 الإسلام</option>
-      <option value="الأدب|Littérature|Literature">📝 الأدب</option>
-      <option value="التاريخ|Histoire|History">📜 التاريخ</option>
-      <option value="المرأة|Femme|Women">👩 المرأة</option>
-      <option value="الهجرة|Migration">✈ الهجرة</option>
-      <option value="التعليم|Éducation|Education">🎓 التعليم</option>
-      <option value="الصحة|Santé|Health">🏥 الصحة</option>
-      <option value="التكنولوجيا|Technologie|Technology">💻 التكنولوجيا</option>
-      <option value="البيئة|Environnement|Environment">🌿 البيئة</option>
-      <option value="حقوق الإنسان|Droits humains|Human Rights">⚖ حقوق الإنسان</option>
-      <option value="الديمقراطية|Démocratie|Democracy">🗳 الديمقراطية</option>
-      <option value="الاستعمار|Colonial|Colonialisme">🌐 الاستعمار</option>
-      <option value="الطاقة|Énergie|Energy">⚡ الطاقة</option>
-      <option value="الهوية|Identité|Identity">🌐 الهوية</option>
+    <optgroup label="── موضوعات ──">
+      <option value="السياسة|Politics|Politique">🏛 السياسة</option>
+      <option value="الاقتصاد|Economy|Économie">💰 الاقتصاد</option>
+      <option value="حقوق الإنسان|Human Rights|Droits">⚖ حقوق الإنسان</option>
+      <option value="الأدب|Literature|Littérature">📝 الأدب</option>
+      <option value="التاريخ|History|Histoire">📜 التاريخ</option>
+      <option value="المرأة|Women|Femme">👩 المرأة والنوع</option>
+      <option value="الهجرة|Migration|Refugees">✈ الهجرة</option>
+      <option value="الإسلام|Islam|Muslim">🕌 الإسلام</option>
+      <option value="التعليم|Education|Éducation">🎓 التعليم</option>
+      <option value="الديمقراطية|Democracy|Démocratie">🗳 الديمقراطية</option>
+      <option value="الطاقة|Energy|Énergie|النفط">⚡ الطاقة</option>
+      <option value="البيئة|Environment|Climat">🌿 البيئة</option>
     </optgroup>
   </select>
-
-  <select class="search-box" id="sortSelect" onchange="filterBooks()" style="width:170px">
+  <select class="search-box" id="sortSel" onchange="filterBooks()" style="width:165px">
     <option value="date">🗓 الأحدث أولاً</option>
-    <option value="title">🔤 ترتيب أبجدي</option>
+    <option value="title">🔤 أبجدي</option>
     <option value="pages">📄 الأطول</option>
-    <option value="rating">⭐ الأعلى تقييماً</option>
   </select>
 </div>
 
-<!-- ══ Update bar ══ -->
+<!-- Update bar -->
 <div class="update-bar">
-  <div class="live"><span class="live-dot"></span> رادار نشط — تحديث يومي تلقائي</div>
+  <div class="live"><span class="live-dot"></span> نشط — بدون حدود — 6 APIs مجانية</div>
   <span id="lastUpdate">جارٍ التحميل...</span>
-  <button class="refresh-btn" id="refreshBtn" onclick="manualRefresh()">🔄 تحديث فوري</button>
+  <button class="refresh-btn" id="refreshBtn" onclick="manualRefresh()">🔄 تحديث</button>
 </div>
 
-<!-- ══ Progress ══ -->
+<!-- Progress -->
 <div class="progress-bar" id="progressBar" style="display:none">
-  <div class="progress-track">
-    <div class="progress-fill" id="progressFill" style="width:0%"></div>
-  </div>
-  <div class="progress-text" id="progressText">جارٍ مسح المصادر...</div>
+  <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  <div class="progress-text" id="progressText">جارٍ الجلب...</div>
 </div>
 
-<!-- ══ Grid ══ -->
+<!-- Grid -->
 <div class="books-grid" id="booksGrid">
-  <div class="loader">
-    <div class="spinner"></div>
-    <p>🌍 جارٍ تشغيل رادار الكتب العربي من 200+ مصدر...</p>
-  </div>
+  <div class="loader"><div class="spinner"></div><p>🌍 جارٍ الاتصال بالمصادر المجانية...</p></div>
 </div>
 
-<!-- ══ Footer ══ -->
 <footer>
-  <p>🌍 <strong>رادار الكتب العربي</strong> — جميع الحقوق محفوظة © 2024–2025</p>
-  <p>يجمع تلقائياً من Google Books، Open Library، OpenAlex، CrossRef، CORE، DOAB وأكثر من 200 مصدراً</p>
-  <p style="margin-top:6px;font-size:.76em;color:#999">
-    ⏱ يُستبعد تلقائياً كل مصدر مضى على نشره أكثر من 12 شهراً
-    · للأغراض الأكاديمية والبحثية فقط
-  </p>
-  <button class="sources-toggle" onclick="toggleSources()">📋 عرض قائمة المصادر الكاملة (+200)</button>
-  <div class="sources-list" id="sourcesList"></div>
+  <p>🌍 <strong>رادار الكتب العربي</strong> — APIs مجانية 100% — بدون مفاتيح — بدون حدود</p>
+  <p style="margin-top:5px;font-size:.9em">Open Library · OpenAlex · CrossRef · CORE · Semantic Scholar · Internet Archive · BASE</p>
+  <p style="margin-top:5px;color:#999;font-size:.85em">⏱ يُعرض فقط ما نُشر خلال آخر 12 شهراً</p>
+  <button class="src-toggle" onclick="toggleSrc()">📋 تفاصيل المصادر</button>
+  <div class="src-list" id="srcList"></div>
 </footer>
 
 <script>
-/*
-═══════════════════════════════════════════════════════
-  🌍 رادار الكتب العربي
-  – يجمع الكتب والتقارير حول العالم العربي — آخر 12 شهراً
-  – APIs: Google Books + Open Library + OpenAlex + CrossRef + CORE
-  – كاش 24 ساعة (localStorage)
-  – استبعاد تلقائي لكل ما تجاوز 12 شهراً
-  – أرقام لاتينية فقط (بدون أرقام هندية)
-  – عرض غلاف الكتاب (الصفحة الأولى)
-═══════════════════════════════════════════════════════
-*/
+// ══════════════════════════════════════════════════════
+//  رادار الكتب العربي — APIs مجانية 100% بدون مفاتيح
+//  ✅ Open Library    — غير محدود
+//  ✅ OpenAlex        — غير محدود (100k/يوم)
+//  ✅ CrossRef        — غير محدود
+//  ✅ CORE            — غير محدود
+//  ✅ Semantic Scholar — غير محدود
+//  ✅ Internet Archive — غير محدود
+//  ✅ BASE Search     — غير محدود
+// ══════════════════════════════════════════════════════
 
-// ─── إعداد المتغيرات العامة ───────────────────────────────
-let ALL_BOOKS    = [];
-let currentLang  = 'all';
-let currentType  = 'all';
+let ALL_BOOKS   = [];
+let currentLang = 'all';
+let currentType = 'all';
 
-const CACHE_KEY       = 'arab_radar_v4';
-const CACHE_DURATION  = 24 * 60 * 60 * 1000;   // 24 ساعة
-const MAX_AGE_MS      = 365 * 24 * 60 * 60 * 1000; // 12 شهراً
+const CACHE_KEY      = 'arab_radar_free_v1';
+const CACHE_HOURS    = 24;
+const CACHE_DURATION = CACHE_HOURS * 60 * 60 * 1000;
+const MAX_AGE_MS     = 365 * 24 * 60 * 60 * 1000; // 12 شهراً
 
-// ─── تحويل الأرقام الهندية إلى لاتينية ──────────────────────
-function toLatinNums(str) {
-  if (!str && str !== 0) return str;
-  return String(str).replace(/[\u0660-\u0669]/g, d => d.charCodeAt(0) - 0x0660)
-                    .replace(/[\u06F0-\u06F9]/g, d => d.charCodeAt(0) - 0x06F0);
+// ── أرقام لاتينية دائماً ──────────────────────────────
+function num(n) {
+  return String(n||0)
+    .replace(/[\u0660-\u0669\u06F0-\u06F9]/g,
+      d => d.charCodeAt(0) - (d.charCodeAt(0) >= 0x06F0 ? 0x06F0 : 0x0660));
 }
 
-// ─── قائمة المصادر (+200) ────────────────────────────────
-const SOURCES_LIST = [
-  /* APIs مفتوحة */
-  "Google Books API","Open Library (Internet Archive)",
-  "OpenAlex API","CrossRef API","CORE.ac.uk Open Access",
-  "DOAB — Directory of Open Access Books",
-  "OAPEN Library","Semantic Scholar","Unpaywall API",
-  "BASE — Bielefeld Academic Search Engine",
-  "Zenodo","Figshare","OpenAIRE","Paperity","SSRN",
-  /* مراكز بحثية عربية */
-  "المركز العربي للأبحاث ودراسة السياسات — الدوحة",
-  "مركز الجزيرة للدراسات — الدوحة",
-  "معهد الدوحة للدراسات العليا",
-  "مركز الأهرام للدراسات السياسية والاستراتيجية — القاهرة",
-  "المركز المغربي للدراسات والأبحاث الاستراتيجية",
-  "مركز دراسات الوحدة العربية — بيروت",
-  "المعهد المصري للدراسات",
-  "معهد العالم العربي — باريس",
-  "المركز الدولي للدراسات المستقبلية والاستراتيجية — القاهرة",
-  "مركز المسبار للدراسات والبحوث — دبي",
-  "مركز الخليج لسياسات التنمية — الكويت",
-  "معهد الشرق الأوسط — واشنطن",
-  "مركز كارنيغي للشرق الأوسط — بيروت",
-  "مركز الدراسات الاستراتيجية — الأردن",
-  "مركز الإمارات للدراسات والبحوث الاستراتيجية",
-  "مركز البحرين للدراسات الاستراتيجية والدولية والطاقة",
-  "مركز الدراسات الإستراتيجية والدبلوماسية — تونس",
-  "المعهد العربي لحقوق الإنسان",
-  "مركز تقدم للسياسات — القاهرة",
-  "مركز الشرق للأبحاث والدراسات",
-  "مركز صنعاء للدراسات الاستراتيجية — اليمن",
-  "مركز عمران للدراسات الاستراتيجية — سوريا",
-  "مبادرة الإصلاح العربي — باريس",
-  /* مراكز بحثية دولية */
-  "Brookings Institution — Center for Universal Education",
-  "Carnegie Endowment — Arab World",
-  "International Crisis Group — MENA",
-  "RAND Corporation — Arab World",
-  "Chatham House — Middle East & North Africa",
-  "Wilson Center — Middle East Program",
-  "Atlantic Council — MENA Program",
-  "USIP — United States Institute of Peace",
-  "SIPRI — Middle East Studies",
-  "Human Rights Watch — MENA",
-  "Amnesty International — Arab States",
-  "Freedom House — Arab World",
-  "Arab Barometer — Princeton University",
-  "Pew Research Center — Muslim World",
-  "Georgetown University — Arab World",
-  /* دور النشر العربية */
-  "دار الشروق — القاهرة",
-  "الهيئة المصرية العامة للكتاب",
-  "دار المعارف — مصر",
-  "مدارات للأبحاث والنشر — القاهرة",
-  "دار العين للنشر — القاهرة",
-  "دار الساقي — بيروت",
-  "دار الفارابي — بيروت",
-  "رياض الريس للكتب والنشر — بيروت",
-  "دار الآداب — بيروت",
-  "دار النهار للنشر — بيروت",
-  "المركز الثقافي للكتاب — الدار البيضاء",
-  "أفريقيا الشرق — المغرب",
-  "دار توبقال — المغرب",
-  "المركز الثقافي العربي — الرباط/بيروت",
-  "دار محمد علي للنشر — تونس",
-  "منشورات ضفاف — بيروت/بغداد",
-  "دار المتوسط — إيطاليا",
-  "دار ابن النديم — الجزائر",
-  "دار الجمل — ألمانيا/بغداد",
-  "دار التنوير — بيروت",
-  "المنظمة العربية للترجمة",
-  "الدار العربية للعلوم ناشرون — بيروت",
-  "دار خطوط وظلال — الأردن",
-  "دار الأهلية للنشر — الأردن",
-  "بيت الغشام — مسقط",
-  "دار ذات السلاسل — الكويت",
-  /* دور النشر الدولية المتخصصة */
-  "Edinburgh University Press — Middle East",
-  "I.B. Tauris — Arab World",
-  "Hurst Publishers — MENA",
-  "Palgrave Macmillan — Middle East Studies",
-  "Routledge — Middle East",
-  "Brill — Islamic & Middle East Studies",
-  "Columbia University Press — Arab Studies",
-  "Princeton University Press — Islamic Studies",
-  "Harvard University Press — Middle East",
-  "Georgetown University Press — Arab Studies",
-  "University of Texas Press — Middle East",
-  "Syracuse University Press — Arab World",
-  "SUNY Press — Islamic Studies",
-  "Karthala — Paris (Monde arabe)",
-  "L'Harmattan — Paris (Monde arabe)",
-  "La Découverte — Sciences sociales",
-  "CNRS Éditions — Orient",
-  "Éditions de l'EHESS — Islam",
-  "Actes Sud — Monde arabe",
-  "Sindbad — Paris",
-  "Institut du monde arabe — Paris",
-  /* منظمات دولية */
-  "UNDP Arab States Reports",
-  "World Bank — MENA Reports",
-  "IMF — Middle East Reports",
-  "UNESCO — Arab World",
-  "UNICEF — MENA",
-  "UNHCR — Arab States",
-  "OCHA — Arab World",
-  "Arab League Reports",
-  "Islamic Development Bank Research",
-  "Arab Monetary Fund",
-  "Arab Fund for Economic & Social Development",
-  /* منصات أكاديمية */
-  "JSTOR — Middle East Studies","Project MUSE","OpenEdition Books",
-  "Cairn.info — Monde arabe","SAGE Publications","Taylor & Francis",
-  "SpringerLink","ScienceDirect","Academia.edu","ResearchGate",
-  "Dimensions.ai","Lens.org",
-  /* مجلات ومراكز بحثية متخصصة */
-  "Arab Studies Journal","Journal of Arabic Literature",
-  "British Journal of Middle Eastern Studies",
-  "International Journal of Middle East Studies",
-  "Journal of Palestine Studies",
-  "Middle East Journal","Middle East Report",
-  "Arab Law Quarterly","Arab Media & Society",
-  "Hawliyat (Balamand University)",
-  "Al-Abhath Journal (AUB)",
-  /* مكتبات رقمية */
-  "HathiTrust Digital Library — Arabic Collections",
-  "Internet Archive — Arabic Books",
-  "Hindawi Publishing — Arabic",
-  "Al-Manhal Database",
-  "Dar Al Mandumah",
-  "Arab World Research Source",
-  "Index Islamicus"
-];
-
-// ─── استعلامات البحث ────────────────────────────────────
-const QUERIES = {
-  en: [
-    "arab world politics 2024","middle east security 2024",
-    "arab democracy authoritarianism","arab spring aftermath 2024",
-    "palestine israel conflict 2024","gaza war 2024",
-    "iran arab relations","turkey arab world",
-    "yemen war crisis 2024","syria reconstruction 2024",
-    "libya stability 2024","sudan conflict 2024",
-    "lebanon crisis 2024","iraq politics 2024",
-    "egypt politics economy 2024","saudi arabia vision 2030",
-    "UAE development","qatar foreign policy",
-    "jordan stability","morocco politics 2024",
-    "algeria politics 2024","tunisia democracy crisis 2024",
-    "maghreb regional politics","mashreq geopolitics",
-    "arab gulf cooperation council","arab league",
-    "jihadism islamism arab 2024","extremism middle east",
-    "arab military coups authoritarianism",
-    "sectarianism arab world","sunni shia conflict",
-    "kurds arab world","minorities arab states",
-    "arab economic development 2024","middle east economy 2024",
-    "arab oil economy transition","saudi aramco economy",
-    "gulf sovereign wealth funds","arab youth unemployment",
-    "arab digital economy fintech","middle east startups 2024",
-    "arab food security 2024","water scarcity arab world",
-    "arab poverty inequality","remittances arab diaspora",
-    "belt road initiative arab","china arab relations 2024",
-    "US arab relations 2024","EU mediterranean policy",
-    "arab free trade zone","Arab Monetary Fund report",
-    "arab refugees displacement 2024","arab migration europe 2024",
-    "arab women rights gender 2024","arab youth society 2024",
-    "arab education reform 2024","arab civil society",
-    "arab media censorship","arab social media activism",
-    "arab human rights report 2024","arab diaspora identity",
-    "arab urbanization housing","arab health systems 2024",
-    "arabic literature 2024","arab culture identity",
-    "arabic novel poetry 2024","arab cinema film 2024",
-    "arab intellectual thought","islam modernity arab",
-    "arab philosophy contemporary","arab heritage archaeology",
-    "decolonization arab world","arabic language policy",
-    "human rights watch arab 2024","amnesty arab states 2024",
-    "freedom house arab world 2024","UNDP arab development report",
-    "world bank MENA report 2024","arab barometer report 2024",
-    "ICG middle east report 2024","UNHCR arab states 2024"
-  ],
-  fr: [
-    "monde arabe politique 2024","moyen orient sécurité 2024",
-    "printemps arabe bilan","démocratie autoritarisme arabe",
-    "conflit israélo-palestinien 2024","guerre gaza 2024",
-    "syrie reconstruction 2024","yémen crise humanitaire 2024",
-    "libye stabilisation 2024","soudan guerre 2024",
-    "liban crise 2024","irak politique 2024",
-    "égypte économie politique 2024","arabie saoudite vision 2030",
-    "maroc politique 2024","algérie politique 2024",
-    "tunisie démocratie crise 2024","maghreb géopolitique",
-    "golfe persique coopération","islamisme djihadisme 2024",
-    "sahel afrique du nord","turquie monde arabe",
-    "iran rivalités arabes",
-    "développement économique arabe 2024",
-    "transition économique pétrole golfe",
-    "chômage jeunesse arabe","économie numérique arabe",
-    "sécurité alimentaire monde arabe","eau ressources arabes",
-    "relations chine monde arabe 2024",
-    "investissements fonds souverains golfe",
-    "réfugiés arabes déplacement 2024","migration arabe europe",
-    "femmes arabes droits genre 2024","société civile arabe",
-    "droits humains arabes rapport 2024",
-    "médias censure monde arabe","jeunesse arabe",
-    "éducation réforme arabe","islam modernité",
-    "littérature arabe contemporaine 2024",
-    "roman arabe francophone","cinéma arabe 2024",
-    "patrimoine archéologie arabe","langue arabe politique",
-    "identité diaspora arabe","postcolonialisme monde arabe",
-    "rapport développement arabe 2024",
-    "droits homme états arabes 2024",
-    "rapport monde arabe 2024","terrorisme extrémisme moyen orient"
-  ],
-  ar: [
-    "العالم العربي السياسة 2024",
-    "الشرق الأوسط الأمن 2024",
-    "فلسطين القضية الفلسطينية 2024",
-    "حرب غزة 2024 الاحتلال",
-    "الربيع العربي نتائج",
-    "الديمقراطية العرب الاستبداد",
-    "اليمن الحرب الأزمة الإنسانية",
-    "سوريا إعادة الإعمار",
-    "ليبيا الاستقرار السياسي",
-    "السودان الصراع الحرب",
-    "لبنان الأزمة السياسية",
-    "العراق السياسة الاقتصاد",
-    "مصر السياسة الاقتصاد 2024",
-    "السعودية رؤية 2030 التحول",
-    "الخليج العربي التعاون",
-    "المغرب السياسة التنمية 2024",
-    "الجزائر السياسة الاقتصاد 2024",
-    "تونس الديمقراطية الأزمة",
-    "المغرب العربي الجيوسياسة",
-    "المشرق العربي التوترات",
-    "الإسلام السياسي الجهادية",
-    "إيران العرب الصراع",
-    "تركيا العالم العربي",
-    "التنمية الاقتصادية العربية 2024",
-    "الاقتصاد العربي النفط التنويع",
-    "البطالة الشباب العربي",
-    "الاقتصاد الرقمي العربي",
-    "الأمن الغذائي العالم العربي",
-    "المياه الندرة الدول العربية",
-    "الصين العالم العربي العلاقات",
-    "الاستثمار الخليج صناديق الثروة",
-    "الفقر التفاوت الدول العربية",
-    "اللاجئون النازحون العرب 2024",
-    "الهجرة العربية أوروبا",
-    "المرأة العربية الحقوق المساواة",
-    "الشباب العربي المجتمع",
-    "التعليم الإصلاح العالم العربي",
-    "المجتمع المدني العربي",
-    "حقوق الإنسان العرب تقرير 2024",
-    "الإعلام الرقابة العالم العربي",
-    "الصحة الدول العربية",
-    "الأدب العربي المعاصر 2024",
-    "الرواية العربية الشعر",
-    "السينما العربية الثقافة",
-    "الهوية العربية والانتماء",
-    "التراث العربي الحضارة",
-    "اللغة العربية والسياسة اللغوية",
-    "الإسلام والحداثة",
-    "الفكر العربي المعاصر",
-    "ما بعد الاستعمار العالم العربي",
-    "تقرير التنمية الإنسانية العربية",
-    "تقرير حقوق الإنسان العرب 2024",
-    "الإرهاب التطرف الشرق الأوسط",
-    "تقرير الحوكمة العربية 2024"
-  ]
+// ── حالة كل API ──────────────────────────────────────
+const API_STATUS = {
+  'Open Library':     {ok:null, count:0},
+  'OpenAlex':         {ok:null, count:0},
+  'CrossRef':         {ok:null, count:0},
+  'CORE':             {ok:null, count:0},
+  'Semantic Scholar': {ok:null, count:0},
+  'Internet Archive': {ok:null, count:0},
 };
 
-// ─── الكلمات المفتاحية للعالم العربي ────────────────────────
-const ARAB_KEYWORDS = [
-  'arab','arabic','middle east','mena','maghreb','mashreq','levant',
-  'egypt','saudi','arabia','iraq','syria','yemen','libya','sudan','morocco',
-  'algeria','tunisia','lebanon','jordan','palestine','kuwait','emirates',
-  'uae','qatar','bahrain','oman','mauritania','somalia','djibouti',
-  'islamic world','muslim world','gulf','persian gulf','arabian',
-  'quran','koran','islam','islamic','sharia','jihad','caliphate',
-  'cairo','baghdad','damascus','amman','beirut','tunis','tripoli',
-  'riyadh','dubai','doha','muscat','sanaa','khartoum','algiers',
-  'casablanca','rabat','jerusalem','ramallah','gaza',
-  'arab league','gcc','mena region','north africa','near east',
-  'arabe','monde arabe','moyen-orient',
-  'égypte','syrie','irak','yémen','liban','jordanie',
-  'arabie saoudite','émirats','golfe','afrique du nord',
-  'islamique','musulman','coran','djihad',
-  'العرب','العربي','العربية','الشرق الأوسط','المغرب العربي','المشرق',
-  'مصر','السعودية','العراق','سوريا','اليمن','ليبيا','السودان',
-  'المغرب','الجزائر','تونس','لبنان','الأردن','فلسطين',
-  'الكويت','الإمارات','قطر','البحرين','عمان','موريتانيا',
-  'الصومال','جيبوتي','القمر','الخليج','العالم الإسلامي',
-  'الإسلام','الإسلامي','مسلم','القرآن','الشريعة','الجهاد',
-  'القاهرة','بغداد','دمشق','عمان','بيروت','طرابلس',
-  'الرياض','دبي','الدوحة','مسقط','صنعاء','الخرطوم','الجزائر',
-  'الدار البيضاء','الرباط','القدس','رام الله','غزة',
-  'جامعة الدول العربية','مجلس التعاون الخليجي'
-];
-
-function isArabWorldRelevant(text) {
-  const t = text.toLowerCase();
-  return ARAB_KEYWORDS.some(k => t.includes(k.toLowerCase()));
+function setApiStatus(name, ok, count) {
+  if (API_STATUS[name]) {
+    API_STATUS[name].ok    = ok;
+    API_STATUS[name].count = count;
+  }
+  renderApiStatus();
 }
 
-// ─── كشف نوع المحتوى ───────────────────────────────────
-function detectContentType(title, desc, publisher) {
-  const t = ((title||'')+' '+(desc||'')+' '+(publisher||'')).toLowerCase();
-  if (/thesis|dissertation|phd|mémoire|thèse|أطروحة|رسالة دكتوراه|رسالة ماجستير/i.test(t))
-    return 'thesis';
-  if (/report|rapport|policy|brief|working paper|ورقة عمل|ورقة سياسات|تقرير|دراسة|briefing|analysis|assessment/i.test(t))
-    return 'report';
-  return 'book';
+function renderApiStatus() {
+  const el = document.getElementById('apiStatus');
+  if (!el) return;
+  el.innerHTML = Object.entries(API_STATUS).map(([name,s]) => {
+    const cls = s.ok === null ? 'api-warn' : s.ok ? 'api-ok' : 'api-err';
+    const ico = s.ok === null ? '⏳' : s.ok ? '✅' : '❌';
+    return `<span class="api-badge ${cls}">${ico} ${name} (${num(s.count)})</span>`;
+  }).join('');
 }
 
-// ─── التحقق من نطاق 12 شهراً ──────────────────────────
-function isWithin12Months(pubDate) {
-  if (!pubDate) return false;
-  const pub = new Date(pubDate).getTime();
-  if (isNaN(pub)) return false;
-  return (Date.now() - pub) <= MAX_AGE_MS;
+// ── التحقق من 12 شهراً ───────────────────────────────
+function within12(dateStr) {
+  if (!dateStr) return false;
+  const t = new Date(dateStr).getTime();
+  if (isNaN(t)) return false;
+  return (Date.now() - t) <= MAX_AGE_MS;
 }
 
-function pubDateFromYear(year) {
-  if (!year) return '';
-  const currentYear = new Date().getFullYear();
-  if (year < currentYear - 1) return '';
-  return `${year}-07-01`;
+function yearToDate(y) {
+  if (!y) return '';
+  const cur = new Date().getFullYear();
+  if (y < cur - 1) return '';
+  return `${y}-07-01`;
 }
 
-// ─── كشف اللغة ─────────────────────────────────────────
-function detectLang(text) {
-  if (!text) return 'en';
+// ── كشف اللغة ─────────────────────────────────────────
+function detectLang(text='') {
   if (/[\u0600-\u06FF]{3,}/.test(text)) return 'ar';
   if (/[àâéèêëïîôùûüÿçœæ]/i.test(text)) return 'fr';
-  const frW = /\b(le|la|les|du|des|un|une|et|en|dans|monde|arabe|politique|développement|moyen|orient|islam)\b/i;
-  if (frW.test(text)) return 'fr';
+  if (/\b(le|la|les|du|des|arabe|monde|moyen|islam|politique)\b/i.test(text)) return 'fr';
   return 'en';
 }
 
-// ─── كشف الموضوعات ─────────────────────────────────────
-function detectTopics(title, desc) {
-  const t = ((title||'')+' '+(desc||'')).toLowerCase();
-  const mp = {
-    'Gaza|Palestine|فلسطين|غزة|Occupied|احتلال': 'فلسطين',
-    'Egypt|مصر|égypte': 'مصر',
-    'Saudi|Saudi Arabia|السعودية|Arabie saoudite|Vision 2030': 'سعودية',
-    'Iraq|irak|العراق': 'العراق',
-    'Syria|syrie|سوريا': 'سوريا',
-    'Yemen|yémen|اليمن': 'اليمن',
-    'Libya|libye|ليبيا': 'ليبيا',
-    'Sudan|soudan|السودان': 'السودان',
-    'Lebanon|liban|لبنان': 'لبنان',
-    'Morocco|maroc|المغرب': 'المغرب',
-    'Algeria|algérie|الجزائر': 'الجزائر',
-    'Tunisia|tunisie|تونس': 'تونس',
-    'Jordan|jordanie|الأردن': 'الأردن',
-    'Kuwait|Koweït|الكويت': 'الكويت',
-    'UAE|Émirats|Emirates|الإمارات': 'الإمارات',
-    'Qatar|قطر': 'قطر',
-    'Gulf|golfe|GCC|الخليج': 'الخليج',
-    'Maghreb|Afrique du Nord|شمال أفريقيا|مغرب': 'المغرب العربي',
-    'Levant|Mashreq|المشرق|بلاد الشام': 'بلاد الشام',
-    'ISIS|داعش|jihad|جهاد|terror|إرهاب|extrémisme|islamism': 'الأمن والتطرف',
-    'war|conflict|guerre|حرب|صراع|نزاع|crise': 'الصراعات',
-    'democracy|démocratie|ديمقراطية|election|انتخاب': 'الديمقراطية',
-    'economy|économie|اقتصاد|development|développement|تنمية': 'الاقتصاد',
-    'oil|pétrole|نفط|energy|énergie|طاقة': 'الطاقة والنفط',
-    'migration|refugee|هجرة|لاجئ|diaspora|migrat': 'الهجرة واللاجئون',
-    'women|femme|مرأة|نساء|gender|genre': 'المرأة والنوع',
-    'islam|muslim|مسلم|إسلام|religieux|ديني': 'الإسلام والدين',
-    'literature|roman|أدب|رواية|littérature': 'الأدب',
-    'history|histoire|تاريخ': 'التاريخ',
-    'human rights|droits|حقوق الإنسان': 'حقوق الإنسان',
-    'climate|climat|مناخ|environment|بيئة': 'البيئة والمناخ',
-    'technology|technolog|تكنولوجيا|رقمنة|digital|numérique': 'التكنولوجيا',
-    'education|éducation|تعليم': 'التعليم',
-    'colonial|décoloni|استعمار': 'ما بعد الاستعمار',
-    'china|chine|صين': 'الصين والعرب',
-    'identity|identité|هوية': 'الهوية الثقافية'
-  };
+// ── كلمات العالم العربي ──────────────────────────────
+const ARAB_KW = [
+  'arab','arabic','middle east','mena','maghreb','levant',
+  'egypt','saudi','iraq','syria','yemen','libya','sudan','morocco',
+  'algeria','tunisia','lebanon','jordan','palestine','kuwait',
+  'emirates','uae','qatar','bahrain','oman','gulf','islam','islamic',
+  'muslim','cairo','baghdad','beirut','quran','arabe','monde arabe',
+  'moyen-orient','égypte','syrie','irak','yémen','liban','maghreb',
+  'العرب','العربي','العربية','الشرق الأوسط','فلسطين','مصر',
+  'السعودية','العراق','سوريا','اليمن','ليبيا','السودان','المغرب',
+  'الجزائر','تونس','لبنان','الأردن','الكويت','الإمارات','قطر',
+  'الخليج','الإسلام','مسلم','القرآن','غزة','بغداد','القاهرة'
+];
+
+function isArab(text='') {
+  const t = text.toLowerCase();
+  return ARAB_KW.some(k => t.includes(k));
+}
+
+// ── كشف نوع المحتوى ──────────────────────────────────
+function detectType(title='', desc='', pub='') {
+  const t = (title+' '+desc+' '+pub).toLowerCase();
+  if (/thesis|dissertation|phd|mémoire|thèse|أطروحة|رسالة/.test(t)) return 'thesis';
+  if (/report|rapport|policy brief|working paper|تقرير|ورقة|دراسة|analysis|assessment/.test(t)) return 'report';
+  return 'book';
+}
+
+// ── الموضوعات ─────────────────────────────────────────
+function detectTopics(title='', desc='') {
+  const t = (title+' '+desc).toLowerCase();
+  const map = [
+    [/gaza|palestine|فلسطين|غزة|احتلال/, 'فلسطين'],
+    [/egypt|مصر|égypte/, 'مصر'],
+    [/saudi|سعودية|arabie saoudite/, 'السعودية'],
+    [/iraq|عراق|irak/, 'العراق'],
+    [/syria|سوريا|syrie/, 'سوريا'],
+    [/yemen|يمن|yémen/, 'اليمن'],
+    [/libya|ليبيا|libye/, 'ليبيا'],
+    [/sudan|سودان/, 'السودان'],
+    [/lebanon|لبنان|liban/, 'لبنان'],
+    [/morocco|مغرب|maroc/, 'المغرب'],
+    [/algeria|جزائر|algérie/, 'الجزائر'],
+    [/tunisia|تونس|tunisie/, 'تونس'],
+    [/politic|سياس|politique/, 'السياسة'],
+    [/econom|اقتصاد|économ/, 'الاقتصاد'],
+    [/human rights|حقوق الإنسان|droits/, 'حقوق الإنسان'],
+    [/democracy|ديمقراطية|démocratie/, 'الديمقراطية'],
+    [/islam|muslim|مسلم|إسلام/, 'الإسلام'],
+    [/women|gender|مرأة|femme/, 'المرأة'],
+    [/migration|refugee|هجرة|لاجئ/, 'الهجرة'],
+    [/literature|أدب|littérature/, 'الأدب'],
+    [/history|تاريخ|histoire/, 'التاريخ'],
+    [/security|أمن|sécurité|conflict|حرب|war/, 'الأمن والصراع'],
+    [/oil|energy|نفط|طاقة|énergie/, 'الطاقة'],
+    [/environment|climate|بيئة|مناخ/, 'البيئة'],
+    [/education|تعليم|éducation/, 'التعليم'],
+  ];
   const found = [];
-  for (const [pat, label] of Object.entries(mp)) {
-    if (new RegExp(pat,'i').test(t)) found.push(label);
-    if (found.length >= 5) break;
+  for (const [re, label] of map) {
+    if (re.test(t)) found.push(label);
+    if (found.length >= 4) break;
   }
   return found.length ? found : ['العالم العربي'];
 }
 
-// ─── إزالة التكرار ────────────────────────────────────
-function normalizeTitle(t) {
-  if (!t) return '';
-  return t.toLowerCase().trim()
-    .replace(/[^\w\s\u0600-\u06FF]/g,' ')
-    .replace(/\b(في|من|إلى|على|و|أو|the|a|an|le|la|les|un|une|des|du|de|et)\b/gi,' ')
-    .replace(/\s+/g,' ').trim().substring(0,80);
-}
-
-function removeDuplicates(books) {
-  const seenISBN  = new Set();
-  const seenTitle = new Set();
-  const uniq = [];
+// ── إزالة التكرار ─────────────────────────────────────
+function dedup(books) {
+  const seenT = new Set(), seenI = new Set(), out = [];
   for (const b of books) {
-    const isbn = (b.isbn||'').replace(/[^0-9X]/gi,'');
-    const nt   = normalizeTitle(b.title);
-    if (isbn.length >= 10 && seenISBN.has(isbn))  continue;
-    if (nt.length > 8   && seenTitle.has(nt))     continue;
-    if (isbn.length >= 10) seenISBN.add(isbn);
-    if (nt.length > 8)    seenTitle.add(nt);
-    uniq.push(b);
+    const t = (b.title||'').toLowerCase().trim().substring(0,60);
+    const i = (b.isbn||'').replace(/\D/g,'');
+    if (i.length >= 10 && seenI.has(i)) continue;
+    if (t.length > 6   && seenT.has(t)) continue;
+    if (i.length >= 10) seenI.add(i);
+    if (t.length > 6)   seenT.add(t);
+    out.push(b);
   }
-  return uniq;
+  return out;
 }
 
-// ═══════════════════════════════════════════════════════
-// API 1 — Google Books (مع صورة الغلاف عالية الجودة)
-// ═══════════════════════════════════════════════════════
-async function fetchGoogleBooks(query) {
+// ══════════════════════════════════════════════════════
+// API 1 — Open Library (مجاني تماماً — بلا حدود)
+// يعطي أيضاً صورة الغلاف عبر covers.openlibrary.org
+// ══════════════════════════════════════════════════════
+async function fetchOpenLibrary(query, lang) {
   const books = [];
   try {
-    const p = new URLSearchParams({
-      q: query,
-      printType: 'books',
-      orderBy: 'newest',
-      maxResults: '40',
-      fields: 'items(id,volumeInfo)'
+    const params = new URLSearchParams({
+      q: query, limit: '50', sort: 'new',
+      ...(lang === 'ar' ? {lang:'ara'} : lang === 'fr' ? {lang:'fre'} : {})
     });
-    const r = await fetch(`https://www.googleapis.com/books/v1/volumes?${p}`);
-    if (!r.ok) return books;
+    const r = await fetch(`https://openlibrary.org/search.json?${params}`);
+    if (!r.ok) throw new Error(r.status);
     const data = await r.json();
+    const minY = new Date().getFullYear() - 1;
 
-    for (const item of (data.items||[])) {
-      const v = item.volumeInfo || {};
-      const title = v.title || '';
-      if (!title || title.length < 3) continue;
+    for (const d of (data.docs||[])) {
+      if (!d.title) continue;
+      const year = d.first_publish_year || 0;
+      if (year < minY) continue;
+      const pd = yearToDate(year);
+      if (!within12(pd)) continue;
+      const subj = (d.subject||[]).join(' ');
+      if (!isArab((d.title+' '+subj))) continue;
 
-      const pubDate = v.publishedDate || '';
-      if (!pubDate) continue;
-      if (!isWithin12Months(pubDate)) continue;
-
-      const combined = (title+' '+(v.description||'')+' '+(v.categories||[]).join(' ')).toLowerCase();
-      if (!isArabWorldRelevant(combined)) continue;
-
-      const lang  = v.language==='ar' ? 'ar' : v.language==='fr' ? 'fr' : detectLang(title);
-      const ctype = detectContentType(title, v.description, v.publisher);
-
-      // ── غلاف عالي الجودة (الصفحة الأولى) ──
-      const imgLinks = v.imageLinks || {};
-      let cover = imgLinks.extraLarge || imgLinks.large || imgLinks.medium ||
-                  imgLinks.small || imgLinks.thumbnail || imgLinks.smallThumbnail || '';
-      if (cover) {
-        cover = cover.replace('http:','https:');
-        // رفع الجودة: zoom=1 يعطي أكبر صورة متاحة
-        if (cover.includes('books.google')) {
-          cover = cover.replace(/&zoom=\d/,'').replace(/zoom=\d&?/,'') + '&zoom=1';
-        }
-      }
+      // ── صورة الغلاف بأعلى جودة ──
+      const cid = d.cover_i;
+      const cover = cid
+        ? `https://covers.openlibrary.org/b/id/${cid}-L.jpg`   // L = Large
+        : '';
 
       books.push({
-        id: 'gb_'+item.id,
-        title: title + (v.subtitle ? ': '+v.subtitle : ''),
-        authors: v.authors||[],
-        publisher: v.publisher||'',
-        publication_date: pubDate,
-        pages: v.pageCount||null,
-        isbn: (v.industryIdentifiers||[]).find(i=>i.type==='ISBN_13')?.identifier ||
-              (v.industryIdentifiers||[]).find(i=>i.type==='ISBN_10')?.identifier || '',
-        book_url: v.infoLink||v.previewLink||'',
-        cover,
-        description: (v.description||'').substring(0,450),
-        language: lang,
-        topics: detectTopics(title, v.description),
-        source: 'Google Books',
-        rating: v.averageRating||null,
-        content_type: ctype
-      });
-    }
-  } catch(e){ console.warn('GBooks:',query,e.message); }
-  return books;
-}
-
-// ═══════════════════════════════════════════════════════
-// API 2 — Open Library
-// ═══════════════════════════════════════════════════════
-async function fetchOpenLibrary(query) {
-  const books = [];
-  try {
-    const p = new URLSearchParams({q:query, limit:'25', sort:'new'});
-    const r = await fetch(`https://openlibrary.org/search.json?${p}`);
-    if (!r.ok) return books;
-    const data = await r.json();
-    const minYear = new Date().getFullYear() - 1;
-
-    for (const doc of (data.docs||[])) {
-      const title = doc.title || '';
-      if (!title) continue;
-
-      const year = doc.first_publish_year||0;
-      if (year < minYear) continue;
-      const pd = pubDateFromYear(year);
-      if (!pd || !isWithin12Months(pd)) continue;
-
-      const subj = (doc.subject||[]).join(' ');
-      if (!isArabWorldRelevant((title+' '+subj).toLowerCase())) continue;
-
-      const coverId = doc.cover_i;
-      const cover   = coverId ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg` : '';
-      const ctype   = detectContentType(title, subj, (doc.publisher||[])[0]);
-
-      books.push({
-        id: 'ol_'+doc.key,
-        title,
-        authors: doc.author_name||[],
-        publisher: (doc.publisher||[])[0]||'',
+        id: 'ol_'+d.key,
+        title: d.title,
+        authors: d.author_name||[],
+        publisher: (d.publisher||[])[0]||'',
         publication_date: pd,
-        pages: doc.number_of_pages_median||null,
-        isbn: (doc.isbn||[])[0]||'',
-        book_url: 'https://openlibrary.org'+doc.key,
+        pages: d.number_of_pages_median||null,
+        isbn: (d.isbn||[])[0]||'',
+        book_url: 'https://openlibrary.org'+d.key,
+        preview_url: d.ia ? `https://archive.org/details/${d.ia[0]}` : '',
         cover,
-        description: '',
-        language: detectLang(title),
-        topics: detectTopics(title, subj),
+        description: (d.first_sentence?.value||''),
+        language: d.language?.[0]==='ara'?'ar': d.language?.[0]==='fre'?'fr': detectLang(d.title),
+        topics: detectTopics(d.title, subj),
         source: 'Open Library',
-        rating: null,
-        content_type: ctype
+        content_type: detectType(d.title, subj, (d.publisher||[])[0]||'')
       });
     }
-  } catch(e){ console.warn('OpenLib:',query,e.message); }
+    setApiStatus('Open Library', true, books.length);
+  } catch(e) {
+    console.warn('OpenLibrary:', e.message);
+    setApiStatus('Open Library', false, 0);
+  }
   return books;
 }
 
-// ═══════════════════════════════════════════════════════
-// API 3 — OpenAlex
-// ═══════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
+// API 2 — OpenAlex (100,000 طلب/يوم مجاناً)
+// ══════════════════════════════════════════════════════
 async function fetchOpenAlex(query) {
   const books = [];
   try {
-    const fromDate = new Date(Date.now() - MAX_AGE_MS).toISOString().split('T')[0];
+    const from = new Date(Date.now()-MAX_AGE_MS).toISOString().split('T')[0];
     const p = new URLSearchParams({
       search: query,
-      filter: `type:book,from_publication_date:${fromDate}`,
-      'per-page': '20',
-      select: 'id,title,authorships,publication_year,publication_date,primary_location,open_access,doi,language',
-      mailto: 'arab-radar@research.org'
+      filter: `type:book,from_publication_date:${from}`,
+      'per-page': '25',
+      select: 'id,title,authorships,publication_date,publication_year,primary_location,open_access,doi,language,abstract_inverted_index',
+      mailto: 'radar@arab-books.org'
     });
     const r = await fetch(`https://api.openalex.org/works?${p}`);
-    if (!r.ok) return books;
+    if (!r.ok) throw new Error(r.status);
     const data = await r.json();
 
     for (const item of (data.results||[])) {
-      const title = item.title || '';
-      if (!title) continue;
-      if (!isArabWorldRelevant(title.toLowerCase())) continue;
+      if (!item.title) continue;
+      if (!isArab(item.title)) continue;
+      const pd = item.publication_date || yearToDate(item.publication_year);
+      if (!within12(pd)) continue;
 
-      const pd = item.publication_date || pubDateFromYear(item.publication_year);
-      if (!pd || !isWithin12Months(pd)) continue;
+      const authors = (item.authorships||[]).slice(0,3).map(a=>a.author?.display_name||'').filter(Boolean);
+      const doi = (item.doi||'').replace('https://doi.org/','');
+      const oaUrl = item.open_access?.oa_url||'';
+      const lang = item.language==='ar'?'ar': item.language==='fr'?'fr': detectLang(item.title);
 
-      const authors = (item.authorships||[]).slice(0,3).map(a=>a.author?.display_name||'');
-      const doi     = (item.doi||'').replace('https://doi.org/','');
-      const oaUrl   = item.open_access?.oa_url || '';
-      const lang    = item.language
-        ? (item.language==='fr'?'fr': item.language==='ar'?'ar':'en')
-        : detectLang(title);
-      const ctype   = detectContentType(title,'',item.primary_location?.source?.display_name);
+      // ── استخراج الملخص من inverted index ──
+      let desc = '';
+      if (item.abstract_inverted_index) {
+        try {
+          const words = {};
+          for (const [word, positions] of Object.entries(item.abstract_inverted_index)) {
+            for (const pos of positions) words[pos] = word;
+          }
+          desc = Object.keys(words).sort((a,b)=>a-b).map(k=>words[k]).join(' ').substring(0,400);
+        } catch(_){}
+      }
 
       books.push({
         id: 'oa_'+item.id,
-        title, authors,
+        title: item.title,
+        authors,
         publisher: item.primary_location?.source?.display_name||'',
         publication_date: pd,
-        pages: null, isbn:'',
-        book_url: oaUrl||(doi?'https://doi.org/'+doi:''),
+        pages: null,
+        isbn: '',
+        book_url: oaUrl||(doi?`https://doi.org/${doi}`:''),
+        preview_url: oaUrl||'',
         cover: '',
-        description: '',
+        description: desc,
         language: lang,
-        topics: detectTopics(title,''),
+        topics: detectTopics(item.title, desc),
         source: 'OpenAlex',
-        rating: null,
-        content_type: ctype
+        content_type: detectType(item.title, desc, '')
       });
     }
-  } catch(e){ console.warn('OpenAlex:',query,e.message); }
+    setApiStatus('OpenAlex', true, books.length);
+  } catch(e) {
+    console.warn('OpenAlex:', e.message);
+    setApiStatus('OpenAlex', false, 0);
+  }
   return books;
 }
 
-// ═══════════════════════════════════════════════════════
-// API 4 — CrossRef
-// ═══════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
+// API 3 — CrossRef (مجاني تماماً — بلا حدود)
+// ══════════════════════════════════════════════════════
 async function fetchCrossRef(query) {
   const books = [];
   try {
-    const fromDate = new Date(Date.now()-MAX_AGE_MS).toISOString().split('T')[0].replace(/-/g,'/');
+    const from = new Date(Date.now()-MAX_AGE_MS).toISOString().split('T')[0].replace(/-/g,'/');
     const p = new URLSearchParams({
-      query, rows:'15',
-      filter: `type:book,from-pub-date:${fromDate}`,
-      select: 'DOI,title,author,published,publisher,type,URL,abstract',
-      mailto: 'arab-radar@research.org'
+      query, rows: '20',
+      filter: `type:book,from-pub-date:${from}`,
+      select: 'DOI,title,author,published,publisher,URL,abstract,subject',
+      mailto: 'radar@arab-books.org'
     });
     const r = await fetch(`https://api.crossref.org/works?${p}`);
-    if (!r.ok) return books;
+    if (!r.ok) throw new Error(r.status);
     const data = await r.json();
 
     for (const item of (data.message?.items||[])) {
       const title = (item.title||[])[0]||'';
       if (!title) continue;
-      if (!isArabWorldRelevant(title.toLowerCase())) continue;
-
+      if (!isArab(title)) continue;
       const parts = item.published?.['date-parts']?.[0]||[];
-      const year  = parts[0];
+      const year = parts[0];
       if (!year) continue;
       const pd = parts.length>=2
         ? `${year}-${String(parts[1]).padStart(2,'0')}-01`
-        : pubDateFromYear(year);
-      if (!pd || !isWithin12Months(pd)) continue;
+        : yearToDate(year);
+      if (!within12(pd)) continue;
 
-      const authors = (item.author||[]).slice(0,3).map(a=>`${a.given||''} ${a.family||''}`.trim());
-      const doi     = item.DOI||'';
-      const ctype   = detectContentType(title, item.abstract||'', item.publisher);
+      const authors = (item.author||[]).slice(0,3).map(a=>`${a.given||''} ${a.family||''}`.trim()).filter(Boolean);
+      const doi = item.DOI||'';
+      const desc = (item.abstract||'').replace(/<[^>]+>/g,'').substring(0,400);
 
       books.push({
         id: 'cr_'+doi.replace(/\//g,'_'),
         title, authors,
         publisher: item.publisher||'',
         publication_date: pd,
-        pages: null, isbn:'',
-        book_url: doi?'https://doi.org/'+doi:(item.URL||''),
+        pages: null, isbn: '',
+        book_url: doi?`https://doi.org/${doi}`:(item.URL||''),
+        preview_url: '',
         cover: '',
-        description: (item.abstract||'').replace(/<[^>]+>/g,'').substring(0,400),
+        description: desc,
         language: detectLang(title),
-        topics: detectTopics(title, item.abstract||''),
+        topics: detectTopics(title, desc),
         source: 'CrossRef',
-        rating: null,
-        content_type: ctype
+        content_type: detectType(title, desc, item.publisher||'')
       });
     }
-  } catch(e){ console.warn('CrossRef:',query,e.message); }
+    setApiStatus('CrossRef', true, books.length);
+  } catch(e) {
+    console.warn('CrossRef:', e.message);
+    setApiStatus('CrossRef', false, 0);
+  }
   return books;
 }
 
-// ═══════════════════════════════════════════════════════
-// API 5 — CORE Open Access
-// ═══════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
+// API 4 — CORE Open Access (مجاني — بلا حدود فعلية)
+// ══════════════════════════════════════════════════════
 async function fetchCORE(query) {
   const books = [];
   try {
     const r = await fetch(
-      `https://api.core.ac.uk/v3/search/works?q=${encodeURIComponent(query)}&limit=10&stats=false`,
+      `https://api.core.ac.uk/v3/search/works?q=${encodeURIComponent(query)}&limit=15&stats=false`,
       {headers:{'Accept':'application/json'}}
     );
-    if (!r.ok) return books;
+    if (!r.ok) throw new Error(r.status);
     const data = await r.json();
 
     for (const item of (data.results||[])) {
-      const title = item.title||'';
-      if (!title) continue;
-      if (!isArabWorldRelevant((title+' '+(item.abstract||'')).toLowerCase())) continue;
-
+      if (!item.title) continue;
+      const txt = item.title+' '+(item.abstract||'');
+      if (!isArab(txt)) continue;
       const year = item.yearPublished || (item.publishedDate ? new Date(item.publishedDate).getFullYear() : 0);
-      const pd   = pubDateFromYear(year);
-      if (!pd || !isWithin12Months(pd)) continue;
+      const pd = yearToDate(year);
+      if (!within12(pd)) continue;
 
-      const authors = (item.authors||[]).slice(0,3).map(a=>typeof a==='string'?a:(a.name||''));
-      const ctype   = detectContentType(title, item.abstract||'', item.publisher);
+      const authors = (item.authors||[]).slice(0,3)
+        .map(a=>typeof a==='string'?a:(a.name||'')).filter(Boolean);
+      const desc = (item.abstract||'').substring(0,400);
 
       books.push({
-        id: 'core_'+Math.random().toString(36).substr(2,9),
-        title, authors,
+        id: 'core_'+Math.random().toString(36).substr(2,8),
+        title: item.title, authors,
         publisher: item.publisher||'CORE Open Access',
         publication_date: pd,
-        pages: null, isbn:'',
+        pages: null, isbn: '',
         book_url: item.downloadUrl||item.sourceFulltextUrls?.[0]||'',
+        preview_url: item.downloadUrl||'',
         cover: '',
-        description: (item.abstract||'').substring(0,400),
-        language: detectLang(title+' '+(item.abstract||'')),
-        topics: detectTopics(title, item.abstract||''),
+        description: desc,
+        language: detectLang(item.title+' '+desc),
+        topics: detectTopics(item.title, desc),
         source: 'CORE',
-        rating: null,
-        content_type: ctype
+        content_type: detectType(item.title, desc, '')
       });
     }
-  } catch(e){ console.warn('CORE:',query,e.message); }
+    setApiStatus('CORE', true, books.length);
+  } catch(e) {
+    console.warn('CORE:', e.message);
+    setApiStatus('CORE', false, 0);
+  }
   return books;
 }
 
-// ═══════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
+// API 5 — Semantic Scholar (مجاني — 100 طلب/ثانية)
+// ══════════════════════════════════════════════════════
+async function fetchSemanticScholar(query) {
+  const books = [];
+  try {
+    const p = new URLSearchParams({
+      query,
+      limit: '20',
+      fields: 'title,authors,year,externalIds,openAccessPdf,abstract,publicationTypes,publicationDate',
+      publicationTypes: 'Book'
+    });
+    const r = await fetch(`https://api.semanticscholar.org/graph/v1/paper/search?${p}`);
+    if (!r.ok) throw new Error(r.status);
+    const data = await r.json();
+
+    for (const item of (data.data||[])) {
+      if (!item.title) continue;
+      if (!isArab(item.title+' '+(item.abstract||''))) continue;
+      const year = item.year;
+      const pd   = item.publicationDate || yearToDate(year);
+      if (!within12(pd)) continue;
+
+      const authors = (item.authors||[]).slice(0,3).map(a=>a.name||'').filter(Boolean);
+      const doi = item.externalIds?.DOI||'';
+      const pdfUrl = item.openAccessPdf?.url||'';
+      const desc = (item.abstract||'').substring(0,400);
+
+      books.push({
+        id: 'ss_'+item.paperId,
+        title: item.title, authors,
+        publisher: '',
+        publication_date: pd,
+        pages: null, isbn: '',
+        book_url: pdfUrl||(doi?`https://doi.org/${doi}`:`https://www.semanticscholar.org/paper/${item.paperId}`),
+        preview_url: pdfUrl||'',
+        cover: '',
+        description: desc,
+        language: detectLang(item.title+' '+desc),
+        topics: detectTopics(item.title, desc),
+        source: 'Semantic Scholar',
+        content_type: detectType(item.title, desc, '')
+      });
+    }
+    setApiStatus('Semantic Scholar', true, books.length);
+  } catch(e) {
+    console.warn('SemanticScholar:', e.message);
+    setApiStatus('Semantic Scholar', false, 0);
+  }
+  return books;
+}
+
+// ══════════════════════════════════════════════════════
+// API 6 — Internet Archive (مجاني تماماً — بلا حدود)
+// يحتوي على ملايين الكتب + عرض الصفحة الأولى
+// ══════════════════════════════════════════════════════
+async function fetchInternetArchive(query) {
+  const books = [];
+  try {
+    const from = new Date(Date.now()-MAX_AGE_MS).toISOString().split('T')[0];
+    const q = `(${query}) AND mediatype:texts AND date:[${from} TO 9999-12-31]`;
+    const p = new URLSearchParams({
+      q,
+      fl: 'identifier,title,creator,publisher,date,language,subject,description,imagecount',
+      sort: 'date desc',
+      rows: '30',
+      page: '1',
+      output: 'json'
+    });
+    const r = await fetch(`https://archive.org/advancedsearch.php?${p}`);
+    if (!r.ok) throw new Error(r.status);
+    const data = await r.json();
+
+    for (const d of (data.response?.docs||[])) {
+      if (!d.title) continue;
+      const txt = d.title+' '+(d.subject||'')+(d.description||'');
+      if (!isArab(txt)) continue;
+      const pd = d.date ? (d.date.length === 4 ? yearToDate(parseInt(d.date)) : d.date.substring(0,10)) : '';
+      if (!within12(pd)) continue;
+
+      const id = d.identifier;
+      const authors = Array.isArray(d.creator) ? d.creator.slice(0,3) : (d.creator ? [d.creator] : []);
+
+      // ── صورة الغلاف من Internet Archive (الصفحة الأولى) ──
+      const cover = `https://archive.org/services/img/${id}`;
+
+      const lang = d.language==='ara'?'ar': d.language==='fre'?'fr': detectLang(d.title);
+      const desc = Array.isArray(d.description) ? d.description[0]||'' : d.description||'';
+
+      books.push({
+        id: 'ia_'+id,
+        title: d.title, authors,
+        publisher: Array.isArray(d.publisher)?d.publisher[0]:d.publisher||'',
+        publication_date: pd,
+        pages: d.imagecount||null,
+        isbn: '',
+        book_url: `https://archive.org/details/${id}`,
+        preview_url: `https://archive.org/details/${id}`,
+        cover,   // ← صورة الغلاف الحقيقية
+        description: desc.substring(0,400),
+        language: lang,
+        topics: detectTopics(d.title, typeof d.subject==='string'?d.subject:(d.subject||[]).join(' ')),
+        source: 'Internet Archive',
+        content_type: detectType(d.title, desc, d.publisher||'')
+      });
+    }
+    setApiStatus('Internet Archive', true, books.length);
+  } catch(e) {
+    console.warn('InternetArchive:', e.message);
+    setApiStatus('Internet Archive', false, 0);
+  }
+  return books;
+}
+
+// ══════════════════════════════════════════════════════
+// استعلامات البحث
+// ══════════════════════════════════════════════════════
+const QUERIES = [
+  // عربية
+  'العالم العربي السياسة 2024', 'فلسطين غزة الاحتلال 2024',
+  'الشرق الأوسط الأمن 2024', 'الاقتصاد العربي التنمية 2024',
+  'الديمقراطية العرب الاستبداد', 'اليمن الحرب الأزمة',
+  'سوريا إعادة الإعمار', 'السودان الصراع 2024',
+  'لبنان الأزمة السياسية', 'الأدب العربي المعاصر 2024',
+  'حقوق الإنسان العرب 2024', 'المرأة العربية الحقوق',
+  'التعليم الإصلاح العالم العربي', 'الهجرة العربية اللاجئون',
+  'الإسلام والحداثة الفكر العربي', 'التراث العربي الحضارة',
+  // إنجليزية
+  'arab world politics 2024', 'middle east security 2024',
+  'palestine israel conflict 2024', 'gaza war 2024',
+  'arab democracy authoritarianism', 'arab economic development 2024',
+  'arabic literature contemporary 2024', 'arab women rights 2024',
+  'arab refugees migration 2024', 'islam modernity arab',
+  'arab human rights report 2024', 'saudi arabia vision 2030',
+  'egypt politics 2024', 'morocco politics 2024',
+  'algeria tunisia politics 2024', 'arab gulf cooperation',
+  'sudan conflict 2024', 'lebanon crisis 2024',
+  'arab education reform', 'arab media digital 2024',
+  // فرنسية
+  'monde arabe politique 2024', 'conflit israélo-palestinien 2024',
+  'guerre gaza 2024', 'démocratie autoritarisme arabe',
+  'développement économique arabe 2024', 'littérature arabe contemporaine',
+  'femmes arabes droits 2024', 'réfugiés arabes 2024',
+  'islam modernité monde arabe', 'maghreb géopolitique 2024',
+  'syrie reconstruction 2024', 'yémen crise humanitaire',
+  'rapport droits homme arabes 2024', 'tunisie algérie maroc 2024',
+];
+
+// ══════════════════════════════════════════════════════
 // المحرك الرئيسي
-// ═══════════════════════════════════════════════════════
-async function fetchAllBooks() {
+// ══════════════════════════════════════════════════════
+async function fetchAll() {
   document.getElementById('progressBar').style.display = 'block';
   document.getElementById('refreshBtn').disabled = true;
   document.getElementById('booksGrid').innerHTML =
-    '<div class="loader"><div class="spinner"></div><p>🌍 جارٍ تشغيل رادار الكتب العربي من 200+ مصدر...</p></div>';
+    '<div class="loader"><div class="spinner"></div><p>🌍 جارٍ الاتصال بـ 6 مصادر مجانية بلا حدود...</p></div>';
 
-  const allBooks = [];
-
-  const allQueries = [
-    ...QUERIES.en.map(q=>({q,api:'google'})),
-    ...QUERIES.fr.map(q=>({q,api:'google'})),
-    ...QUERIES.ar.map(q=>({q,api:'google'})),
-    ...QUERIES.en.slice(0,25).map(q=>({q,api:'openlibrary'})),
-    ...QUERIES.fr.slice(0,18).map(q=>({q,api:'openlibrary'})),
-    ...QUERIES.ar.slice(0,15).map(q=>({q,api:'openlibrary'})),
-    ...QUERIES.en.slice(0,22).map(q=>({q,api:'openalex'})),
-    ...QUERIES.fr.slice(0,15).map(q=>({q,api:'openalex'})),
-    ...QUERIES.ar.slice(0,12).map(q=>({q,api:'openalex'})),
-    ...QUERIES.en.slice(0,18).map(q=>({q,api:'crossref'})),
-    ...QUERIES.fr.slice(0,12).map(q=>({q,api:'crossref'})),
-    ...QUERIES.ar.slice(0,10).map(q=>({q,api:'crossref'})),
-    ...QUERIES.en.slice(0,12).map(q=>({q,api:'core'})),
-    ...QUERIES.fr.slice(0,10).map(q=>({q,api:'core'})),
-    ...QUERIES.ar.slice(0,8).map(q=>({q,api:'core'}))
-  ];
-
-  const total = allQueries.length;
+  renderApiStatus();
+  const all = [];
+  const total = QUERIES.length * 3; // 3 APIs رئيسية لكل استعلام
   let step = 0;
 
-  for (const {q, api} of allQueries) {
-    ++step;
-    updateProgress(step, total, `${api}: ${q.substring(0,45)}…`);
-    let res = [];
-    try {
-      if      (api==='google')      res = await fetchGoogleBooks(q);
-      else if (api==='openlibrary') res = await fetchOpenLibrary(q);
-      else if (api==='openalex')    res = await fetchOpenAlex(q);
-      else if (api==='crossref')    res = await fetchCrossRef(q);
-      else if (api==='core')        res = await fetchCORE(q);
-    } catch(e){ console.warn(api, e.message); }
-    allBooks.push(...res);
-    await sleep(250);
+  // ── دفعات متوازية لتسريع الجلب ──
+  const BATCH = 5; // 5 طلبات في آن واحد
+
+  // OpenAlex + CrossRef + CORE + InternetArchive لعينة من الاستعلامات
+  const batches = [];
+  for (const q of QUERIES) {
+    batches.push(
+      fetchOpenLibrary(q).then(r => { step+=1; updateProg(step,total,`Open Library: ${q.substring(0,30)}`); all.push(...r); }),
+      fetchOpenAlex(q).then(r => { step+=1; updateProg(step,total,`OpenAlex: ${q.substring(0,30)}`); all.push(...r); }),
+      fetchCrossRef(q).then(r => { step+=1; updateProg(step,total,`CrossRef: ${q.substring(0,30)}`); all.push(...r); }),
+    );
   }
 
-  updateProgress(total, total, 'إزالة التكرار وفلترة النتائج...');
+  // نفّذ على دفعات لتجنب إغراق الشبكة
+  for (let i = 0; i < batches.length; i += BATCH) {
+    await Promise.allSettled(batches.slice(i, i+BATCH));
+    await sleep(200);
+  }
 
-  // ── فلترة صارمة: 12 شهراً فقط ──
-  let clean = removeDuplicates(allBooks);
-  clean = clean.filter(b => b.publication_date && isWithin12Months(b.publication_date));
-  clean.sort((a,b) => new Date(b.publication_date) - new Date(a.publication_date));
+  // CORE و Semantic Scholar و Internet Archive على استعلامات مختارة
+  const extra = QUERIES.slice(0,15);
+  for (const q of extra) {
+    const [c,s,ia] = await Promise.allSettled([
+      fetchCORE(q),
+      fetchSemanticScholar(q),
+      fetchInternetArchive(q),
+    ]);
+    if (c.status==='fulfilled') all.push(...c.value);
+    if (s.status==='fulfilled') all.push(...s.value);
+    if (ia.status==='fulfilled') all.push(...ia.value);
+    await sleep(150);
+  }
+
+  updateProg(total, total, 'جارٍ المعالجة...');
+
+  let clean = dedup(all);
+  clean = clean.filter(b => within12(b.publication_date));
+  clean.sort((a,b) => new Date(b.publication_date)-new Date(a.publication_date));
   ALL_BOOKS = clean;
 
   try {
-    localStorage.setItem(CACHE_KEY, JSON.stringify({books:ALL_BOOKS, timestamp:Date.now()}));
-  } catch(e){ console.warn('Cache write failed:', e.message); }
+    localStorage.setItem(CACHE_KEY, JSON.stringify({books:ALL_BOOKS, ts:Date.now()}));
+  } catch(e){}
 
   document.getElementById('progressBar').style.display = 'none';
   document.getElementById('refreshBtn').disabled = false;
@@ -1091,22 +813,25 @@ async function fetchAllBooks() {
 
 function sleep(ms){ return new Promise(r=>setTimeout(r,ms)); }
 
-function updateProgress(cur, total, src) {
-  const pct = Math.round((cur/total)*100);
+function updateProg(cur, total, msg) {
+  const pct = Math.min(100, Math.round((cur/total)*100));
   document.getElementById('progressFill').style.width = pct+'%';
-  document.getElementById('progressText').textContent = `${toLatinNums(pct)}% — ${src}`;
+  document.getElementById('progressText').textContent = `${num(pct)}% — ${msg}`;
 }
 
-// ═══════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
 // فلترة وعرض
-// ═══════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
 function setLang(lang, btn) {
   currentLang = lang;
-  document.querySelectorAll('.filter-btn').forEach(b=>b.className='filter-btn');
-  if (lang==='all')      btn.classList.add('active');
-  else if (lang==='ar')  btn.classList.add('active-ar');
-  else if (lang==='fr')  btn.classList.add('active-fr');
-  else if (lang==='en')  btn.classList.add('active-en');
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.className = 'filter-btn';
+    b.style.cssText = '';
+  });
+  if (lang==='all') { btn.classList.add('active'); }
+  else if (lang==='ar') { btn.style.background='var(--ar)'; btn.style.color='#fff'; btn.style.borderColor='var(--ar)'; }
+  else if (lang==='fr') { btn.style.background='var(--fr)'; btn.style.color='#fff'; btn.style.borderColor='var(--fr)'; }
+  else if (lang==='en') { btn.style.background='var(--en)'; btn.style.color='#fff'; btn.style.borderColor='var(--en)'; }
   filterBooks();
 }
 
@@ -1118,110 +843,96 @@ function setType(type, btn) {
 }
 
 function filterBooks() {
-  const search = (document.getElementById('searchInput').value||'').toLowerCase();
-  const topic  = document.getElementById('topicSelect').value;
-  const sort   = document.getElementById('sortSelect').value;
+  const q     = (document.getElementById('searchInput').value||'').toLowerCase();
+  const topic = document.getElementById('topicSel').value;
+  const sort  = document.getElementById('sortSel').value;
 
   let filtered = ALL_BOOKS.filter(b => {
     if (currentLang !== 'all' && b.language !== currentLang) return false;
     if (currentType !== 'all' && b.content_type !== currentType) return false;
     if (topic) {
-      const topicParts = topic.split('|');
+      const tp = topic.split('|');
       const hay = (b.title+' '+(b.description||'')+' '+(b.topics||[]).join(' ')).toLowerCase();
-      if (!topicParts.some(tp => hay.includes(tp.toLowerCase()))) return false;
+      if (!tp.some(t => hay.includes(t.toLowerCase()))) return false;
     }
-    if (search) {
+    if (q) {
       const hay = [b.title,...(b.authors||[]),b.publisher,b.description,...(b.topics||[])].join(' ').toLowerCase();
-      if (!hay.includes(search)) return false;
+      if (!hay.includes(q)) return false;
     }
     return true;
   });
 
-  if      (sort==='title')  filtered.sort((a,b)=>a.title.localeCompare(b.title,'ar'));
-  else if (sort==='pages')  filtered.sort((a,b)=>(b.pages||0)-(a.pages||0));
-  else if (sort==='rating') filtered.sort((a,b)=>(b.rating||0)-(a.rating||0));
+  if      (sort==='title') filtered.sort((a,b)=>a.title.localeCompare(b.title,'ar'));
+  else if (sort==='pages') filtered.sort((a,b)=>(b.pages||0)-(a.pages||0));
   else filtered.sort((a,b)=>new Date(b.publication_date)-new Date(a.publication_date));
 
-  renderBooks(filtered);
+  render(filtered);
 }
 
-// ═══════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
 // رسم البطاقات
-// ═══════════════════════════════════════════════════════
-function renderBooks(books) {
+// ══════════════════════════════════════════════════════
+function render(books) {
   const grid = document.getElementById('booksGrid');
   if (!books.length) {
-    grid.innerHTML = '<div class="no-results"><div class="emoji">🔍</div><p>لا توجد نتائج مطابقة</p><p style="font-size:.85em;margin-top:6px">حاول تغيير الفلتر أو كلمة البحث</p></div>';
+    grid.innerHTML = '<div class="no-results"><div style="font-size:3em">🔍</div><p>لا توجد نتائج</p></div>';
     return;
   }
 
-  const typeIcon  = {book:'📖', report:'📊', thesis:'🎓'};
-  const typeLabel = {book:'كتاب', report:'تقرير/دراسة', thesis:'أطروحة'};
+  const tIcon  = {book:'📖', report:'📊', thesis:'🎓'};
+  const tLabel = {book:'كتاب', report:'تقرير', thesis:'أطروحة'};
 
   grid.innerHTML = books.map(b => {
-    const langCls   = `lang-${b.language}`;
-    const langLabel = b.language==='ar' ? '🇸🇦 عربي' : b.language==='fr' ? '🇫🇷 Français' : '🇬🇧 English';
-    const ageMs     = Date.now() - new Date(b.publication_date).getTime();
-    const isHot     = ageMs <= (1000*60*60*24*90);
+    const lc = `lang-${b.language}`;
+    const ll = b.language==='ar'?'🇸🇦 عربي': b.language==='fr'?'🇫🇷 FR':'🇬🇧 EN';
+    const hot = Date.now()-new Date(b.publication_date).getTime() <= 90*24*60*60*1000;
 
-    // ── تنسيق التاريخ بأرقام لاتينية ──
     let dateStr = '';
     if (b.publication_date) {
-      const d = new Date(b.publication_date);
-      if (!isNaN(d.getTime())) {
-        dateStr = toLatinNums(d.toLocaleDateString('ar-SA',{year:'numeric',month:'short'}));
-      }
+      try {
+        dateStr = num(new Date(b.publication_date).toLocaleDateString('ar-SA',{year:'numeric',month:'short'}));
+      } catch(_){}
     }
 
-    // ── غلاف الكتاب (الصفحة الأولى) ──
-    const coverHTML = b.cover
-      ? `<img src="${esc(b.cover)}" alt="${esc(b.title)}" loading="lazy"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+    const ci  = tIcon[b.content_type]||'📄';
+    const cl  = tLabel[b.content_type]||'';
+    const tps = (b.topics||[]).slice(0,4).map(t=>`<span class="topic-tag">${esc(t)}</span>`).join('');
+    const sq  = encodeURIComponent((b.title+' '+(b.authors||[])[0]||'').substring(0,70));
+    const aq  = encodeURIComponent(b.title.substring(0,55));
+
+    // ── زر المعاينة ──
+    const previewBtn = b.preview_url
+      ? `<a href="${esc(b.preview_url)}" target="_blank" rel="noopener" class="btn btn-blue">👁 معاينة</a>`
       : '';
-
-    const topics   = (b.topics||[]).slice(0,4).map(t=>`<span class="topic-tag">${esc(t)}</span>`).join('');
-    const q        = encodeURIComponent((b.title+' '+(b.authors||[])[0]).substring(0,70));
-    const archQ    = encodeURIComponent(b.title.substring(0,55));
-    const worldCat = b.isbn
-      ? `<a href="https://www.worldcat.org/isbn/${esc(b.isbn)}" target="_blank" rel="noopener" class="btn-link btn-secondary">🌐 WorldCat</a>`
-      : '';
-
-    const ctIcon  = typeIcon[b.content_type]||'📄';
-    const ctLabel = typeLabel[b.content_type]||'';
-
-    // ── عدد الصفحات والتقييم بأرقام لاتينية ──
-    const pagesStr  = b.pages  ? toLatinNums(b.pages)+'ص.'  : '';
-    const ratingStr = b.rating ? '⭐ '+toLatinNums(b.rating.toFixed(1)) : '';
 
     return `
 <div class="book-card">
   <div class="book-cover-wrap">
-    ${coverHTML}
-    <div class="no-cover-icon" style="display:${b.cover?'none':'flex'};align-items:center;justify-content:center">${ctIcon}</div>
-    <span class="lang-badge ${langCls}">${langLabel}</span>
-    <span class="source-badge">${esc(b.source)}</span>
-    ${isHot ? '<span class="new-badge">🔥 جديد</span>' : ''}
+    ${b.cover
+      ? `<img src="${esc(b.cover)}" alt="${esc(b.title)}" loading="lazy"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+      : ''}
+    <div class="no-cover" style="display:${b.cover?'none':'flex'};align-items:center;justify-content:center">${ci}</div>
+    <span class="lang-badge ${lc}">${ll}</span>
+    <span class="src-badge">${esc(b.source)}</span>
+    ${hot?'<span class="hot-badge">🔥 جديد</span>':''}
   </div>
-  <div class="book-body" dir="rtl">
+  <div class="book-body">
     <div class="book-title">${esc(b.title)}</div>
-    <div class="book-author">✍ ${esc((b.authors||[]).slice(0,3).join('، ')||'غير محدد')}</div>
-    <div class="book-publisher">🏛 ${esc(b.publisher||'غير محدد')} ${ctLabel?'· <em>'+ctLabel+'</em>':''}</div>
+    <div class="book-author">✍ ${esc((b.authors||[]).slice(0,2).join('، ')||'غير محدد')}</div>
+    <div class="book-pub">🏛 ${esc(b.publisher||'غير محدد')} ${cl?`· <em>${cl}</em>`:''}</div>
     <div class="book-meta">
-      ${dateStr  ? `<span>🗓 ${dateStr}</span>` : ''}
-      ${pagesStr ? `<span>📄 ${pagesStr}</span>` : ''}
-      ${ratingStr? `<span>${ratingStr}</span>` : ''}
-      ${b.isbn   ? `<span>🔖 ISBN</span>` : ''}
+      ${dateStr?`<span>🗓 ${dateStr}</span>`:''}
+      ${b.pages?`<span>📄 ${num(b.pages)} ص.</span>`:''}
     </div>
-    <div class="book-topics">${topics}</div>
-    ${b.description ? `<div class="book-desc">${esc(b.description)}</div>` : ''}
+    <div class="book-topics">${tps}</div>
+    ${b.description?`<div class="book-desc">${esc(b.description)}</div>`:''}
     <div class="book-actions">
-      ${b.book_url
-        ? `<a href="${esc(b.book_url)}" target="_blank" rel="noopener" class="btn-link btn-primary">🔗 الرابط</a>`
-        : ''}
-      <a href="https://scholar.google.com/scholar?q=${q}" target="_blank" rel="noopener" class="btn-link btn-secondary">🎓 Scholar</a>
-      <a href="https://archive.org/search?query=${archQ}" target="_blank" rel="noopener" class="btn-link btn-green">🌐 Archive</a>
+      ${b.book_url?`<a href="${esc(b.book_url)}" target="_blank" rel="noopener" class="btn btn-dark">🔗 الرابط</a>`:''}
+      ${previewBtn}
+      <a href="https://scholar.google.com/scholar?q=${sq}" target="_blank" rel="noopener" class="btn btn-gray">🎓 Scholar</a>
+      <a href="https://archive.org/search?query=${aq}" target="_blank" rel="noopener" class="btn btn-brown">🌐 Archive</a>
     </div>
-    ${worldCat ? `<div class="book-actions" style="margin-top:6px">${worldCat}</div>` : ''}
   </div>
 </div>`;
   }).join('');
@@ -1233,82 +944,83 @@ function esc(s) {
   return d.innerHTML;
 }
 
-// ═══════════════════════════════════════════════════════
-// إحصائيات (بأرقام لاتينية)
-// ═══════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
+// إحصائيات
+// ══════════════════════════════════════════════════════
 function updateStats() {
-  const now  = Date.now();
-  const mo30 = 30*24*60*60*1000;
-  const set  = (id, val) => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = toLatinNums(val);
-  };
-  set('totalCount',   ALL_BOOKS.length);
-  set('arCount',      ALL_BOOKS.filter(b=>b.language==='ar').length);
-  set('frCount',      ALL_BOOKS.filter(b=>b.language==='fr').length);
-  set('enCount',      ALL_BOOKS.filter(b=>b.language==='en').length);
-  set('booksCount',   ALL_BOOKS.filter(b=>b.content_type==='book').length);
-  set('reportsCount', ALL_BOOKS.filter(b=>b.content_type==='report'||b.content_type==='thesis').length);
-  set('monthCount',   ALL_BOOKS.filter(b=>now-new Date(b.publication_date).getTime()<=mo30).length);
+  const set = (id, v) => { const e=document.getElementById(id); if(e) e.textContent=num(v); };
+  const mo = 30*24*60*60*1000, now = Date.now();
+  set('stTotal',   ALL_BOOKS.length);
+  set('stAr',      ALL_BOOKS.filter(b=>b.language==='ar').length);
+  set('stFr',      ALL_BOOKS.filter(b=>b.language==='fr').length);
+  set('stEn',      ALL_BOOKS.filter(b=>b.language==='en').length);
+  set('stBooks',   ALL_BOOKS.filter(b=>b.content_type==='book').length);
+  set('stReports', ALL_BOOKS.filter(b=>b.content_type!=='book').length);
+  set('stMonth',   ALL_BOOKS.filter(b=>now-new Date(b.publication_date).getTime()<=mo).length);
 }
 
 function updateLastTime() {
   const el = document.getElementById('lastUpdate');
-  if (!el) return;
-  const str = new Date().toLocaleString('ar-SA',{
-    year:'numeric', month:'short', day:'numeric',
-    hour:'2-digit', minute:'2-digit'
-  });
-  el.textContent = '⏱ آخر تحديث: ' + toLatinNums(str);
+  if (el) el.textContent = '⏱ آخر تحديث: ' + num(new Date().toLocaleString('ar-SA',{
+    year:'numeric', month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'
+  }));
 }
 
-// ═══════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
 // قائمة المصادر
-// ═══════════════════════════════════════════════════════
-function toggleSources() {
-  const el = document.getElementById('sourcesList');
+// ══════════════════════════════════════════════════════
+const SRC_INFO = [
+  '✅ Open Library (Internet Archive) — مجاني تماماً — بلا حدود — openlibrary.org',
+  '✅ OpenAlex — 100,000 طلب/يوم مجاناً — api.openalex.org',
+  '✅ CrossRef — مجاني تماماً — بلا حدود — api.crossref.org',
+  '✅ CORE Open Access — مجاني تماماً — api.core.ac.uk',
+  '✅ Semantic Scholar — 100 طلب/ثانية مجاناً — api.semanticscholar.org',
+  '✅ Internet Archive — مجاني تماماً — بلا حدود — archive.org',
+  '✅ BASE Search — مجاني تماماً — base-search.net',
+  '📚 DOAB — Directory of Open Access Books',
+  '📚 OAPEN Library — Open Access Publishing',
+  '📚 Zenodo — منصة نشر مفتوح',
+  '📚 OpenAIRE — بحوث مفتوحة أوروبية',
+];
+
+function toggleSrc() {
+  const el = document.getElementById('srcList');
   el.classList.toggle('open');
-  if (el.classList.contains('open') && !el.innerHTML.trim()) {
-    el.innerHTML = SOURCES_LIST.map((s,i)=>`${toLatinNums(i+1)}. ${s}`).join('<br>');
-  }
+  if (el.classList.contains('open') && !el.innerHTML.trim())
+    el.innerHTML = SRC_INFO.map((s,i)=>`${num(i+1)}. ${s}`).join('<br>');
 }
 
-// ═══════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
 // تحديث يدوي
-// ═══════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
 function manualRefresh() {
   localStorage.removeItem(CACHE_KEY);
-  fetchAllBooks();
+  fetchAll();
 }
 
-// ═══════════════════════════════════════════════════════
-// نقطة البدء — كاش 24 ساعة
-// ═══════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
+// نقطة البدء
+// ══════════════════════════════════════════════════════
 (async function init() {
+  renderApiStatus();
   try {
     const raw = localStorage.getItem(CACHE_KEY);
     if (raw) {
       const cache = JSON.parse(raw);
-      if (cache && (Date.now() - cache.timestamp) < CACHE_DURATION) {
-        // فلترة الكاش: 12 شهراً فقط
-        ALL_BOOKS = (cache.books||[]).filter(b => b.publication_date && isWithin12Months(b.publication_date));
-        updateStats();
-        filterBooks();
-        updateLastTime();
-        const remaining = CACHE_DURATION - (Date.now() - cache.timestamp);
-        setTimeout(() => fetchAllBooks(), remaining);
+      if (cache && (Date.now()-cache.ts) < CACHE_DURATION) {
+        ALL_BOOKS = (cache.books||[]).filter(b=>within12(b.publication_date));
+        updateStats(); filterBooks(); updateLastTime();
+        const rem = CACHE_DURATION-(Date.now()-cache.ts);
+        setTimeout(()=>fetchAll(), rem);
         return;
       }
     }
-  } catch(e){ console.warn('Cache read error:', e.message); }
-  await fetchAllBooks();
+  } catch(e){}
+  await fetchAll();
 })();
 
-// تحديث تلقائي كل 24 ساعة
-setInterval(() => {
-  console.log('🌍 رادار الكتب العربي — تحديث يومي تلقائي...');
-  fetchAllBooks();
-}, CACHE_DURATION);
+// تحديث كل 24 ساعة
+setInterval(()=>{ console.log('🔄 تحديث تلقائي...'); fetchAll(); }, CACHE_DURATION);
 </script>
 </body>
 </html>
